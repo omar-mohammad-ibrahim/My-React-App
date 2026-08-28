@@ -1,0 +1,30 @@
+{
+  "auth": {
+    "signInOrCreate": "تسجيل الدخول أو إنشاء حساب",
+    "or": "أو",
+    "emailPlaceholder": "أدخل عنوان بريدك الإلكتروني",
+    "emailError": "يرجى إدخال بريد إلكتروني صالح",
+    "continue": "متابعة",
+    "signIn": "تسجيل الدخول",
+    "signInWithCode": "تسجيل الدخول باستخدام رمز",
+    "passwordPlaceholder": "كلمة المرور",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "newToAlibaba": "جديد على Alibaba.com؟",
+    "createAccount": "إنشاء حساب",
+    "whichAccount": "ما نوع الحساب الذي ترغب في إنشائه؟",
+    "buyerTitle": "مشتري",
+    "buyerDesc": "الوصول إلى أكثر من 200 مليون منتج من 200,000 مورد",
+    "supplierTitle": "مورّد",
+    "supplierDesc": "بع منتجاتك إلى 40 مليون مشتري أعمال حول العالم",
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+    "verifyEmailTitle": "تحقق من بريدك الإلكتروني",
+    "sentEmailTo": "لقد أرسلنا بريداً إلكترونياً إلى",
+    "didntReceiveCode": "لم يصلك الرمز؟",
+    "getNewOneIn": "الحصول على رمز جديد خلال {{seconds}} ثانية",
+    "resendCode": "إعادة إرسال الرمز",
+    "goBack": "رجوع",
+    "continueWithGoogle": "متابعة مع Google",
+    "continueWithFacebook": "متابعة مع Facebook",
+    "continueWithLinkedIn": "متابعة مع LinkedIn"
+  }
+}

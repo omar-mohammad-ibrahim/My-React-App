@@ -1,113 +1,135 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Button from "../../ui/Button";
+import Input from "../../ui/Input";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 
-export default function OtpVerifyStep({ email, onVerify, onGoBack }) {
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [timer, setTimer] = useState(58);
-  const inputsRef = useRef([]);
-
-  // عداد تنازلي للرمز
-  useEffect(() => {
-    const countdown =
-      timer > 0 && setInterval(() => setTimer((t) => t - 1), 1000);
-    return () => clearInterval(countdown);
-  }, [timer]);
-
-  // إخفاء جزء من الإيميل مثل Alibaba (om***@gmail.com)
-  const maskEmail = (str) => {
-    if (!str) return "";
-    const [name, domain] = str.split("@");
-    const masked = name.slice(0, 3) + "***";
-    return `${masked}@${domain}`;
-  };
-
-  const handleChange = (index, value) => {
-    if (isNaN(value)) return;
-    const newOtp = [...otp];
-    newOtp[index] = value.slice(-1);
-    setOtp(newOtp);
-
-    // الانتقال التلقائي للخانة التالية
-    if (value && index < 5) {
-      inputsRef.current[index + 1].focus();
-    }
-  };
-
-  const handleKeyDown = (index, e) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      inputsRef.current[index - 1].focus();
-    }
-  };
+export default function PasswordStep({
+  email,
+  onSubmit,
+  onSwitchToRegister,
+  authError,
+}) {
+  const { t } = useTranslation();
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onVerify(otp.join(""));
+    onSubmit(password);
   };
 
   return (
-    <div className="w-full flex flex-col">
-      <h1 className="text-2xl font-bold text-gray-900 mb-3 text-left">
-        Verify your email
+    <div className="w-full flex flex-col items-center">
+      <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        {t("auth.signIn")}
       </h1>
 
-      <p className="text-xs text-gray-600 text-left mb-6 leading-relaxed">
-        We've sent an email to{" "}
-        <strong className="text-gray-900 font-semibold">
-          {maskEmail(email)}
-        </strong>
-      </p>
+      {/* رابط التبديل لتسجيل الدخول بكود */}
+      <div className="w-full flex justify-end mb-4">
+        <button
+          type="button"
+          className="flex items-center gap-1.5 text-xs text-gray-700 hover:text-primary font-medium underline cursor-pointer"
+        >
+          <HiOutlineSwitchHorizontal className="text-sm" />
+          {t("auth.signInWithCode")}
+        </button>
+      </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        {/* مربعات الإدخال الـ 6 */}
-        <div className="flex justify-between gap-2">
-          {otp.map((digit, idx) => (
-            <input
-              key={idx}
-              ref={(el) => (inputsRef.current[idx] = el)}
-              type="text"
-              maxLength={1}
-              value={digit}
-              onChange={(e) => handleChange(idx, e.target.value)}
-              onKeyDown={(e) => handleKeyDown(idx, e)}
-              className="w-11 h-12 text-center text-lg font-bold border border-gray-300 rounded-brand focus:border-gray-900 outline-none transition-colors"
-            />
-          ))}
+      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3">
+        {/* حقل البريد الثابت */}
+        <div className="w-full px-3.5 py-3 text-sm text-gray-800 bg-blue-50/50 rounded-brand border border-gray-200 text-start select-none">
+          {email}
         </div>
 
-        {/* المؤقت وإعادة الإرسال */}
-        <p className="text-xs text-gray-600 text-left">
-          Didn't receive the code?{" "}
-          {timer > 0 ? (
-            <span className="text-gray-900 font-medium underline">
-              Get a new one in {timer}s
-            </span>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setTimer(60)}
-              className="text-primary font-semibold underline"
-            >
-              Resend code
-            </button>
-          )}
-        </p>
-
-        {/* أزرار الإجراءات */}
-        <div className="flex flex-col gap-3 mt-4">
-          <Button type="submit" className="w-full">
-            Continue
-          </Button>
-
-          <Button
+        {/* حقل كلمة المرور مع أيقونة إظهار/إخفاء */}
+        <div className="relative w-full">
+          <Input
+            placeholder={t("auth.passwordPlaceholder")}
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="pe-10"
+          />
+          <button
             type="button"
-            variant="outline"
-            onClick={onGoBack}
-            className="w-full border-gray-900 text-gray-900 hover:bg-gray-50"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute end-3.5 top-3.5 text-gray-400 hover:text-gray-600 cursor-pointer"
           >
-            Go back
-          </Button>
+            {showPassword ? (
+              <FiEyeOff className="text-lg" />
+            ) : (
+              <FiEye className="text-lg" />
+            )}
+          </button>
         </div>
+
+        {/* رسالة الخطأ */}
+        {authError && (
+          <p className="text-danger text-xs text-start mt-0.5">{authError}</p>
+        )}
+
+        {/* رابط نسيت كلمة المرور */}
+        <div className="flex justify-end">
+          <a
+            href="#forgot"
+            className="text-xs text-gray-800 hover:text-primary underline font-medium"
+          >
+            {t("auth.forgotPassword")}
+          </a>
+        </div>
+
+        <Button type="submit" className="w-full mt-2">
+          {t("auth.continue")}
+        </Button>
       </form>
+
+      {/* فاصل OR */}
+      <div className="relative w-full my-6 text-center">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-200"></div>
+        </div>
+        <span className="relative bg-white px-3 text-xs text-gray-400 uppercase">
+          {t("auth.or")}
+        </span>
+      </div>
+
+      {/* أزرار التواصل المربعة المصغرة */}
+      <div className="grid grid-cols-3 gap-3 w-full">
+        <button
+          type="button"
+          className="flex justify-center items-center py-2.5 border border-gray-200 rounded-brand hover:bg-gray-50 bg-gray-50/50 cursor-pointer"
+        >
+          <FcGoogle className="text-xl" />
+        </button>
+        <button
+          type="button"
+          className="flex justify-center items-center py-2.5 border border-gray-200 rounded-brand hover:bg-gray-50 bg-gray-50/50 cursor-pointer"
+        >
+          <FaFacebook className="text-xl text-[#1877F2]" />
+        </button>
+        <button
+          type="button"
+          className="flex justify-center items-center py-2.5 border border-gray-200 rounded-brand hover:bg-gray-50 bg-gray-50/50 cursor-pointer"
+        >
+          <FaLinkedin className="text-xl text-[#0A66C2]" />
+        </button>
+      </div>
+
+      {/* الانتقال لإنشاء حساب */}
+      <p className="text-xs text-gray-600 mt-8 text-center">
+        {t("auth.newToAlibaba")}{" "}
+        <button
+          type="button"
+          onClick={onSwitchToRegister}
+          className="text-gray-900 font-semibold underline hover:text-primary cursor-pointer"
+        >
+          {t("auth.createAccount")}
+        </button>
+      </p>
     </div>
   );
 }

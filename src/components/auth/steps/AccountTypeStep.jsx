@@ -1,71 +1,101 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Button from "../../ui/Button";
-import Input from "../../ui/Input";
-import SocialButton from "../../ui/SocialButton";
+import { BsBoxSeam } from "react-icons/bs";
+import { BiStore } from "react-icons/bi";
 
-export default function IdentifierStep({ onProceed, onSocialLogin }) {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+export default function AccountTypeStep({ onSelectRole, onBackToLogin }) {
+  const { t } = useTranslation();
+  const [selectedRole, setSelectedRole] = useState("Buyer");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      setError("Enter a valid email address");
-      return;
-    }
-    setError("");
-    onProceed(email);
+  const handleContinue = () => {
+    onSelectRole(selectedRole);
   };
 
   return (
     <div className="w-full flex flex-col">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6 text-left">
-        Sign in or create account
+      <h1 className="text-2xl font-bold text-gray-900 mb-6 text-start leading-tight">
+        {t("auth.whichAccount")}
       </h1>
 
-      {/* أزرار التواصل الاجتماعي */}
-      <div className="flex flex-col gap-3 w-full">
-        <SocialButton
-          provider="google"
-          onClick={() => onSocialLogin("google")}
-        />
-        <SocialButton
-          provider="facebook"
-          onClick={() => onSocialLogin("facebook")}
-        />
-        <SocialButton
-          provider="linkedin"
-          onClick={() => onSocialLogin("linkedin")}
-        />
-      </div>
-
-      {/* فاصل OR */}
-      <div className="relative my-6 text-center">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
+      <div className="flex flex-col gap-3.5 w-full mb-8">
+        {/* بطاقة المشتري (Buyer) */}
+        <div
+          onClick={() => setSelectedRole("Buyer")}
+          className={`relative flex items-center justify-between p-4 rounded-brand border-2 cursor-pointer transition-all ${
+            selectedRole === "Buyer"
+              ? "border-gray-900 bg-white"
+              : "border-gray-200 hover:border-gray-300 bg-white"
+          }`}
+        >
+          <div className="flex items-start gap-3.5">
+            <input
+              type="radio"
+              name="role"
+              checked={selectedRole === "Buyer"}
+              onChange={() => setSelectedRole("Buyer")}
+              className="mt-1 w-4 h-4 accent-gray-900 cursor-pointer"
+            />
+            <div className="text-start">
+              <h3 className="text-sm font-bold text-gray-900">
+                {t("auth.buyerTitle")}
+              </h3>
+              <p className="text-xs text-gray-500 mt-0.5 max-w-[200px]">
+                {t("auth.buyerDesc")}
+              </p>
+            </div>
+          </div>
+          <div className="p-2.5 bg-orange-50 rounded-lg text-orange-500">
+            <BsBoxSeam className="text-2xl" />
+          </div>
         </div>
-        <span className="relative bg-white px-3 text-xs text-gray-400 uppercase tracking-wider">
-          OR
-        </span>
+
+        {/* بطاقة التاجر (Supplier) */}
+        <div
+          onClick={() => setSelectedRole("Supplier")}
+          className={`relative flex items-center justify-between p-4 rounded-brand border-2 cursor-pointer transition-all ${
+            selectedRole === "Supplier"
+              ? "border-gray-900 bg-white"
+              : "border-gray-200 hover:border-gray-300 bg-white"
+          }`}
+        >
+          <div className="flex items-start gap-3.5">
+            <input
+              type="radio"
+              name="role"
+              checked={selectedRole === "Supplier"}
+              onChange={() => setSelectedRole("Supplier")}
+              className="mt-1 w-4 h-4 accent-gray-900 cursor-pointer"
+            />
+            <div className="text-start">
+              <h3 className="text-sm font-bold text-gray-900">
+                {t("auth.supplierTitle")}
+              </h3>
+              <p className="text-xs text-gray-500 mt-0.5 max-w-[200px]">
+                {t("auth.supplierDesc")}
+              </p>
+            </div>
+          </div>
+          <div className="p-2.5 bg-gray-50 rounded-lg text-gray-400">
+            <BiStore className="text-2xl" />
+          </div>
+        </div>
       </div>
 
-      {/* نموذج إدخال البريد */}
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Input
-          placeholder="Enter your email address"
-          type="email"
-          value={email}
-          error={error}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (error) setError("");
-          }}
-        />
+      <Button onClick={handleContinue} className="w-full">
+        {t("auth.continue")}
+      </Button>
 
-        <Button type="submit" className="w-full mt-2">
-          Continue
-        </Button>
-      </form>
+      <p className="text-xs text-gray-600 mt-6 text-center">
+        {t("auth.alreadyHaveAccount")}{" "}
+        <button
+          type="button"
+          onClick={onBackToLogin}
+          className="text-gray-900 font-semibold underline hover:text-primary cursor-pointer"
+        >
+          {t("auth.signIn")}
+        </button>
+      </p>
     </div>
   );
 }

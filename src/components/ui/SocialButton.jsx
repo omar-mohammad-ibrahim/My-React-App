@@ -1,19 +1,21 @@
 import { FcGoogle } from "react-icons/fc"; // أيقونة جوجل الملونة الرسمية
 import { FaFacebook, FaLinkedin } from "react-icons/fa"; // أيقونات فيسبوك ولينكد إن
+import { useTranslation } from "react-i18next";
 
 export default function SocialButton({ provider, onClick }) {
+  const { t } = useTranslation();
   // تحديد الأيقونة والنص ولون الأيقونة بناءً على نوع المزود
   const config = {
     google: {
-      text: "Continue with Google",
+      text: t("auth.continueWithGoogle"),
       icon: <FcGoogle className="text-xl" />,
     },
     facebook: {
-      text: "Continue with Facebook",
+      text: t("auth.continueWithFacebook"),
       icon: <FaFacebook className="text-xl text-[#1877F2]" />,
     },
     linkedin: {
-      text: "Continue with LinkedIn",
+      text: t("auth.continueWithLinkedIn"),
       icon: <FaLinkedin className="text-xl text-[#0A66C2]" />,
     },
   };

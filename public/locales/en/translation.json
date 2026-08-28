@@ -1,0 +1,30 @@
+{
+  "auth": {
+    "signInOrCreate": "Sign in or create account",
+    "or": "OR",
+    "emailPlaceholder": "Enter your email address",
+    "emailError": "Enter a valid email address",
+    "continue": "Continue",
+    "signIn": "Sign in",
+    "signInWithCode": "Sign in with a code",
+    "passwordPlaceholder": "Password",
+    "forgotPassword": "Forgot password?",
+    "newToAlibaba": "New to Alibaba.com?",
+    "createAccount": "Create an account",
+    "whichAccount": "Which account would you like to create?",
+    "buyerTitle": "Buyer",
+    "buyerDesc": "Access over 200 million products from 200,000 suppliers",
+    "supplierTitle": "Supplier",
+    "supplierDesc": "Sell your products to 40 million business buyers worldwide",
+    "alreadyHaveAccount": "Already have an account?",
+    "verifyEmailTitle": "Verify your email",
+    "sentEmailTo": "We've sent an email to",
+    "didntReceiveCode": "Didn't receive the code?",
+    "getNewOneIn": "Get a new one in {{seconds}}s",
+    "resendCode": "Resend code",
+    "goBack": "Go back",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithFacebook": "Continue with Facebook",
+    "continueWithLinkedIn": "Continue with LinkedIn"
+  }
+}
