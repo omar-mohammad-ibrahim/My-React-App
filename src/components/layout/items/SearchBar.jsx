@@ -1,5 +1,7 @@
 ﻿import { Camera } from "lucide-react";
 import { Search } from "lucide-react";
+import Button from "../../ui/Button";
+import Input from "../../ui/Input";
 
 export default function SearchBar() {
   return (

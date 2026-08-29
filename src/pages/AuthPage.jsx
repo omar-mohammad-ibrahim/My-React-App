@@ -8,18 +8,20 @@ export default function AuthPage() {
     <div className="min-h-screen flex flex-col justify-between bg-white text-gray-900 font-sans">
       <AuthHeader />
 
-      <main className="flex-1 w-full max-w-6xl mx-auto px-6 py-6 flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
-        <div className=" hidden lg:flex w-1/2 justify-end">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-4 flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
+        {/* العمود الأيسر: البنر */}
+        <div className="hidden lg:flex w-auto justify-end">
           <AuthBanner />
         </div>
 
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start max-w-md">
+        {/* العمود الأيمن: الفورم مع QR Code */}
+        <div className="w-full max-w-sm flex flex-col">
           <AuthContainer />
 
           <div className="w-full flex justify-end mt-4">
             <button
               type="button"
-              className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-800 transition-colors"
+              className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-800 transition-colors cursor-pointer"
             >
               <BsQrCode className="text-sm" />
               Sign in with QR code

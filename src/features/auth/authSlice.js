@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// 1. الدالة غير المتزامنة للاتصال بالسيرفر
+// قراءة بيانات المستخدم من المتصفح لكي لا يخرج من حسابه عند عمل Refresh
+const storedUser = JSON.parse(localStorage.getItem("user"));
+
+// 1. الدالة غير المتزامنة
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      // هنا سيتم استدعاء Firebase لاحقاً
-      // ونفترض أن السيرفر أعاد بيانات المستخدم
+      // سنمرر بيانات المستخدم النظيفة لهذه الدالة بعد أن يوافق Firebase عليها
       return userData;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -14,10 +16,10 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-// 2. الحالة الابتدائية
+// 2. الحالة الابتدائية (مربوطة بالذاكرة)
 const initialState = {
-  user: null,
-  isAuthenticated: false,
+  user: storedUser || null,
+  isAuthenticated: !!storedUser,
   loading: false,
   error: null,
 };
@@ -31,22 +33,23 @@ export const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
+      // مسح البيانات من المتصفح عند تسجيل الخروج
+      localStorage.removeItem("user");
     },
   },
   extraReducers: (builder) => {
     builder
-      // أ) قيد الانتظار
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      // ب) النجاح
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
+        // حفظ البيانات في المتصفح فور نجاح تسجيل الدخول
+        localStorage.setItem("user", JSON.stringify(action.payload));
       })
-      // ج) الفشل
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;

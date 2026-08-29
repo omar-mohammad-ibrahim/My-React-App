@@ -3,7 +3,7 @@ import LanguageSelector from "../ui/LanguageSelector"; // استيراد نفس 
 
 export default function AuthHeader() {
   return (
-    <header className="w-full max-w-7xl mx-auto px-6 py-4 flex items-center gap-5">
+    <header className="w-full max-w-7xl mx-auto px-8 py-5 flex items-center gap-6">
       {/* شعار المتجر */}
       <div className=" cursor-pointer">
         <Logo />
