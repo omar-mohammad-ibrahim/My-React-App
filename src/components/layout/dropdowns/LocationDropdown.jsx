@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -17,7 +16,7 @@ export default function LocationDropdown() {
         <span className="text-sm">JO</span>
       </div>
 
-      <div className="absolute ltr:-left-4 rtl:-right-4 top-full hidden pt-3 group-hover:block z-50 w-72">
+      <div className="absolute left-1/2 -translate-x-1/2 top-full hidden pt-4 group-hover:block z-50 w-64">
         <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-2xl cursor-default text-gray-900 text-start">
           <h4 className="font-bold mb-2">
             {t("navbar.specifyLocation") || "Specify your location"}

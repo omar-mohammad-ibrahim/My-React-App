@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../features/auth/authSlice";
-import { authService } from "../../services/authService"; // الاستيراد الوحيد للباك اند
+import { authService } from "../../services/authService";
 
 import IdentifierStep from "./steps/IdentifierStep";
 import PasswordStep from "./steps/PasswordStep";

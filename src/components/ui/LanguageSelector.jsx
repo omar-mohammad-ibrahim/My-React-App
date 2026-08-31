@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
 
-  // تحديث اتجاه الموقع تلقائياً بناءً على القيمة
   useEffect(() => {
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = i18n.language || "en";

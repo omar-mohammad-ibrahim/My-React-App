@@ -26,5 +26,54 @@
     "continueWithGoogle": "متابعة مع Google",
     "continueWithFacebook": "متابعة مع Facebook",
     "continueWithLinkedIn": "متابعة مع LinkedIn"
+  },
+  "subheader": {
+    "allCategories": "كل الفئات",
+    "verified": "المصنعون المعتمدون",
+    "dropshipping": "دروبشيبينغ",
+    "about": "عن Alibaba.com",
+    "help": "مركز المساعدة",
+    "accio": "Accio Work",
+    "sell": "البيع على Alibaba.com"
+  },
+
+  "navbar": {
+    "setLanguage": "تحديد اللغة",
+    "welcome": "مرحباً،",
+    "account": "الحساب:",
+    "signOut": "تسجيل الخروج",
+    "signIn": "تسجيل الدخول",
+    "signInToContinue": "قم بتسجيل الدخول للمتابعة",
+    "noAccount": "ليس لديك حساب؟",
+    "register": "التسجيل",
+    "deliverTo": "التوصيل إلى:",
+    "specifyLocation": "حدد موقعك",
+    "signInAddress": "سجل الدخول لإضافة عنوان",
+    "emptyCart": "عربة التسوق فارغة",
+    "goToCart": "الذهاب إلى العربة",
+    "messages": "الرسائل",
+    "orders": "الطلبات"
+  },
+
+  "searchBar": {
+    "placeholder": "عما تبحث؟",
+    "button": "بحث"
+  },
+
+  "products": {
+    "currency": "دينار",
+    "moq": "الحد الأدنى: {{count}} قطعة",
+    "sold": "بيعت {{count}}+",
+    "verified": "موثوق",
+    "error_msg": "عذراً! حدث خطأ ما.",
+    "try_again": "حاول مرة أخرى",
+    "no_products": "لم يتم العثور على منتجات."
+  },
+
+  "welcome": {
+    "title": "أهلاً بك في NexusTrade.com، {{name}}",
+    "rfq": "طلب تسعيرة",
+    "top_ranking": "الأعلى تقييماً",
+    "customization": "تخصيص سريع"
   }
 }

@@ -7,10 +7,8 @@ import { BiStore } from "react-icons/bi";
 export default function AccountTypeStep({ onSelectRole, onBackToLogin }) {
   const { t } = useTranslation();
 
-  // القيمة الافتراضية هي مشتري (Buyer)
   const [selectedRole, setSelectedRole] = useState("Buyer");
 
-  // دالة إرسال الاختيار إلى AuthContainer
   const handleContinue = () => {
     onSelectRole(selectedRole);
   };
@@ -22,7 +20,6 @@ export default function AccountTypeStep({ onSelectRole, onBackToLogin }) {
       </h1>
 
       <div className="flex flex-col gap-3.5 w-full mb-8">
-        {/* بطاقة المشتري (Buyer) */}
         <div
           onClick={() => setSelectedRole("Buyer")}
           className={`relative flex items-center justify-between p-4 rounded-brand border-2 cursor-pointer transition-all ${
@@ -54,7 +51,6 @@ export default function AccountTypeStep({ onSelectRole, onBackToLogin }) {
           </div>
         </div>
 
-        {/* بطاقة التاجر (Supplier) */}
         <div
           onClick={() => setSelectedRole("Supplier")}
           className={`relative flex items-center justify-between p-4 rounded-brand border-2 cursor-pointer transition-all ${

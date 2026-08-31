@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { User } from "lucide-react";
@@ -23,7 +22,7 @@ export default function ProfileDropdown() {
             {user?.firstName || user?.displayName?.split(" ")[0] || "User"}
           </span>
 
-          <div className="absolute ltr:right-0 rtl:left-0 top-full hidden pt-3 group-hover:block z-50 w-60">
+          <div className="absolute end-0 top-full hidden pt-3 group-hover:block z-50 w-60">
             <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-2xl text-gray-900 cursor-default">
               <p className="text-sm mb-4">
                 {t("navbar.account") || "Account:"}{" "}

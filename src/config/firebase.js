@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// 1. أضفنا استيراد GoogleAuthProvider و FacebookAuthProvider
 import {
   getAuth,
   GoogleAuthProvider,
@@ -21,6 +20,5 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 
-// 2. تجهيز مزودي الخدمة وتصديرهم لاستخدامهم في الشاشات
 export const googleProvider = new GoogleAuthProvider();
 export const facebookProvider = new FacebookAuthProvider();

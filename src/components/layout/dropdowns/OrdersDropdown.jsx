@@ -1,4 +1,3 @@
-import React from "react";
 import { ClipboardList } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -12,7 +11,7 @@ export default function OrdersDropdown() {
         <ClipboardList className="h-[22px] w-[22px]" strokeWidth={1.5} />
       </Link>
 
-      <div className="absolute ltr:-right-4 rtl:-left-4 top-full hidden pt-4 group-hover:block z-50 w-64">
+      <div className="absolute left-1/2 -translate-x-1/2 top-full hidden pt-4 group-hover:block z-50 w-64">
         <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-2xl cursor-default text-gray-900 text-start">
           <h4 className="font-bold mb-3">{t("navbar.orders") || "Orders"}</h4>
           <ul className="text-sm flex flex-col gap-2 text-gray-600">

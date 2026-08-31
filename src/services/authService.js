@@ -10,7 +10,6 @@ import {
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
 export const authService = {
-  // 1. فحص الإيميل
   checkEmail: async (email) => {
     const userDoc = await getDoc(doc(db, "users", email));
     return userDoc.exists()
@@ -18,7 +17,6 @@ export const authService = {
       : { exists: false };
   },
 
-  // 2. تسجيل الدخول العادي
   login: async (email, password) => {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     let role = "Buyer";
@@ -27,7 +25,6 @@ export const authService = {
     return { user: cred.user, role };
   },
 
-  // 3. الدخول الاجتماعي
   socialLogin: async (providerName) => {
     const provider =
       providerName === "google" ? googleProvider : facebookProvider;
@@ -52,7 +49,6 @@ export const authService = {
     return { user: cred.user, role };
   },
 
-  // 4. التسجيل المبدئي (إرسال الرابط)
   registerInitial: async (email, role) => {
     const tempPassword = "User@123456";
     const cred = await createUserWithEmailAndPassword(
@@ -74,7 +70,6 @@ export const authService = {
     return cred.user;
   },
 
-  // 5. التحقق من الرابط وإعادة الإرسال
   verifyStatus: async () => {
     if (!auth.currentUser) return false;
     await auth.currentUser.reload();
@@ -84,7 +79,6 @@ export const authService = {
     if (auth.currentUser) await sendEmailVerification(auth.currentUser);
   },
 
-  // 6. استكمال الحساب
   finalizeAccount: async (
     email,
     role,

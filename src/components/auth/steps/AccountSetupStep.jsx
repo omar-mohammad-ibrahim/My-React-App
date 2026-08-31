@@ -6,7 +6,6 @@ import { FiCheck, FiInfo } from "react-icons/fi";
 import Button from "../../ui/Button";
 import Input from "../../ui/Input";
 
-// 1. شروط Zod لضمان سلامة البيانات قبل الإرسال
 const setupSchema = z.object({
   country: z.string().min(1, "Country is required"),
   firstName: z.string().min(1, "First name is required"),
@@ -35,25 +34,19 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
     },
   });
 
-  // مراقبة كلمة المرور لحظياً لتلوين الشروط باللون الأخضر
   const passwordValue = watch("password", "");
 
-  // فحص الشروط الثلاثة الظاهرة في الصورة:
-  // 1. الطول بين 6 و 20 حرفاً
   const isLengthValid = passwordValue.length >= 6 && passwordValue.length <= 20;
 
-  // 2. احتواء كلمة المرور على نوعين على الأقل من (أحرف، أرقام، رموز خاصة)
   const hasLetters = /[a-zA-Z]/.test(passwordValue);
   const hasNumbers = /[0-9]/.test(passwordValue);
   const hasSpecial = /[^a-zA-Z0-9]/.test(passwordValue);
   const typeCount = [hasLetters, hasNumbers, hasSpecial].filter(Boolean).length;
   const isTypesValid = typeCount >= 2;
 
-  // 3. عدم احتواء كلمة المرور على إيموجي
   const hasEmoji = /\p{Extended_Pictographic}/u.test(passwordValue);
   const isNoEmojiValid = passwordValue.length > 0 && !hasEmoji;
 
-  // هل كلمة المرور مستوفية لجميع الشروط؟
   const isPasswordFullyValid = isLengthValid && isTypesValid && isNoEmojiValid;
 
   const onSubmit = (data) => {
@@ -76,7 +69,6 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4"
       >
-        {/* حقل اختيار الدولة */}
         <div className="w-full text-start">
           <div className="relative border border-gray-300 rounded-lg px-3.5 pt-2 pb-1.5 focus-within:border-gray-900 transition-colors">
             <label className="block text-[11px] text-gray-500 font-medium">
@@ -103,7 +95,6 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
           </p>
         </div>
 
-        {/* حقول الاسم الأول والاسم الأخير بجانب بعضهما */}
         <div className="grid grid-cols-2 gap-3 w-full">
           <div>
             <div className="relative border border-gray-300 rounded-lg px-3.5 pt-2 pb-1.5 focus-within:border-gray-900 transition-colors bg-white">
@@ -144,7 +135,6 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
           </div>
         </div>
 
-        {/* حقل كلمة المرور */}
         <div className="w-full">
           <div className="relative border border-gray-300 rounded-lg px-3.5 pt-2 pb-1.5 focus-within:border-gray-900 transition-colors bg-white">
             <input
@@ -156,9 +146,7 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
           </div>
         </div>
 
-        {/* قائمة التحقق الحية (Live Checklist) */}
         <div className="flex flex-col gap-2 w-full text-start text-xs mt-1">
-          {/* الشرط 1: الطول */}
           <div
             className={`flex items-start gap-2 ${isLengthValid ? "text-green-600" : "text-gray-500"}`}
           >
@@ -172,7 +160,6 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
             </span>
           </div>
 
-          {/* الشرط 2: نوعين على الأقل */}
           <div
             className={`flex items-start gap-2 ${isTypesValid ? "text-green-600" : "text-gray-500"}`}
           >
@@ -187,7 +174,6 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
             </span>
           </div>
 
-          {/* الشرط 3: عدم وجود إيموجي */}
           <div
             className={`flex items-start gap-2 ${isNoEmojiValid ? "text-green-600" : "text-gray-500"}`}
           >
@@ -202,7 +188,6 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
           </div>
         </div>
 
-        {/* زر Confirm التفاعلي */}
         <Button
           type="submit"
           disabled={!isPasswordFullyValid || isSubmitting}

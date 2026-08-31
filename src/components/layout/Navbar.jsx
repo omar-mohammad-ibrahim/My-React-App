@@ -3,7 +3,6 @@ import Logo from "./items/Logo";
 import SearchBar from "./items/SearchBar";
 import SubHeader from "./SubHeader";
 
-// استيراد القوائم المنسدلة الجديدة
 import LocationDropdown from "./dropdowns/LocationDropdown";
 import LanguageDropdown from "./dropdowns/LanguageDropdown";
 import MessagesDropdown from "./dropdowns/MessagesDropdown";

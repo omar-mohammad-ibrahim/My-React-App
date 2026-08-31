@@ -22,11 +22,3 @@ createRoot(document.getElementById("root")).render(
     </Suspense>
   </StrictMode>,
 );
-
-// src/
-//  ├── components/
-//  │    ├── layout/        # الهياكل العامة الثابتة (Navbar, Footer, Sidebar)
-//  │    ├── common/        # قطع UI عامة وقابلة لإعادة الاستخدام (Button, Modal, Badge)
-//  │    ├── products/      # المكونات الخاصة بالمنتجات (ProductCard, ProductList, ProductFilter)
-//  │    └── cart/          # مكونات السلة (CartDrawer, CartItem, CartSummary)
-//  └── pages/              # الصفحات المربوطة بالـ Router (HomePage, ProductDetailsPage, CheckoutPage)

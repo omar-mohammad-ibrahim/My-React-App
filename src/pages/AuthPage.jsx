@@ -9,12 +9,10 @@ export default function AuthPage() {
       <AuthHeader />
 
       <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-4 flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
-        {/* العمود الأيسر: البنر */}
         <div className="hidden lg:flex w-auto justify-end">
           <AuthBanner />
         </div>
 
-        {/* العمود الأيمن: الفورم مع QR Code */}
         <div className="w-full max-w-sm flex flex-col">
           <AuthContainer />
 

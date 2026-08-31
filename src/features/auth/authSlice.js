@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
-// قراءة بيانات المستخدم من المتصفح لكي لا يخرج من حسابه عند عمل Refresh
 const storedUser = JSON.parse(localStorage.getItem("user"));
 
-// 1. الدالة غير المتزامنة
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      // سنمرر بيانات المستخدم النظيفة لهذه الدالة بعد أن يوافق Firebase عليها
       return userData;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -16,7 +15,28 @@ export const loginUser = createAsyncThunk(
   },
 );
 
-// 2. الحالة الابتدائية (مربوطة بالذاكرة)
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateUserProfile",
+  async (updatedData, { rejectWithValue }) => {
+    try {
+      const { uid, firstName, lastName, phone } = updatedData;
+
+      const userRef = doc(db, "users", uid);
+
+      await updateDoc(userRef, {
+        firstName,
+        lastName,
+        phone,
+        updatedAt: new Date().toISOString(),
+      });
+
+      return { firstName, lastName, phone };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 const initialState = {
   user: storedUser || null,
   isAuthenticated: !!storedUser,
@@ -24,7 +44,6 @@ const initialState = {
   error: null,
 };
 
-// 3. إنشاء الشريحة وربط الحالات
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -33,7 +52,6 @@ export const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
-      // مسح البيانات من المتصفح عند تسجيل الخروج
       localStorage.removeItem("user");
     },
   },
@@ -47,12 +65,19 @@ export const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
-        // حفظ البيانات في المتصفح فور نجاح تسجيل الدخول
         localStorage.setItem("user", JSON.stringify(action.payload));
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        if (state.user) {
+          state.user = { ...state.user, ...action.payload };
+
+          localStorage.setItem("user", JSON.stringify(state.user));
+        }
       });
   },
 });

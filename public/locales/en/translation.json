@@ -26,5 +26,55 @@
     "continueWithGoogle": "Continue with Google",
     "continueWithFacebook": "Continue with Facebook",
     "continueWithLinkedIn": "Continue with LinkedIn"
+  },
+
+  "subheader": {
+    "allCategories": "All categories",
+    "verified": "Verified manufacturers",
+    "dropshipping": "Dropshipping",
+    "about": "About Alibaba.com",
+    "help": "Help Center",
+    "accio": "Accio Work",
+    "sell": "Sell on Alibaba.com"
+  },
+
+  "navbar": {
+    "setLanguage": "Set language",
+    "welcome": "Welcome,",
+    "account": "Account:",
+    "signOut": "Sign out",
+    "signIn": "Sign in",
+    "signInToContinue": "Sign back in to continue",
+    "noAccount": "Don't have an account?",
+    "register": "Register",
+    "deliverTo": "Deliver to:",
+    "specifyLocation": "Specify your location",
+    "signInAddress": "Sign in to add address",
+    "emptyCart": "Your cart is empty",
+    "goToCart": "Go to cart",
+    "messages": "Messages",
+    "orders": "Orders"
+  },
+
+  "searchBar": {
+    "placeholder": "What are you looking for?",
+    "button": "Search"
+  },
+
+  "products": {
+    "currency": "JOD",
+    "moq": "MOQ: {{count}} pieces",
+    "sold": "{{count}}+ sold",
+    "verified": "Verified",
+    "error_msg": "Oops! Something went wrong.",
+    "try_again": "Try Again",
+    "no_products": "No products found."
+  },
+
+  "welcome": {
+    "title": "Welcome to NexusTrade.com, {{name}}",
+    "rfq": "Request for Quotation",
+    "top_ranking": "Top Ranking",
+    "customization": "Fast customization"
   }
 }

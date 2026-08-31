@@ -8,7 +8,6 @@ export default function Input({
   className = "",
   ...props
 }) {
-  // لون الحدود: أحمر عند وجود خطأ، ورمادي يتحول لأسود هادئ عند الضغط
   const borderStyles = error
     ? "border-danger focus:border-danger"
     : "border-gray-300 focus:border-gray-800";
@@ -27,7 +26,6 @@ export default function Input({
         {...props}
       />
 
-      {/* رسالة الخطأ تظهر أسفل الحقل فوراً باللون الأحمر */}
       {error && (
         <span className="text-danger text-xs mt-1.5 text-left font-normal">
           {error}

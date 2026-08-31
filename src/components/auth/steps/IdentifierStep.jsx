@@ -7,9 +7,7 @@ import Button from "../../ui/Button";
 import Input from "../../ui/Input";
 import SocialButton from "../../ui/SocialButton";
 
-// 1. بناء "مخطط القوانين" خارج المكون
 const identifierSchema = z.object({
-  // الإيميل إلزامي، ويجب أن يطابق صيغة البريد الحقيقية
   email: z
     .string()
     .min(1, { message: "Email is required" })
@@ -19,7 +17,6 @@ const identifierSchema = z.object({
 export default function IdentifierStep({ onProceed, onSocialLogin }) {
   const { t } = useTranslation();
 
-  // 2. تهيئة محرك النماذج وربطه بقوانين Zod
   const {
     register,
     handleSubmit,
@@ -28,9 +25,7 @@ export default function IdentifierStep({ onProceed, onSocialLogin }) {
     resolver: zodResolver(identifierSchema),
   });
 
-  // 3. هذه الدالة لن تعمل أبداً إلا إذا كان الإيميل صحيحاً 100%
   const onSubmit = (data) => {
-    // data.email يحتوي الآن على الإيميل النظيف
     onProceed(data.email);
   };
 
@@ -67,10 +62,8 @@ export default function IdentifierStep({ onProceed, onSocialLogin }) {
         </span>
       </div>
 
-      {/* 4. تسليم إدارة الحدث لمحرك handleSubmit */}
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div>
-          {/* 5. زرع أسلاك التتبع داخل الـ Input باستخدام register */}
           <Input
             placeholder={
               t("auth.emailPlaceholder") || "Enter your email address"
@@ -81,7 +74,6 @@ export default function IdentifierStep({ onProceed, onSocialLogin }) {
               errors.email ? "border-red-500 focus:border-red-500" : ""
             }
           />
-          {/* 6. طباعة رسالة الخطأ إذا خالف المستخدم القوانين */}
           {errors.email && (
             <p className="text-red-500 text-xs mt-1 text-start font-medium">
               {errors.email.message}

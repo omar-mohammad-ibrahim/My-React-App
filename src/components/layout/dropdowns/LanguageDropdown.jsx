@@ -1,16 +1,14 @@
-import React from "react";
 import { Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function LanguageDropdown() {
   const { t, i18n } = useTranslation();
 
-  // دالة تغيير اللغة واتجاه الموقع
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = lng;
-    localStorage.setItem("appLanguage", lng); // حفظ الخيار
+    localStorage.setItem("appLanguage", lng);
   };
 
   const currentLang = i18n.language === "ar" ? "العربية-JOD" : "English-JOD";
@@ -20,8 +18,7 @@ export default function LanguageDropdown() {
       <Globe className="h-[22px] w-[22px]" strokeWidth={1.5} />
       <span className="text-sm font-medium">{currentLang}</span>
 
-      {/* الجسر المخفي والقائمة */}
-      <div className="absolute ltr:right-0 rtl:left-0 top-full hidden pt-4 group-hover:block z-50 w-64">
+      <div className="absolute left-1/2 -translate-x-1/2 top-full hidden pt-4 group-hover:block z-50 w-64">
         <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-2xl cursor-default text-gray-900">
           <h4 className="font-bold mb-4">
             {t("navbar.setLanguage") || "Set language"}

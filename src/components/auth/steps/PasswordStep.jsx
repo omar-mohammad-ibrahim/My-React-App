@@ -10,14 +10,11 @@ import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 
-// 1. بناء مخطط أمان كلمة المرور
 const passwordSchema = z.object({
   password: z
     .string()
     .min(6, { message: "Must be at least 6 characters" })
-    // .regex(/[A-Z]/, { message: "Must contain at least one uppercase letter" })
     .regex(/[0-9]/, { message: "Must contain at least one number" }),
-  // .regex(/[\W_]/, { message: "Must contain at least one special character" }),
 });
 
 export default function PasswordStep({
@@ -28,10 +25,8 @@ export default function PasswordStep({
 }) {
   const { t } = useTranslation();
 
-  // useState هنا فقط للتحكم البصري (إظهار/إخفاء الباسورد) ولا علاقة له بالبيانات
   const [showPassword, setShowPassword] = useState(false);
 
-  // 2. تهيئة محرك النماذج
   const {
     register,
     handleSubmit,
@@ -40,7 +35,6 @@ export default function PasswordStep({
     resolver: zodResolver(passwordSchema),
   });
 
-  // 3. الدالة النظيفة (لن تعمل إذا كانت كلمة المرور ضعيفة)
   const onValidSubmit = (data) => {
     onSubmit(data.password);
   };
@@ -65,21 +59,18 @@ export default function PasswordStep({
         onSubmit={handleSubmit(onValidSubmit)}
         className="w-full flex flex-col gap-3"
       >
-        {/* مربع الإيميل الثابت (للعرض فقط) */}
         <div className="w-full px-3.5 py-3 text-sm text-gray-800 bg-blue-50/50 rounded-brand border border-gray-200 text-start select-none">
           {email}
         </div>
 
         <div>
           <div className="relative w-full">
-            {/* 4. تسجيل الحقل في المحرك */}
             <Input
               placeholder={t("auth.passwordPlaceholder") || "Password"}
               type={showPassword ? "text" : "password"}
               {...register("password")}
               className={`pe-10 ${errors.password ? "border-red-500" : ""}`}
             />
-            {/* زر العين لإظهار/إخفاء النص */}
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
@@ -93,14 +84,12 @@ export default function PasswordStep({
             </button>
           </div>
 
-          {/* 5. عرض أخطاء Zod (قوة كلمة المرور) */}
           {errors.password && (
             <p className="text-red-500 text-xs mt-1.5 text-start font-medium">
               {errors.password.message}
             </p>
           )}
 
-          {/* عرض خطأ السيرفر (مثل الباسورد خطأ من قاعدة البيانات) */}
           {authError && (
             <p className="text-red-500 text-xs mt-1.5 text-start font-medium">
               {authError}
@@ -122,7 +111,6 @@ export default function PasswordStep({
         </Button>
       </form>
 
-      {/* باقي تصميم الصفحة (OR + أزرار التواصل)... */}
       <div className="relative w-full my-6 text-center">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-gray-200"></div>
@@ -132,9 +120,7 @@ export default function PasswordStep({
         </span>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 w-full">
-        {/* أزرار السوشيال */}
-      </div>
+      <div className="grid grid-cols-3 gap-3 w-full"></div>
     </div>
   );
 }

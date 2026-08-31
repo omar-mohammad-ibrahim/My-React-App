@@ -1,4 +1,3 @@
-import React from "react";
 import { MessageSquareText } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -14,7 +13,7 @@ export default function MessagesDropdown() {
         <MessageSquareText className="h-[22px] w-[22px]" strokeWidth={1.5} />
       </Link>
 
-      <div className="absolute ltr:-right-4 rtl:-left-4 top-full hidden pt-4 group-hover:block z-50 w-60">
+      <div className="absolute left-1/2 -translate-x-1/2 top-full hidden pt-4 group-hover:block z-50 w-64">
         <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-2xl cursor-default text-center text-gray-900">
           <h4 className="font-bold mb-1">
             {t("navbar.messages") || "Messages"}

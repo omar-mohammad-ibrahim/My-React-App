@@ -46,7 +46,6 @@ export default function OtpVerifyStep({
         Please click the link in that email to continue.
       </p>
 
-      {/* زر التحقق من حالة الإيميل */}
       <div className="flex flex-col gap-3 w-full">
         <Button onClick={handleCheck} className="w-full" disabled={loading}>
           {loading ? "Checking..." : "I have verified my email"}
@@ -62,7 +61,6 @@ export default function OtpVerifyStep({
         </Button>
       </div>
 
-      {/* المؤقت وإعادة الإرسال */}
       <p className="text-xs text-gray-600 text-center mt-6">
         {t("auth.didntReceiveCode") || "Didn't receive the link?"}{" "}
         {timer > 0 ? (
