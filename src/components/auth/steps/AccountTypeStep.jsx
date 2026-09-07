@@ -24,7 +24,7 @@ export default function AccountTypeStep({ onSelectRole, onBackToLogin }) {
           onClick={() => setSelectedRole("Buyer")}
           className={`relative flex items-center justify-between p-4 rounded-brand border-2 cursor-pointer transition-all ${
             selectedRole === "Buyer"
-              ? "border-gray-900 bg-white shadow-sm"
+              ? "border-gray-900 bg-white shadow-xs"
               : "border-gray-200 hover:border-gray-300 bg-white"
           }`}
         >
@@ -55,7 +55,7 @@ export default function AccountTypeStep({ onSelectRole, onBackToLogin }) {
           onClick={() => setSelectedRole("Supplier")}
           className={`relative flex items-center justify-between p-4 rounded-brand border-2 cursor-pointer transition-all ${
             selectedRole === "Supplier"
-              ? "border-gray-900 bg-white shadow-sm"
+              ? "border-gray-900 bg-white shadow-xs"
               : "border-gray-200 hover:border-gray-300 bg-white"
           }`}
         >

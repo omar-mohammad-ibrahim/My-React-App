@@ -31,7 +31,7 @@ export default function LocationDropdown() {
               </button>
             </Link>
           )}
-          <div className="h-[1px] w-full bg-gray-100 mb-3"></div>
+          <div className="h-px w-full bg-gray-100 mb-3"></div>
           <div className="text-sm font-medium">Jordan</div>
         </div>
       </div>

@@ -43,7 +43,7 @@ export default function SubHeader() {
           <div className="group relative cursor-pointer hover:text-[#eb5b00] py-1.5">
             <span>{t("subheader.help") || "Help Center"}</span>
 
-            <div className="absolute top-full end-0 hidden pt-3 group-hover:block z-50 w-[400px]">
+            <div className="absolute top-full inset-e-0 hidden pt-3 group-hover:block z-50 w-[400px]">
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-2xl cursor-default text-black">
                 <h1>محتوى مركز المساعدة يوضع هنا...</h1>
               </div>

@@ -79,7 +79,7 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
-                className="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none cursor-pointer"
+                className="w-full bg-transparent text-sm font-semibold text-gray-900 outline-hidden cursor-pointer"
               >
                 <option value="Jordan">Jordan</option>
                 <option value="Saudi Arabia">Saudi Arabia</option>
@@ -105,7 +105,7 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
                 type="text"
                 placeholder="First name"
                 {...register("firstName")}
-                className="w-full text-sm text-gray-900 font-medium outline-none bg-transparent"
+                className="w-full text-sm text-gray-900 font-medium outline-hidden bg-transparent"
               />
             </div>
             {errors.firstName && (
@@ -124,7 +124,7 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
                 type="text"
                 placeholder="Last name"
                 {...register("lastName")}
-                className="w-full text-sm text-gray-900 font-medium outline-none bg-transparent"
+                className="w-full text-sm text-gray-900 font-medium outline-hidden bg-transparent"
               />
             </div>
             {errors.lastName && (
@@ -141,7 +141,7 @@ export default function AccountSetupStep({ onComplete, isSubmitting }) {
               type="password"
               placeholder="Create a password"
               {...register("password")}
-              className="w-full text-sm text-gray-900 font-medium outline-none bg-transparent py-1"
+              className="w-full text-sm text-gray-900 font-medium outline-hidden bg-transparent py-1"
             />
           </div>
         </div>

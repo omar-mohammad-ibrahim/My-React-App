@@ -74,7 +74,7 @@ export default function PasswordStep({
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute end-3.5 top-3.5 text-gray-400 hover:text-gray-600 cursor-pointer"
+              className="absolute inset-e-3.5 top-3.5 text-gray-400 hover:text-gray-600 cursor-pointer"
             >
               {showPassword ? (
                 <FiEyeOff className="text-lg" />

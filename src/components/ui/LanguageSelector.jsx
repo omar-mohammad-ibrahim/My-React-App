@@ -13,7 +13,7 @@ export default function LanguageSelector() {
     <select
       value={i18n.language || "en"}
       onChange={(e) => i18n.changeLanguage(e.target.value)}
-      className="px-3 py-1.5 bg-white border border-gray-300 rounded-brand text-xs font-medium text-gray-800 outline-none cursor-pointer hover:border-gray-500 transition-colors"
+      className="px-3 py-1.5 bg-white border border-gray-300 rounded-brand text-xs font-medium text-gray-800 outline-hidden cursor-pointer hover:border-gray-500 transition-colors"
     >
       <option value="en">English</option>
       <option value="ar">العربية</option>

@@ -58,7 +58,7 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Enter your first name..."
             required
-            className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-none focus:border-black focus:bg-white transition-colors"
+            className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-hidden focus:border-black focus:bg-white transition-colors"
           />
         </div>
 
@@ -77,7 +77,7 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Enter your last name..."
             required
-            className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-none focus:border-black focus:bg-white transition-colors"
+            className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-hidden focus:border-black focus:bg-white transition-colors"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function ContactForm() {
           onChange={handleChange}
           placeholder="Enter your email address..."
           required
-          className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-none focus:border-black focus:bg-white transition-colors"
+          className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-hidden focus:border-black focus:bg-white transition-colors"
         />
       </div>
 
@@ -115,7 +115,7 @@ export default function ContactForm() {
           onChange={handleChange}
           placeholder="Enter your message..."
           required
-          className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-none focus:border-black focus:bg-white transition-colors min-h-[120px] resize-y"
+          className="w-full p-3 bg-[#f9f9fb] border border-[#ff6600] rounded-lg text-sm text-[#222] outline-hidden focus:border-black focus:bg-white transition-colors min-h-[120px] resize-y"
         ></textarea>
       </div>
 

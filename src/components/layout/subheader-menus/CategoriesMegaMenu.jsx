@@ -3,9 +3,9 @@ import { ChevronRight } from "lucide-react";
 
 export default function CategoriesMegaMenu() {
   return (
-    <div className="absolute end-0 top-full hidden pt-4 group-hover:block z-50 w-64">
+    <div className="absolute inset-e-0 top-full hidden pt-4 group-hover:block z-50 w-64">
       <div className="flex h-[450px] rounded-xl border border-gray-200 bg-white shadow-2xl cursor-default overflow-hidden text-gray-900">
-        <div className="w-64 flex-shrink-0 border-e border-gray-100 bg-white py-4 overflow-y-auto">
+        <div className="w-64 shrink-0 border-e border-gray-100 bg-white py-4 overflow-y-auto">
           <ul className="flex flex-col text-sm font-normal text-gray-700">
             {[
               "Apparel & Accessories",
@@ -44,7 +44,7 @@ export default function CategoriesMegaMenu() {
                 key={i}
                 className="flex cursor-pointer flex-col items-center gap-3 group/item"
               >
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-sm border border-gray-100 group-hover/item:border-[#eb5b00] group-hover/item:shadow-md transition-all text-3xl">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-xs border border-gray-100 group-hover/item:border-[#eb5b00] group-hover/item:shadow-md transition-all text-3xl">
                   {cat.img}
                 </div>
                 <span className="text-xs text-center font-medium text-gray-700 group-hover/item:text-[#eb5b00]">

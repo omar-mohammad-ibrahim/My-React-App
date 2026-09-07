@@ -5,7 +5,7 @@ export default function SupplierCard({ supplier }) {
   if (!supplier) return null;
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-3">
+    <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs flex flex-col gap-3">
       <div className="text-xs font-bold text-gray-500 uppercase tracking-wider">
         Supplier Information
       </div>

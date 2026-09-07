@@ -11,7 +11,7 @@ export default function UserDetails({ formData, isEditing, onInputChange }) {
             name="firstName"
             value={formData.firstName}
             onChange={onInputChange}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#eb5b00] focus:border-[#eb5b00] outline-none"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#eb5b00] focus:border-[#eb5b00] outline-hidden"
           />
         </div>
         <div>
@@ -23,7 +23,7 @@ export default function UserDetails({ formData, isEditing, onInputChange }) {
             name="lastName"
             value={formData.lastName}
             onChange={onInputChange}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#eb5b00] focus:border-[#eb5b00] outline-none"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#eb5b00] focus:border-[#eb5b00] outline-hidden"
           />
         </div>
       </div>

@@ -20,7 +20,7 @@ export default function Input({
         onChange={onChange}
         disabled={disabled}
         placeholder={placeholder}
-        className={`w-full px-3.5 py-3 text-sm text-gray-900 bg-white rounded-brand border outline-none transition-colors duration-200 placeholder:text-gray-400 ${borderStyles} ${
+        className={`w-full px-3.5 py-3 text-sm text-gray-900 bg-white rounded-brand border outline-hidden transition-colors duration-200 placeholder:text-gray-400 ${borderStyles} ${
           disabled ? "bg-gray-100 cursor-not-allowed opacity-60" : ""
         }`}
         {...props}

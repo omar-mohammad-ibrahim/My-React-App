@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
         />
       </div>
 
-      <div className="flex flex-col flex-grow">
+      <div className="flex flex-col grow">
         <h3 className="mb-2 text-sm font-medium text-gray-800 line-clamp-2 group-hover:text-[#eb5b00]">
           {title}
         </h3>

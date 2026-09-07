@@ -8,14 +8,7 @@ import "./i18n";
 import { Suspense } from "react";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center font-bold">
-          Loading Languages...
-        </div>
-      }
-    >
-      {" "}
+    <Suspense>
       <Provider store={store}>
         <App />
       </Provider>

@@ -59,7 +59,7 @@ export default function ProfilePage() {
       <div className="max-w-4xl mx-auto">
         <ProfileHeader />
 
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-xs">
           <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
             <h2 className="text-lg font-semibold flex items-center gap-2">
               <span className="text-gray-500 text-xl">📰</span> Basic
@@ -82,7 +82,7 @@ export default function ProfilePage() {
                   {formData.firstName.charAt(0).toUpperCase()}
                 </div>
                 {isEditing && (
-                  <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full border border-gray-200 shadow-sm">
+                  <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full border border-gray-200 shadow-xs">
                     <Camera className="w-4 h-4 text-gray-600" />
                   </div>
                 )}

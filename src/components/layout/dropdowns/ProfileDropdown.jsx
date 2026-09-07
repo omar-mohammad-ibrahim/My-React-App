@@ -58,7 +58,7 @@ export default function ProfileDropdown() {
         )}
       </div>
 
-      <div className="absolute end-0 top-[100%] hidden group-hover:block z-50 w-[300px] pt-1">
+      <div className="absolute inset-e-0 top-full hidden group-hover:block z-50 w-[300px] pt-1">
         <div className="rounded-lg border border-gray-200 bg-white shadow-xl cursor-default text-gray-900 overflow-hidden">
           {!isAuthenticated && (
             <>
@@ -81,21 +81,21 @@ export default function ProfileDropdown() {
                   <div className="flex justify-center gap-4 mt-3 mb-4">
                     <button
                       onClick={() => handleSocialLogin("facebook")}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-xs hover:bg-gray-50 transition-colors cursor-pointer"
                     >
                       <FaFacebook className="text-xl text-[#1877F2]" />
                     </button>
 
                     <button
                       onClick={() => handleSocialLogin("google")}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-xs hover:bg-gray-50 transition-colors cursor-pointer"
                     >
                       <FcGoogle className="text-xl" />
                     </button>
 
                     <button
                       onClick={() => handleSocialLogin("linkedin")}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-xs hover:bg-gray-50 transition-colors cursor-pointer"
                     >
                       <FaLinkedin className="text-xl text-[#0A66C2]" />
                     </button>
@@ -124,7 +124,7 @@ export default function ProfileDropdown() {
                 <span className="font-bold text-gray-900 text-sm">
                   Hi, {userName}
                 </span>
-                <span className="bg-[#14958f] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">
+                <span className="bg-[#14958f] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-xs">
                   Seed
                 </span>
               </div>

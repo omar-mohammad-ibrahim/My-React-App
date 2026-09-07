@@ -5,7 +5,7 @@ export default function ProductGallery({ images }) {
   const [mainImage, setMainImage] = useState(images[0]);
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+    <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
       {/* عرض الصورة الرئيسية */}
       <div className="aspect-square w-full mb-4 rounded-lg overflow-hidden bg-white flex items-center justify-center border border-gray-100">
         <img
@@ -22,7 +22,7 @@ export default function ProductGallery({ images }) {
             <button
               key={index}
               onClick={() => setMainImage(img)}
-              className={`flex-shrink-0 w-16 h-16 rounded-md border-2 overflow-hidden transition-all duration-200 ${
+              className={`shrink-0 w-16 h-16 rounded-md border-2 overflow-hidden transition-all duration-200 ${
                 mainImage === img
                   ? "border-[#eb5b00] opacity-100"
                   : "border-transparent opacity-70 hover:opacity-100"

@@ -2,7 +2,7 @@ import { ShieldCheck, MessageCircle } from "lucide-react";
 
 export default function ActionCard({ product }) {
   return (
-    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-xs">
       <h3 className="font-bold text-gray-900 mb-4 text-lg">Start your order</h3>
 
       <div className="flex justify-between items-center text-sm mb-6 pb-4 border-b border-gray-100">
@@ -25,7 +25,7 @@ export default function ActionCard({ product }) {
 
       <div className="mt-6 pt-4 bg-green-50/50 p-4 rounded-lg border border-green-100">
         <div className="flex items-start gap-2 text-xs text-gray-600">
-          <ShieldCheck className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <ShieldCheck className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
             <strong className="text-gray-900 font-bold block mb-1">
               Secure payments

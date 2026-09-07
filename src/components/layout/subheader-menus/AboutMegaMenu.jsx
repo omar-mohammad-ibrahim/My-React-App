@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AboutMegaMenu() {
   return (
-    <div className="absolute end-0 top-full hidden pt-4 group-hover:block z-50 w-64">
+    <div className="absolute inset-e-0 top-full hidden pt-4 group-hover:block z-50 w-64">
       <div className="flex h-[320px] rounded-xl border border-gray-200 bg-white shadow-2xl cursor-default overflow-hidden text-gray-900">
         <div className="w-1/3 bg-blue-50 p-6 flex flex-col justify-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -31,10 +31,10 @@ export default function AboutMegaMenu() {
 
         <div className="flex-1 flex gap-4 p-6 bg-white">
           <div className="flex-1 rounded-xl bg-blue-100 relative overflow-hidden group/card cursor-pointer">
-            <div className="absolute end-0 top-full hidden pt-4 group-hover:block z-50 w-64">
+            <div className="absolute inset-e-0 top-full hidden pt-4 group-hover:block z-50 w-64">
               Smart factory search
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
           </div>
           <div className="flex-1 rounded-xl bg-gray-100 relative overflow-hidden group/card cursor-pointer">
             <div className="absolute bottom-4 left-4 font-bold text-gray-900 z-10 text-lg">

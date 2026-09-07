@@ -91,7 +91,7 @@ export default function ProductDetailsPage() {
           </div>
 
           {/* العمود الأوسط: التفاصيل والوصف */}
-          <div className="lg:col-span-5 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col">
+          <div className="lg:col-span-5 bg-white p-6 rounded-xl border border-gray-200 shadow-xs flex flex-col">
             <ProductInfo product={product} />
           </div>
 

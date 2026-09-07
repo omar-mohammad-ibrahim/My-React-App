@@ -7,7 +7,7 @@ export default function SearchBar() {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full max-w-2xl rounded-full bg-brand-gradient p-[2px] shadow-sm">
+    <div className="w-full max-w-2xl rounded-full bg-brand-gradient p-[2px] shadow-xs">
       <form
         onSubmit={(e) => e.preventDefault()}
         className="flex w-full items-center gap-2 rounded-full bg-white px-2 py-1.5"
@@ -17,7 +17,7 @@ export default function SearchBar() {
           placeholder={
             t("searchBar.placeholder") || "What are you looking for?"
           }
-          className="flex-1 border-none bg-transparent px-3 py-1.5 text-base text-black outline-none"
+          className="flex-1 border-none bg-transparent px-3 py-1.5 text-base text-black outline-hidden"
         />
 
         <button type="button">
