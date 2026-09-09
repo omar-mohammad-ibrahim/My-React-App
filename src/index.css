@@ -44,6 +44,13 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.03 260);
 
+  /* شريط الأدوات الجانبي (Sidebar) */
+  --sidebar: oklch(0.98 0.002 90);
+  --sidebar-foreground: oklch(0.18 0.03 260);
+
+  /* طبقة التعتيم الخلفية للنوافذ (Backdrop Overlay) */
+  --overlay: oklch(0 0 0 / 0.5);
+
   /* الحالات الخافتة والهوامش (Muted) */
   --muted: oklch(0.95 0.01 260);
   --muted-foreground: oklch(0.52 0.02 260);
@@ -88,6 +95,13 @@
   --card-foreground: oklch(0.98 0.005 260);
   --popover: oklch(0.22 0.03 260);
   --popover-foreground: oklch(0.98 0.005 260);
+
+  /* شريط الأدوات الجانبي للوضع الليلي (درجة أغمق قليلاً لعزله عن المحتوى) */
+  --sidebar: oklch(0.19 0.03 260);
+  --sidebar-foreground: oklch(0.98 0.005 260);
+
+  /* زيادة خفيفة في عتامة طبقة التعتيم لتعويض قلة إضاءة الخلفيات */
+  --overlay: oklch(0 0 0 / 0.7);
 
   --muted: oklch(0.26 0.03 260);
   --muted-foreground: oklch(0.65 0.02 260);
@@ -221,8 +235,8 @@
     background-color: var(--muted-foreground);
   }
 
-  ::selection {
+  /* ::selection {
     background-color: oklch(0.64 0.21 44 / 0.25);
     color: var(--primary);
-  }
+  } */
 }

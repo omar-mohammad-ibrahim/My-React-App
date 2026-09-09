@@ -1,5 +1,6 @@
 ﻿import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
+import ScrollToTop from "./components/layout/ScrollToTop"; // 1. استيراد المكون
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
@@ -9,15 +10,16 @@ import ContactPage from "./pages/ContactPage";
 import CartPage from "./pages/CartPage";
 import OrdersPage from "./pages/OrdersPage";
 import MessagesPage from "./pages/MessagesPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function AppContent() {
   const location = useLocation();
   const isAuthPage = location.pathname === "/auth";
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <ScrollToTop />
       {!isAuthPage && <Navbar />}
-
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -29,14 +31,7 @@ function AppContent() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/messages" element={<MessagesPage />} />
-          <Route
-            path="*"
-            element={
-              <div className="p-16 text-center text-2xl font-bold text-red-500">
-                404 - الصفحة غير موجودة
-              </div>
-            }
-          />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </div>
@@ -50,4 +45,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-//https://github.com/omar-mohammad-ibrahim/My-React-App
