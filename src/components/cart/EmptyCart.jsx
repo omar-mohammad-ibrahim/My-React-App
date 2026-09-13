@@ -1,29 +1,29 @@
 import { Link } from "react-router-dom";
-import BuyerProtection from "./BuyerProtection";
 
 export default function EmptyCart() {
   return (
-    <div className="flex flex-col items-center justify-center py-20 bg-white rounded-lg shadow-sm">
-      <div className="flex items-center gap-8 mb-6">
-        {/* صورة كرتونة فارغة بسيطة */}
-        <div className="w-32 h-32 bg-gray-100 flex items-center justify-center rounded-lg">
-          📦
+    <div className="min-h-[60vh] flex items-center justify-center px-4">
+      <div className="bg-card border border-border rounded-2xl p-8 sm:p-12 max-w-md w-full text-center shadow-xs flex flex-col items-center">
+        <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center text-3xl mb-6 select-none">
+          🛒
         </div>
 
-        <div>
-          <h2 className="text-xl font-bold mb-4">
-            Your shopping cart is empty.
-          </h2>
-          <BuyerProtection showDetails={false} />
-        </div>
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+          Your shopping cart is empty
+        </h2>
+
+        <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
+          You haven't added any products yet. Browse catalog variations to fill
+          your order.
+        </p>
+
+        <Link
+          to="/"
+          className="w-full bg-[#eb5b00] hover:bg-[#cc4f00] text-white font-bold py-3 px-6 rounded-full transition-colors duration-200 shadow-xs text-center inline-block"
+        >
+          Start Sourcing
+        </Link>
       </div>
-
-      <Link
-        to="/"
-        className="px-8 py-2 rounded-full border border-gray-300 font-semibold hover:bg-gray-50 transition-colors"
-      >
-        Start Sourcing
-      </Link>
     </div>
   );
 }

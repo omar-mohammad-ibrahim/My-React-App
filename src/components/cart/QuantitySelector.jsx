@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-// تأكد من مسار الاستيراد حسب مشروعك
 import { updateQuantity } from "../../features/cart/cartSlice";
 
 export default function QuantitySelector({ itemId, quantity, moq = 1 }) {
@@ -16,11 +15,12 @@ export default function QuantitySelector({ itemId, quantity, moq = 1 }) {
   };
 
   return (
-    <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
+    <div className="flex items-center border border-border rounded-md overflow-hidden bg-card">
       <button
+        type="button"
         onClick={handleDecrease}
         disabled={quantity <= moq}
-        className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
+        className="px-3 py-1 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
       >
         -
       </button>
@@ -29,12 +29,13 @@ export default function QuantitySelector({ itemId, quantity, moq = 1 }) {
         type="text"
         value={quantity}
         readOnly
-        className="w-12 text-center text-sm font-semibold border-x border-gray-300 py-1 outline-none bg-white"
+        className="w-12 text-center text-sm font-semibold border-x border-border py-1 bg-transparent text-foreground outline-none select-none"
       />
 
       <button
+        type="button"
         onClick={handleIncrease}
-        className="px-3 py-1 text-gray-600 hover:bg-gray-100 cursor-pointer transition-colors"
+        className="px-3 py-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
       >
         +
       </button>

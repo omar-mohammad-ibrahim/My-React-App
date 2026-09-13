@@ -1,71 +1,68 @@
-import BuyerProtection from "./BuyerProtection";
-
-export default function OrderSummary({ items }) {
-  // 1. استخراج المنتجات التي حددها المستخدم فقط (الصح البرتقالي)
+export default function OrderSummary({ items, selectedCount }) {
+  // تصفية الأصناف المحددة فعلياً للشراء
   const selectedItems = items.filter((item) => item.selected);
-  const selectedCount = selectedItems.length;
 
-  // 2. عملية الحساب: المجموع = (السعر * الكمية) لكل منتج محدد
-  const itemSubtotal = selectedItems.reduce((sum, item) => {
-    return sum + Number(item.price) * Number(item.quantity);
-  }, 0);
+  // حساب المجموع الفرعي التراكمي
+  const itemSubtotal = selectedItems.reduce(
+    (sum, item) =>
+      sum + (Number(item.price) || 0) * (Number(item.quantity) || 1),
+    0,
+  );
 
-  // 3. حساب شحن تقريبي (مثال: 15 دينار لكل منتج مختلف، أو صفر إذا مافي منتجات)
-  const shippingFee = selectedCount > 0 ? selectedCount * 15.5 : 0;
-
-  // 4. خصم وهمي أو حقيقي (مثلاً خصم 5% على الشحن)
-  const shippingDiscount = shippingFee > 0 ? shippingFee * 0.05 : 0;
-
-  // 5. المجموع النهائي
-  const finalTotal = itemSubtotal + shippingFee - shippingDiscount;
+  // حساب رسوم الشحن والخصم
+  const shippingFee = selectedCount > 0 ? 15.0 : 0;
+  const shippingDiscount = selectedCount > 0 ? 5.0 : 0;
+  const finalTotal = Math.max(0, itemSubtotal + shippingFee - shippingDiscount);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 sticky top-8">
-      <h2 className="text-lg font-bold mb-4 text-gray-900">
-        Order summary ({selectedCount} items)
+    <div className="bg-card border border-border rounded-xl p-6 shadow-xs">
+      <h2 className="text-lg font-bold text-foreground mb-4">
+        Order summary ({selectedCount} {selectedCount === 1 ? "item" : "items"})
       </h2>
 
-      <div className="flex flex-col gap-3 text-sm text-gray-600 mb-4 border-b border-gray-200 pb-4">
+      {/* تفاصيل الحساب الدقيقة */}
+      <div className="flex flex-col gap-3 text-sm text-muted-foreground mb-4 border-b border-border pb-4">
         <div className="flex justify-between">
           <span>Item subtotal</span>
-          <span className="font-bold text-gray-900">
+          <span className="font-semibold text-foreground">
             JOD {itemSubtotal.toFixed(2)}
           </span>
         </div>
+
         <div className="flex justify-between">
           <span>Shipping fee</span>
-          <span className="font-bold text-gray-900">
+          <span className="font-semibold text-foreground">
             JOD {shippingFee.toFixed(2)}
           </span>
         </div>
+
         {shippingDiscount > 0 && (
-          <div className="flex justify-between text-red-500">
+          <div className="flex justify-between text-emerald-600 dark:text-emerald-400">
             <span>Shipping discount</span>
-            <span className="font-bold">
+            <span className="font-semibold">
               - JOD {shippingDiscount.toFixed(2)}
             </span>
           </div>
         )}
       </div>
 
-      <div className="flex justify-between items-center font-bold text-xl mb-4 text-gray-900">
-        <span>Subtotal</span>
-        <span>JOD {finalTotal.toFixed(2)}</span>
+      {/* الإجمالي قبل الضريبة */}
+      <div className="flex justify-between items-center mb-6">
+        <span className="font-bold text-foreground text-base">
+          Subtotal excl. tax
+        </span>
+        <span className="font-black text-xl text-foreground">
+          JOD {finalTotal.toFixed(2)}
+        </span>
       </div>
 
-      {shippingDiscount > 0 && (
-        <div className="bg-orange-50 text-[#E65A00] text-sm p-3 rounded-md mb-4 font-medium border border-orange-100">
-          JOD {shippingDiscount.toFixed(2)} saved{" "}
-          <span className="text-gray-600 font-normal">on your order</span>
-        </div>
-      )}
-
-      {/* تعطل زر الدفع إذا لم يحدد المستخدم أي منتج */}
+      {/* زر إتمام الشراء */}
       <button
+        type="button"
         disabled={selectedCount === 0}
-        className="w-full bg-[#E65A00] hover:bg-[#c94f00] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-3 rounded-full mb-6 transition-colors cursor-pointer flex justify-center items-center gap-2"
+        className="w-full bg-[#eb5b00] hover:bg-[#cc4f00] disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-full transition-all duration-200 cursor-pointer shadow-xs text-center"
       >
-        <span>✔️</span> Check out
+        Check out ({selectedCount})
       </button>
     </div>
   );

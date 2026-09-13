@@ -1,140 +1,143 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
-import { syncCartToFirebase } from "../../services/cartService"; // سننشئه بالخطوة 3
+import { syncCartToFirebase } from "../../services/cartService";
 
 export default function AddToCartModal({ product, isOpen, onClose }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  const cartItems = useSelector((state) => state.cart.items);
+  const user = useSelector((state) => state.auth?.user);
+  const currentCart = useSelector((state) => state.cart.items);
 
-  // 1. تحديد الحد الأدنى للطلب (MOQ)
-  const moq = product.moq || 10;
+  const moq = Number(product?.moq) || 1;
+  const unitPrice = Number(product?.price) || 0;
 
-  // 2. حالة الكمية (تبدأ إجبارياً من الـ MOQ)
   const [quantity, setQuantity] = useState(moq);
-  const [selectedType, setSelectedType] = useState("2-way audio");
+  const [selectedVariation, setSelectedVariation] = useState("Default");
+  const [isSaving, setIsSaving] = useState(false);
 
-  if (!isOpen) return null;
+  if (!isOpen || !product) return null;
 
-  // 3. العملية الحسابية اللحظية للمجموع
-  const unitPrice = Number(product.price || 44.09);
+  // الحساب المالي الفوري
   const subtotal = (unitPrice * quantity).toFixed(2);
 
-  // 4. أزرار التحكم بالكمية
   const handleDecrease = () => {
-    if (quantity > moq) {
-      setQuantity((prev) => prev - 1);
-    }
+    if (quantity > moq) setQuantity((prev) => prev - 1);
   };
 
   const handleIncrease = () => {
     setQuantity((prev) => prev + 1);
   };
 
-  // 5. زر تأكيد الإضافة للسلة
   const handleConfirmAddToCart = async () => {
-    // أ) الإضافة في Redux لتحديث الواجهة فوراً
-    dispatch(
-      addToCart({
-        product,
-        quantity,
-        variation: selectedType,
-      }),
-    );
+    setIsSaving(true);
 
-    // ب) حفظ النسخة في Firebase إذا كان المستخدم مسجل دخول
-    if (user?.uid) {
-      const updatedCart = [
-        ...cartItems,
-        {
-          id: product.id,
-          title: product.title || product.name,
-          price: unitPrice,
-          quantity,
-          moq,
-          variation: selectedType,
-          selected: true,
-        },
+    const cartPayload = {
+      id: `${product.id}-${selectedVariation}`,
+      productId: product.id,
+      title: product.title || product.name,
+      price: unitPrice,
+      quantity: quantity,
+      moq: moq,
+      unit: product.unit || "box",
+      variation: selectedVariation,
+      images: product.images?.length > 0 ? product.images : [product.image],
+      selected: true,
+    };
+
+    // 1. التحديث الفوري في Redux
+    dispatch(addToCart(cartPayload));
+
+    // 2. المزامنة مع Firebase إذا كان المستخدم مسجل دخول
+    const userUid = user?.uid;
+    if (userUid) {
+      const updatedItems = [
+        ...currentCart.filter((item) => item.id !== cartPayload.id),
+        cartPayload,
       ];
-      await syncCartToFirebase(user.uid, updatedCart);
+      await syncCartToFirebase(userUid, updatedItems);
     }
 
-    onClose(); // إغلاق النافذة
+    setIsSaving(false);
+    onClose();
   };
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-xs transition-opacity">
-      {/* جسم النافذة المنبثقة من اليمين */}
-      <div className="bg-white w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6 overflow-y-auto">
-        {/* رأس النافذة */}
+      <div className="bg-card text-foreground w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6 overflow-y-auto border-l border-border">
+        {/* الرأس والخيارات */}
         <div>
-          <div className="flex justify-between items-center border-b pb-4 mb-4">
-            <h2 className="text-lg font-bold text-gray-900">
-              Select variations and quantity
-            </h2>
+          <div className="flex justify-between items-center border-b border-border pb-4 mb-5">
+            <h2 className="text-lg font-bold">Select variations & quantity</h2>
             <button
+              type="button"
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 text-2xl font-bold cursor-pointer"
+              className="text-muted-foreground hover:text-foreground text-xl font-bold cursor-pointer transition-colors"
             >
               ✕
             </button>
           </div>
 
-          {/* عرض السعر والحد الأدنى */}
+          {/* السعر والحد الأدنى */}
           <div className="mb-6">
-            <div className="text-2xl font-extrabold text-gray-900">
-              JOD {unitPrice}
+            <div className="text-2xl font-black text-foreground">
+              JOD {unitPrice.toFixed(2)}
+              <span className="text-xs text-muted-foreground font-normal ml-1">
+                /{product.unit || "box"}
+              </span>
             </div>
-            <div className="text-xs text-gray-500 mt-1">
-              Min. order (MOQ): {moq} units
-            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Minimum Order Quantity (MOQ): {moq} {product.unit || "boxes"}
+            </p>
           </div>
 
-          {/* خيارات النوع (Variations) */}
+          {/* تحديد الخيارات (Variations) */}
           <div className="mb-6">
-            <label className="block text-sm font-bold text-gray-700 mb-2">
-              Variation
+            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
+              Options
             </label>
-            <div className="flex gap-2">
-              {["2-way audio", "Video Doorbell"].map((type) => (
+            <div className="flex flex-wrap gap-2">
+              {["Standard", "2-way audio", "Pro Touch"].map((opt) => (
                 <button
-                  key={type}
+                  key={opt}
                   type="button"
-                  onClick={() => setSelectedType(type)}
-                  className={`px-3 py-1.5 text-xs rounded-md border cursor-pointer font-medium transition-all ${
-                    selectedType === type
-                      ? "border-[#E65A00] text-[#E65A00] bg-orange-50 font-bold"
-                      : "border-gray-200 text-gray-700 hover:bg-gray-50"
+                  onClick={() => setSelectedVariation(opt)}
+                  className={`px-3 py-1.5 text-xs rounded-md border cursor-pointer transition-all ${
+                    selectedVariation === opt
+                      ? "border-[#eb5b00] text-[#eb5b00] bg-orange-50/10 font-bold"
+                      : "border-border text-foreground hover:bg-muted"
                   }`}
                 >
-                  {type}
+                  {opt}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* محدد الكمية اليدوي مع حماية الـ MOQ */}
-          <div className="flex items-center justify-between py-4 border-t border-b border-gray-100 my-4">
-            <span className="text-sm font-semibold text-gray-800">
-              Quantity:
-            </span>
-            <div className="flex items-center border border-gray-300 rounded-md">
+          {/* محدد الكمية اليدوي */}
+          <div className="flex items-center justify-between py-4 border-y border-border my-6">
+            <div>
+              <span className="text-sm font-semibold block">Quantity</span>
+              <span className="text-xs text-muted-foreground">
+                Min. {moq} units
+              </span>
+            </div>
+
+            <div className="flex items-center border border-border rounded-md overflow-hidden bg-card">
               <button
                 type="button"
                 onClick={handleDecrease}
                 disabled={quantity <= moq}
-                className="px-3 py-1 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                className="px-3 py-1.5 text-muted-foreground hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               >
                 -
               </button>
-              <span className="w-12 text-center text-sm font-bold">
+              <span className="w-12 text-center text-sm font-bold bg-transparent">
                 {quantity}
               </span>
               <button
                 type="button"
                 onClick={handleIncrease}
-                className="px-3 py-1 text-gray-600 hover:bg-gray-100 cursor-pointer"
+                className="px-3 py-1.5 text-muted-foreground hover:bg-muted cursor-pointer"
               >
                 +
               </button>
@@ -142,11 +145,11 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
           </div>
         </div>
 
-        {/* أسفل النافذة: المجموع وزر الإضافة */}
-        <div className="pt-4 border-t border-gray-200">
+        {/* الشريط السفلي: الإجمالي والتأكيد */}
+        <div className="pt-4 border-t border-border">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-sm text-gray-600">Subtotal:</span>
-            <span className="text-xl font-black text-gray-900">
+            <span className="text-sm text-muted-foreground">Subtotal:</span>
+            <span className="text-2xl font-black text-foreground">
               JOD {subtotal}
             </span>
           </div>
@@ -154,9 +157,10 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
           <button
             type="button"
             onClick={handleConfirmAddToCart}
-            className="w-full bg-[#E65A00] hover:bg-[#c94f00] text-white font-bold py-3.5 rounded-full transition-colors cursor-pointer text-center"
+            disabled={isSaving}
+            className="w-full bg-[#eb5b00] hover:bg-[#cc4f00] disabled:bg-muted disabled:text-muted-foreground text-white font-bold py-3.5 rounded-full transition-colors cursor-pointer text-center"
           >
-            Add to cart
+            {isSaving ? "Saving..." : "Add to cart"}
           </button>
         </div>
       </div>

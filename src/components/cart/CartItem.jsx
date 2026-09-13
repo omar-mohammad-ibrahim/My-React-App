@@ -5,59 +5,73 @@ import QuantitySelector from "./QuantitySelector";
 export default function CartItem({ item }) {
   const dispatch = useDispatch();
 
+  const itemPrice = Number(item.price) || 0;
+  const itemImage =
+    item.images?.[0] ||
+    item.image ||
+    "https://placehold.co/100x100?text=Product";
+
   return (
-    <div className="flex items-center gap-4 py-4 border-b border-gray-100">
-      {/* زر تحديد المنتج المربوط بـ Redux */}
-      <input
-        type="checkbox"
-        checked={item.selected || false}
-        onChange={() => dispatch(toggleSelectItem(item.id))}
-        className="w-5 h-5 accent-[#E65A00] cursor-pointer rounded"
-      />
-
-      {/* صورة المنتج الديناميكية */}
-      <div className="w-24 h-24 bg-gray-100 rounded-md overflow-hidden flex-shrink-0 border border-gray-200">
-        <img
-          src={item.images?.[0] || "https://via.placeholder.com/100"}
-          alt={item.title}
-          className="w-full h-full object-cover"
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-4 border-b border-border last:border-none">
+      <div className="flex items-center gap-3 flex-1 min-w-0">
+        {/* Checkbox التحديد */}
+        <input
+          type="checkbox"
+          checked={Boolean(item.selected)}
+          onChange={() => dispatch(toggleSelectItem(item.id))}
+          className="w-5 h-5 accent-[#eb5b00] rounded cursor-pointer shrink-0"
         />
-      </div>
 
-      <div className="flex-1 flex justify-between items-center">
-        <div className="max-w-[50%]">
-          {/* اسم المنتج */}
-          <h4 className="text-sm font-medium text-gray-800 line-clamp-2 mb-1">
-            {item.title || item.description}
+        {/* صورة الصنف */}
+        <div className="w-20 h-20 bg-muted rounded-md overflow-hidden shrink-0 border border-border">
+          <img
+            src={itemImage}
+            alt={item.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* تفاصيل النص */}
+        <div className="flex flex-col gap-1 min-w-0">
+          <h4 className="text-sm font-medium text-foreground truncate max-w-xs sm:max-w-md">
+            {item.title}
           </h4>
-          <p className="text-xs text-gray-500">
-            Min. order: {item.moq || 1} boxes
+          {item.variation && (
+            <p className="text-xs text-muted-foreground">
+              Option: {item.variation}
+            </p>
+          )}
+          <p className="text-xs text-muted-foreground">
+            Min. order: {item.moq || 1} {item.unit || "pieces"}
           </p>
         </div>
+      </div>
 
-        <div className="flex items-center gap-6">
-          {/* السعر الحقيقي */}
-          <div className="font-bold text-gray-900">
-            JOD {Number(item.price).toFixed(2)}
-            <span className="text-xs text-gray-500 font-normal"> /box</span>
-          </div>
-
-          {/* مكون الكمية نمرر له الـ ID والكمية الحالية */}
-          <QuantitySelector
-            itemId={item.id}
-            quantity={item.quantity}
-            moq={item.moq}
-          />
-
-          {/* زر سلة المهملات مربوط بدالة الحذف */}
-          <button
-            onClick={() => dispatch(removeItem(item.id))}
-            className="text-gray-400 hover:text-red-500 cursor-pointer text-xl transition-colors"
-            title="Remove item"
-          >
-            🗑️
-          </button>
+      {/* منطقة السعر، العداد، والحذف */}
+      <div className="flex items-center justify-between sm:justify-end gap-5 shrink-0 pl-8 sm:pl-0">
+        <div className="text-right">
+          <span className="font-bold text-foreground text-sm sm:text-base">
+            JOD {itemPrice.toFixed(2)}
+          </span>
+          <span className="text-xs text-muted-foreground block">
+            /{item.unit || "piece"}
+          </span>
         </div>
+
+        <QuantitySelector
+          itemId={item.id}
+          quantity={item.quantity}
+          moq={item.moq || 1}
+        />
+
+        <button
+          type="button"
+          onClick={() => dispatch(removeItem(item.id))}
+          className="text-muted-foreground hover:text-destructive transition-colors p-1 cursor-pointer text-lg"
+          title="Remove item"
+        >
+          🗑️
+        </button>
       </div>
     </div>
   );

@@ -1,43 +1,43 @@
 export default function BuyerProtection({ showDetails = true }) {
   return (
     <div className="text-sm">
-      <h3 className="font-bold text-gray-800 mb-3">
-        Alibaba.com order protection
+      <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
+        <span>🛡️</span> Order Protection
       </h3>
 
       <div className="flex flex-col gap-3">
         <div>
-          <div className="flex items-center gap-2 font-semibold text-green-700">
-            <span>🛡️</span> Secure payments
+          <div className="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm">
+            <span>🔒</span> Secure payments
           </div>
           {showDetails && (
-            <p className="text-gray-500 text-xs mt-1 ml-6">
-              Every payment you make on Alibaba.com is secured with strict SSL
-              encryption.
+            <p className="text-muted-foreground text-xs mt-1 ml-6 leading-relaxed">
+              Every transaction is processed through encrypted SSL protocols and
+              industry compliance standards.
             </p>
           )}
         </div>
 
         <div>
-          <div className="flex items-center gap-2 font-semibold text-green-700">
+          <div className="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm">
             <span>🚚</span> Guaranteed delivery
           </div>
           {showDetails && (
-            <p className="text-gray-500 text-xs mt-1 ml-6">
-              For eligible products, expect your order to be delivered by the
-              scheduled date.
+            <p className="text-muted-foreground text-xs mt-1 ml-6 leading-relaxed">
+              Standard dispatch monitoring ensures deliveries arrive aligned
+              with scheduled dates.
             </p>
           )}
         </div>
 
         <div>
-          <div className="flex items-center gap-2 font-semibold text-green-700">
-            <span>💰</span> Money-back protection
+          <div className="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm">
+            <span>💰</span> Money-back terms
           </div>
           {showDetails && (
-            <p className="text-gray-500 text-xs mt-1 ml-6">
-              Claim a refund if your order was not shipped, is missing, or
-              arrives with issues.
+            <p className="text-muted-foreground text-xs mt-1 ml-6 leading-relaxed">
+              Refund options apply if shipments do not fulfill product order
+              specifications.
             </p>
           )}
         </div>
