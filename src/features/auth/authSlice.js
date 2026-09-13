@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { authService } from "../../services/authService";
 
 const storedUser = JSON.parse(localStorage.getItem("user"));
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async (userData, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      return userData;
+      const data = await authService.login(email, password);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
