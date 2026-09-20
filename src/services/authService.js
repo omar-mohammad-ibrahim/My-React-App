@@ -24,6 +24,9 @@ export const authService = {
 
   // 2. تسجيل الدخول بالبريد وكلمة المرور
   login: async (email, password) => {
+    // أضف هذا السطر هنا لمنع الاستدعاء الثاني الفارغ
+    if (!password) return;
+
     const sanitizedEmail = cleanEmail(email);
     const cred = await signInWithEmailAndPassword(
       auth,
