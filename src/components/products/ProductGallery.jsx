@@ -1,37 +1,49 @@
 import { useState } from "react";
 
-export default function ProductGallery({ images }) {
-  // الصورة الرئيسية الافتراضية هي أول صورة في المصفوفة
-  const [mainImage, setMainImage] = useState(images[0]);
+export default function ProductGallery({ images = [] }) {
+  const safeImages =
+    images?.length > 0
+      ? images
+      : ["https://placehold.co/400x400?text=No+Image"];
+
+  // نخزن فقط الصورة التي يختارها المستخدم يدوياً
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // إذا اختار المستخدم صورة وموجودة ضمن منتجنا الحالي نعرضها، وإلا نعرض أول صورة تلقائياً
+  const mainImage =
+    selectedImage && safeImages.includes(selectedImage)
+      ? selectedImage
+      : safeImages[0];
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-xs">
+    <div className="bg-card text-card-foreground p-4 rounded-xl border border-border shadow-xs">
       {/* عرض الصورة الرئيسية */}
-      <div className="aspect-square w-full mb-4 rounded-lg overflow-hidden bg-white flex items-center justify-center border border-gray-100">
+      <div className="aspect-square w-full mb-4 rounded-lg overflow-hidden bg-background/50 flex items-center justify-center border border-border">
         <img
           src={mainImage}
           alt="Main product"
-          className="object-contain w-full h-full max-h-[400px]"
+          className="object-contain w-full h-full max-h-[400px] transition-all duration-300"
         />
       </div>
 
-      {/* شريط الصور المصغرة (يظهر فقط إذا كان هناك أكثر من صورة) */}
-      {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          {images.map((img, index) => (
+      {/* شريط الصور المصغرة */}
+      {safeImages.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto pb-2">
+          {safeImages.map((img, index) => (
             <button
               key={index}
-              onClick={() => setMainImage(img)}
-              className={`shrink-0 w-16 h-16 rounded-md border-2 overflow-hidden transition-all duration-200 ${
+              type="button"
+              onClick={() => setSelectedImage(img)}
+              className={`shrink-0 w-16 h-16 rounded-md border-2 overflow-hidden transition-all duration-200 cursor-pointer ${
                 mainImage === img
-                  ? "border-[#eb5b00] opacity-100"
-                  : "border-transparent opacity-70 hover:opacity-100"
+                  ? "border-primary opacity-100 shadow-xs"
+                  : "border-border/60 opacity-60 hover:opacity-100 hover:border-border"
               }`}
             >
               <img
                 src={img}
                 alt={`Thumbnail ${index + 1}`}
-                className="object-cover w-full h-full bg-gray-50"
+                className="object-cover w-full h-full bg-muted"
               />
             </button>
           ))}

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../features/cart/cartSlice";
-import { syncCartToFirebase } from "../../services/cartService";
+import { addToCart, syncCartToFirebase } from "../../features/cart/cartSlice";
+import Button from "../ui/Button";
 
 export default function AddToCartModal({ product, isOpen, onClose }) {
   const dispatch = useDispatch();
@@ -12,12 +13,17 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
   const unitPrice = Number(product?.price) || 0;
 
   const [quantity, setQuantity] = useState(moq);
-  const [selectedVariation, setSelectedVariation] = useState("Default");
   const [isSaving, setIsSaving] = useState(false);
+
+  // إعادة ضبط الكمية للحد الأدنى (MOQ) تلقائياً عند فتح نافذة منتج جديد
+  useEffect(() => {
+    if (isOpen && product) {
+      setQuantity(Number(product.moq) || 1);
+    }
+  }, [isOpen, product]);
 
   if (!isOpen || !product) return null;
 
-  // الحساب المالي الفوري
   const subtotal = (unitPrice * quantity).toFixed(2);
 
   const handleDecrease = () => {
@@ -32,14 +38,13 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
     setIsSaving(true);
 
     const cartPayload = {
-      id: `${product.id}-${selectedVariation}`,
+      id: product.id,
       productId: product.id,
       title: product.title || product.name,
       price: unitPrice,
-      quantity: quantity,
-      moq: moq,
+      quantity,
+      moq,
       unit: product.unit || "box",
-      variation: selectedVariation,
       images: product.images?.length > 0 ? product.images : [product.image],
       selected: true,
     };
@@ -47,27 +52,46 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
     // 1. التحديث الفوري في Redux
     dispatch(addToCart(cartPayload));
 
-    // 2. المزامنة مع Firebase إذا كان المستخدم مسجل دخول
-    const userUid = user?.uid;
-    if (userUid) {
-      const updatedItems = [
-        ...currentCart.filter((item) => item.id !== cartPayload.id),
-        cartPayload,
-      ];
-      await syncCartToFirebase(userUid, updatedItems);
+    // 2. المزامنة السحابية مع Firebase إن كان المستخدم مسجلاً
+    if (user?.uid) {
+      const existingIndex = currentCart.findIndex(
+        (item) => item.id === cartPayload.id,
+      );
+      let updatedItems;
+
+      if (existingIndex > -1) {
+        updatedItems = currentCart.map((item, idx) =>
+          idx === existingIndex
+            ? { ...item, quantity: item.quantity + quantity }
+            : item,
+        );
+      } else {
+        updatedItems = [...currentCart, cartPayload];
+      }
+
+      await dispatch(
+        syncCartToFirebase({ userId: user.uid, items: updatedItems }),
+      );
     }
 
     setIsSaving(false);
     onClose();
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-xs transition-opacity">
-      <div className="bg-card text-foreground w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6 overflow-y-auto border-l border-border">
-        {/* الرأس والخيارات */}
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex justify-end">
+      <div
+        onClick={onClose}
+        className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity cursor-pointer"
+      />
+
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative z-10 bg-card text-foreground w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6 overflow-y-auto border-l border-border"
+      >
         <div>
-          <div className="flex justify-between items-center border-b border-border pb-4 mb-5">
-            <h2 className="text-lg font-bold">Select variations & quantity</h2>
+          <div className="flex justify-between items-center border-b border-border pb-4 mb-6">
+            <h2 className="text-lg font-bold">Select quantity</h2>
             <button
               type="button"
               onClick={onClose}
@@ -77,7 +101,6 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
             </button>
           </div>
 
-          {/* السعر والحد الأدنى */}
           <div className="mb-6">
             <div className="text-2xl font-black text-foreground">
               JOD {unitPrice.toFixed(2)}
@@ -90,31 +113,7 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
             </p>
           </div>
 
-          {/* تحديد الخيارات (Variations) */}
-          <div className="mb-6">
-            <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
-              Options
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {["Standard", "2-way audio", "Pro Touch"].map((opt) => (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => setSelectedVariation(opt)}
-                  className={`px-3 py-1.5 text-xs rounded-md border cursor-pointer transition-all ${
-                    selectedVariation === opt
-                      ? "border-[#eb5b00] text-[#eb5b00] bg-orange-50/10 font-bold"
-                      : "border-border text-foreground hover:bg-muted"
-                  }`}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* محدد الكمية اليدوي */}
-          <div className="flex items-center justify-between py-4 border-y border-border my-6">
+          <div className="flex items-center justify-between py-4 border-y border-border">
             <div>
               <span className="text-sm font-semibold block">Quantity</span>
               <span className="text-xs text-muted-foreground">
@@ -122,22 +121,22 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
               </span>
             </div>
 
-            <div className="flex items-center border border-border rounded-md overflow-hidden bg-card">
+            <div className="flex items-center border border-border rounded-md overflow-hidden bg-card shrink-0">
               <button
                 type="button"
                 onClick={handleDecrease}
                 disabled={quantity <= moq}
-                className="px-3 py-1.5 text-muted-foreground hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                className="px-3 py-1.5 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors select-none"
               >
                 -
               </button>
-              <span className="w-12 text-center text-sm font-bold bg-transparent">
+              <span className="w-12 text-center text-sm font-bold bg-transparent border-x border-border select-none">
                 {quantity}
               </span>
               <button
                 type="button"
                 onClick={handleIncrease}
-                className="px-3 py-1.5 text-muted-foreground hover:bg-muted cursor-pointer"
+                className="px-3 py-1.5 text-muted-foreground hover:bg-muted hover:text-foreground cursor-pointer transition-colors select-none"
               >
                 +
               </button>
@@ -145,25 +144,27 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
           </div>
         </div>
 
-        {/* الشريط السفلي: الإجمالي والتأكيد */}
         <div className="pt-4 border-t border-border">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-sm text-muted-foreground">Subtotal:</span>
+          <div className="flex justify-between items-center mb-5">
+            <span className="text-sm text-muted-foreground font-medium">
+              Subtotal:
+            </span>
             <span className="text-2xl font-black text-foreground">
               JOD {subtotal}
             </span>
           </div>
 
-          <button
-            type="button"
+          <Button
+            variant="primary"
             onClick={handleConfirmAddToCart}
             disabled={isSaving}
-            className="w-full bg-[#eb5b00] hover:bg-[#cc4f00] disabled:bg-muted disabled:text-muted-foreground text-white font-bold py-3.5 rounded-full transition-colors cursor-pointer text-center"
+            className="w-full py-3.5 text-base"
           >
             {isSaving ? "Saving..." : "Add to cart"}
-          </button>
+          </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

@@ -1,0 +1,231 @@
+{
+  "products": [
+    {
+      "id": "3uQSGkLWT5mVXFoiIbme",
+      "title": "Annibale Colombo Bed",
+      "price": 1899.99,
+      "sold": 26,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "furniture",
+      "description": "High quality designer bed made with premium solid wood finish.",
+      "image": "https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-bed/thumbnail.webp",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-bed/thumbnail.webp"
+      ],
+      "breadcrumbs": [
+        { "name": "Home & Garden", "category": "home-garden" },
+        { "name": "Furniture", "category": "furniture" },
+        { "name": "Beds", "category": "beds" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "9aWhZwV5uT8NT56YoTqJ",
+      "title": "Essence Mascara Lash Princess",
+      "price": 9.99,
+      "sold": 305,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "beauty",
+      "description": "High quality false lash effect mascara with long-lasting formula.",
+      "image": "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp"
+      ],
+      "breadcrumbs": [
+        { "name": "Beauty & Personal Care", "category": "beauty" },
+        { "name": "Eye Makeup", "category": "eye-makeup" },
+        { "name": "Mascara", "category": "mascara" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "B9uhKMm0Ic0WQxrITkVj",
+      "title": "Knoll Saarinen Executive Conference Chair",
+      "price": 499.99,
+      "sold": 372,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "furniture",
+      "description": "Ergonomic modern executive chair suitable for office and home.",
+      "image": "https://cdn.dummyjson.com/product-images/furniture/knoll-saarinen-executive-conference-chair/thumbnail.webp",
+      "images": [
+        "https://i.ibb.co/hJNhmqNG/9f74b193-fbc1-4810-a30c-bf2b2eb19628.jpg",
+        "https://i.ibb.co/d0wkMZ96/Gemini-Generated-Image-9agwoh9agwoh9agw.jpg",
+        "https://i.ibb.co/P2YtyML/d35a9467-fb85-4e08-bdf5-01321d1d8a3d.jpg"
+      ],
+      "breadcrumbs": [
+        { "name": "Home & Garden", "category": "home-garden" },
+        { "name": "Furniture", "category": "furniture" },
+        { "name": "Office Chairs", "category": "office-chairs" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "BUoUydVQDyfvSlhicnEG",
+      "title": "Red Lipstick",
+      "price": 12.99,
+      "sold": 441,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "beauty",
+      "description": "Vibrant matte texture long-lasting hydrating lipstick.",
+      "image": "https://cdn.dummyjson.com/product-images/beauty/red-lipstick/thumbnail.webp",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/beauty/red-lipstick/thumbnail.webp"
+      ],
+      "breadcrumbs": [
+        { "name": "Beauty & Personal Care", "category": "beauty" },
+        { "name": "Lip Makeup", "category": "lip-makeup" },
+        { "name": "Lipstick", "category": "lipstick" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "G5Jg3tprjJjVDo1R2jOk",
+      "title": "Bedside Table African Cherry",
+      "price": 299.99,
+      "sold": 97,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "furniture",
+      "description": "Solid African cherry wood nightstand with smooth sliding drawer.",
+      "image": "https://cdn.dummyjson.com/product-images/furniture/bedside-table-african-cherry/thumbnail.webp",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/furniture/bedside-table-african-cherry/thumbnail.webp"
+      ],
+      "breadcrumbs": [
+        { "name": "Home & Garden", "category": "home-garden" },
+        { "name": "Furniture", "category": "furniture" },
+        { "name": "Nightstands", "category": "nightstands" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "HXfMC4oz0IEEiDMcGT5C",
+      "title": "Chanel Coco Noir Eau De",
+      "price": 129.99,
+      "sold": 385,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "fragrances",
+      "description": "Magnetic, luminous fragrance featuring notes of bergamot and rose.",
+      "image": "https://cdn.dummyjson.com/product-images/fragrances/chanel-coco-noir-eau-de/thumbnail.webp",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/fragrances/chanel-coco-noir-eau-de/thumbnail.webp"
+      ],
+      "breadcrumbs": [
+        { "name": "Beauty & Personal Care", "category": "beauty" },
+        { "name": "Fragrances", "category": "fragrances" },
+        { "name": "Women Perfume", "category": "women-perfume" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "KhiUZMIvvoPJco5qLspU",
+      "title": "Dolce Shine Eau de",
+      "price": 69.99,
+      "sold": 60,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "fragrances",
+      "description": "Sunny and irresistible fruity floral scent with lush mango notes.",
+      "image": "https://cdn.dummyjson.com/product-images/fragrances/dolce-shine-eau-de/thumbnail.webp",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/fragrances/dolce-shine-eau-de/thumbnail.webp"
+      ],
+      "breadcrumbs": [
+        { "name": "Beauty & Personal Care", "category": "beauty" },
+        { "name": "Fragrances", "category": "fragrances" },
+        { "name": "Women Perfume", "category": "women-perfume" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "QGSCFCNdWM1lGKRxFaMa",
+      "title": "Dior J'adore",
+      "price": 89.99,
+      "sold": 120,
+      "rating": 4.8,
+      "moq": 50,
+      "category": "fragrances",
+      "description": "Sensual floral fragrance uniting the most beautiful flowers worldwide.",
+      "image": "https://cdn.dummyjson.com/product-images/fragrances/dior-j'adore/thumbnail.webp",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/fragrances/dior-j'adore/thumbnail.webp"
+      ],
+      "breadcrumbs": [
+        { "name": "Beauty & Personal Care", "category": "beauty" },
+        { "name": "Fragrances", "category": "fragrances" },
+        { "name": "Luxury Perfumes", "category": "luxury-perfumes" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    },
+    {
+      "id": "TeFl4sUWU2XU9lBgCBVL",
+      "title": "Apple Watch Series 9",
+      "price": 320.5,
+      "sold": 180,
+      "rating": 4.8,
+      "moq": 1,
+      "category": "electronics",
+      "description": "Advanced health tracking, S9 chip, and brighter edge-to-edge display.",
+      "image": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80"
+      ],
+      "breadcrumbs": [
+        { "name": "Consumer Electronics", "category": "electronics" },
+        { "name": "Smart Wearables", "category": "smart-wearables" },
+        { "name": "Smart Watches", "category": "smart-watches" }
+      ],
+      "supplier": {
+        "name": "Global Trade Co.",
+        "country": "CN",
+        "verified": true,
+        "years": 5
+      }
+    }
+  ]
+}

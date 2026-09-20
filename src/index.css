@@ -16,7 +16,7 @@
     padding-inline: 2rem;
   }
   @media (width >= theme(--breakpoint-lg)) {
-    padding-inline: 4rem;
+    padding-inline: 3rem;
   }
 }
 

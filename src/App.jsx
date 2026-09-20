@@ -4,6 +4,7 @@ import ScrollToTop from "./components/layout/ScrollToTop"; // 1. استيراد 
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import ProductsListingPage from "./pages/ProductsListingPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddProductPage from "./pages/AddProductPage";
 import ContactPage from "./pages/ContactPage";
@@ -17,7 +18,7 @@ function AppContent() {
   const isAuthPage = location.pathname === "/auth";
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground ">
       <ScrollToTop />
       {!isAuthPage && <Navbar />}
       <main className="flex-1">
@@ -25,6 +26,7 @@ function AppContent() {
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
+          <Route path="/products" element={<ProductsListingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/add-product" element={<AddProductPage />} />
           <Route path="/contact" element={<ContactPage />} />

@@ -3,7 +3,20 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { authService } from "../../services/authService";
 
-const storedUser = JSON.parse(localStorage.getItem("user"));
+const loadStoredUser = () => {
+  try {
+    const saved = localStorage.getItem("user");
+    if (!saved || saved === "undefined" || saved === "null") {
+      return null;
+    }
+    return JSON.parse(saved);
+  } catch (error) {
+    console.error("Failed to parse user from storage:", error);
+    return null;
+  }
+};
+
+const storedUser = loadStoredUser();
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
@@ -22,7 +35,6 @@ export const updateUserProfile = createAsyncThunk(
   async (updatedData, { rejectWithValue }) => {
     try {
       const { uid, firstName, lastName, phone } = updatedData;
-
       const userRef = doc(db, "users", uid);
 
       await updateDoc(userRef, {
@@ -50,11 +62,21 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+      state.isAuthenticated = !!action.payload;
+      if (action.payload) {
+        localStorage.setItem("user", JSON.stringify(action.payload));
+      } else {
+        localStorage.removeItem("user");
+      }
+    },
     logout: (state) => {
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
       localStorage.removeItem("user");
+      localStorage.removeItem("nexus_cart");
     },
   },
   extraReducers: (builder) => {
@@ -67,22 +89,22 @@ export const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
-        localStorage.setItem("user", JSON.stringify(action.payload));
+        if (action.payload) {
+          localStorage.setItem("user", JSON.stringify(action.payload));
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         if (state.user) {
           state.user = { ...state.user, ...action.payload };
-
           localStorage.setItem("user", JSON.stringify(state.user));
         }
       });
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setUser } = authSlice.actions;
 export default authSlice.reducer;

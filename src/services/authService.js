@@ -9,7 +9,6 @@ import {
 } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
-// دالة مساعدة لتوحيد صيغة البريد الإلكتروني في كامل التطبيق
 const cleanEmail = (email) => email?.trim().toLowerCase() || "";
 
 export const authService = {
@@ -24,8 +23,7 @@ export const authService = {
 
   // 2. تسجيل الدخول بالبريد وكلمة المرور
   login: async (email, password) => {
-    // أضف هذا السطر هنا لمنع الاستدعاء الثاني الفارغ
-    if (!password) return;
+    if (!password) return null;
 
     const sanitizedEmail = cleanEmail(email);
     const cred = await signInWithEmailAndPassword(
@@ -33,15 +31,29 @@ export const authService = {
       sanitizedEmail,
       password,
     );
+
     let role = "Buyer";
     const userDoc = await getDoc(doc(db, "users", sanitizedEmail));
     if (userDoc.exists()) {
       role = userDoc.data().role || role;
     }
-    return { user: cred.user, role };
+
+    const userData = {
+      uid: cred.user.uid,
+      email: cred.user.email,
+      displayName: cred.user.displayName || "",
+      photoURL: cred.user.photoURL || "",
+      role,
+    };
+
+    // إرجاع الكائن مفروداً ومعه مرجع user للتوافق التام
+    return {
+      ...userData,
+      user: userData,
+    };
   },
 
-  // 3. الدخول عبر المنصات الاجتماعية بنمط Upsert
+  // 3. الدخول عبر المنصات الاجتماعية (Google / Facebook)
   socialLogin: async (providerName) => {
     const provider =
       providerName === "google" ? googleProvider : facebookProvider;
@@ -63,13 +75,24 @@ export const authService = {
     } else {
       role = userDocSnap.data().role || role;
     }
-    return { user: cred.user, role };
+
+    const userData = {
+      uid: cred.user.uid,
+      email: cred.user.email,
+      displayName: cred.user.displayName || "",
+      photoURL: cred.user.photoURL || "",
+      role,
+    };
+
+    return {
+      ...userData,
+      user: userData,
+    };
   },
 
-  // 4. التسجيل المبدئي بكلمة مرور مؤقتة عشوائية مشفرة
+  // 4. التسجيل المبدئي
   registerInitial: async (email, role) => {
     const sanitizedEmail = cleanEmail(email);
-    // كلمة مرور عشوائية وفريدة لكل مستخدم لمنع الاختراق المسبق
     const tempPassword = `Tmp_${crypto.randomUUID().slice(0, 12)}!Aa1`;
 
     const cred = await createUserWithEmailAndPassword(
@@ -86,7 +109,16 @@ export const authService = {
       createdAt: serverTimestamp(),
     });
 
-    return cred.user;
+    const userData = {
+      uid: cred.user.uid,
+      email: cred.user.email,
+      role,
+    };
+
+    return {
+      ...userData,
+      user: userData,
+    };
   },
 
   // 5. فحص حالة تفعيل رابط البريد
@@ -103,7 +135,7 @@ export const authService = {
     }
   },
 
-  // 7. إنهاء إعداد الحساب وتحديث كلمة المرور النهائية
+  // 7. إنهاء إعداد الحساب وتحديث كلمة المرور
   finalizeAccount: async (
     email,
     role,
@@ -134,6 +166,19 @@ export const authService = {
       { merge: true },
     );
 
-    return { user: auth.currentUser, role, country, firstName, lastName };
+    const userData = {
+      uid: auth.currentUser.uid,
+      email: sanitizedEmail,
+      role,
+      country,
+      firstName,
+      lastName,
+      displayName: fullName,
+    };
+
+    return {
+      ...userData,
+      user: userData,
+    };
   },
 };

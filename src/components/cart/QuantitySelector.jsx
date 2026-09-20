@@ -25,12 +25,9 @@ export default function QuantitySelector({ itemId, quantity, moq = 1 }) {
         -
       </button>
 
-      <input
-        type="text"
-        value={quantity}
-        readOnly
-        className="w-12 text-center text-sm font-semibold border-x border-border py-1 bg-transparent text-foreground outline-none select-none"
-      />
+      <span className="w-12 text-center text-sm font-bold bg-transparent border-x border-border select-none">
+        {quantity}
+      </span>
 
       <button
         type="button"

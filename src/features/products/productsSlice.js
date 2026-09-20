@@ -1,19 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { productService } from "../../services/productService";
 
+// دالة الجلب الموجهة لـ json-server عبر ملف الخدمة
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (_, thunkAPI) => {
     try {
-      const querySnapshot = await getDocs(collection(db, "products"));
-      const products = [];
-
-      querySnapshot.forEach((doc) => {
-        products.push({ id: doc.id, ...doc.data() });
-      });
-
-      return products;
+      const data = await productService.getAll();
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

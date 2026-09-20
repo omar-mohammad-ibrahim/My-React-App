@@ -9,7 +9,11 @@ export default function ProductGrid() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const { items, isLoading, error } = useSelector((state) => state.products);
+  const {
+    items = [],
+    isLoading,
+    error,
+  } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (items.length === 0) {
@@ -17,16 +21,17 @@ export default function ProductGrid() {
     }
   }, [dispatch, items.length]);
 
+  // حالة الخطأ (Error State)
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
-        <h3 className="mb-2 text-xl font-bold text-red-600">
+        <h3 className="mb-2 text-xl font-bold text-destructive">
           {t("products.error_msg")}
         </h3>
-        <p className="text-gray-500 mb-4">{error}</p>
+        <p className="mb-4 text-muted-foreground">{error}</p>
         <button
           onClick={() => dispatch(fetchProducts())}
-          className="rounded-full bg-[#eb5b00] px-6 py-2 text-white hover:bg-[#cc4f00]"
+          className="rounded-full bg-primary px-6 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary-hover shadow-sm"
         >
           {t("products.try_again")}
         </button>
@@ -36,7 +41,8 @@ export default function ProductGrid() {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ">
+      {/* شبكة عرض المنتجات المتجاوبة */}
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {isLoading
           ? Array.from({ length: 12 }).map((_, index) => (
               <ProductSkeleton key={index} />
@@ -46,8 +52,9 @@ export default function ProductGrid() {
             ))}
       </div>
 
+      {/* حالة عدم وجود منتجات (Empty State) */}
       {!isLoading && items.length === 0 && (
-        <div className="py-20 text-center text-gray-500">
+        <div className="py-20 text-center font-medium text-muted-foreground">
           {t("products.no_products")}
         </div>
       )}

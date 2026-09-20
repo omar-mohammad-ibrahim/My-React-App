@@ -12,7 +12,7 @@ import ProfileDropdown from "./dropdowns/ProfileDropdown";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border bg-card text-foreground shadow-xs transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full border-b border-border bg-card text-foreground shadow-xs ">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-3 sm:px-6">
         <Logo />
 
