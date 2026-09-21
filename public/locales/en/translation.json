@@ -76,5 +76,9 @@
     "rfq": "Request for Quotation",
     "top_ranking": "Top Ranking",
     "customization": "Fast customization"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
   }
 }

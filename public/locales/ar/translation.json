@@ -75,5 +75,9 @@
     "rfq": "طلب تسعيرة",
     "top_ranking": "الأعلى تقييماً",
     "customization": "تخصيص سريع"
+  },
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي"
   }
 }
