@@ -28,7 +28,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "2",
@@ -58,7 +60,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "3",
@@ -88,7 +92,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "4",
@@ -118,7 +124,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "5",
@@ -148,7 +156,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "6",
@@ -180,7 +190,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "7",
@@ -212,7 +224,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "8",
@@ -244,7 +258,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "9",
@@ -276,7 +292,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "10",
@@ -308,7 +326,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "11",
@@ -340,7 +360,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "12",
@@ -372,7 +394,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "13",
@@ -404,7 +428,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "14",
@@ -436,7 +462,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "15",
@@ -468,7 +496,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "16",
@@ -498,7 +528,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "17",
@@ -528,7 +560,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "18",
@@ -558,7 +592,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "19",
@@ -589,7 +625,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "20",
@@ -619,7 +657,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "21",
@@ -649,7 +689,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "22",
@@ -679,7 +721,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "23",
@@ -709,7 +753,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "24",
@@ -739,7 +785,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "25",
@@ -769,7 +817,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "26",
@@ -799,7 +849,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "27",
@@ -829,7 +881,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "28",
@@ -862,7 +916,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "29",
@@ -892,7 +948,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "30",
@@ -922,7 +980,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "31",
@@ -952,7 +1012,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "32",
@@ -982,7 +1044,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "33",
@@ -1012,7 +1076,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "34",
@@ -1042,7 +1108,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "35",
@@ -1072,7 +1140,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "36",
@@ -1102,7 +1172,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "37",
@@ -1132,7 +1204,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "38",
@@ -1162,7 +1236,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "39",
@@ -1192,7 +1268,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "40",
@@ -1222,7 +1300,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "41",
@@ -1253,7 +1333,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "42",
@@ -1283,7 +1365,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "43",
@@ -1315,7 +1399,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "44",
@@ -1345,7 +1431,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "45",
@@ -1377,7 +1465,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "46",
@@ -1410,7 +1500,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "47",
@@ -1440,7 +1532,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "48",
@@ -1470,7 +1564,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "49",
@@ -1501,7 +1597,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "50",
@@ -1531,7 +1629,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "51",
@@ -1564,7 +1664,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "52",
@@ -1594,7 +1696,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "53",
@@ -1624,7 +1728,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "54",
@@ -1654,7 +1760,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "55",
@@ -1684,7 +1792,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "56",
@@ -1717,7 +1827,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "57",
@@ -1747,7 +1859,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "58",
@@ -1777,7 +1891,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "59",
@@ -1807,7 +1923,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "60",
@@ -1837,7 +1955,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "61",
@@ -1867,7 +1987,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "62",
@@ -1897,7 +2019,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "63",
@@ -1927,7 +2051,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "64",
@@ -1957,7 +2083,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "65",
@@ -1987,7 +2115,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "66",
@@ -2020,7 +2150,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "67",
@@ -2051,7 +2183,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "68",
@@ -2081,7 +2215,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "69",
@@ -2111,7 +2247,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "70",
@@ -2141,7 +2279,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "71",
@@ -2171,7 +2311,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "72",
@@ -2201,7 +2343,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "73",
@@ -2231,7 +2375,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "74",
@@ -2261,7 +2407,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "75",
@@ -2291,7 +2439,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "76",
@@ -2321,7 +2471,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "77",
@@ -2351,7 +2503,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "78",
@@ -2383,7 +2537,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "79",
@@ -2415,7 +2571,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "80",
@@ -2447,7 +2605,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "81",
@@ -2479,7 +2639,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "82",
@@ -2511,7 +2673,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "83",
@@ -2544,7 +2708,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "84",
@@ -2577,7 +2743,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "85",
@@ -2610,7 +2778,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "86",
@@ -2643,7 +2813,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "87",
@@ -2676,7 +2848,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "88",
@@ -2709,7 +2883,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "89",
@@ -2742,7 +2918,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "90",
@@ -2775,7 +2953,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "91",
@@ -2808,7 +2988,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "92",
@@ -2841,7 +3023,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "93",
@@ -2873,7 +3057,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "94",
@@ -2905,7 +3091,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "95",
@@ -2937,7 +3125,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "96",
@@ -2969,7 +3159,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "97",
@@ -3001,7 +3193,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "98",
@@ -3033,7 +3227,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "99",
@@ -3064,7 +3260,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "100",
@@ -3096,7 +3294,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "101",
@@ -3126,7 +3326,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "102",
@@ -3156,7 +3358,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "103",
@@ -3186,7 +3390,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "104",
@@ -3217,7 +3423,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "105",
@@ -3248,7 +3456,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "106",
@@ -3280,7 +3490,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "107",
@@ -3310,7 +3522,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "108",
@@ -3343,7 +3557,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "109",
@@ -3374,7 +3590,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "110",
@@ -3404,7 +3622,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "111",
@@ -3434,7 +3654,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "112",
@@ -3464,7 +3686,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "113",
@@ -3497,7 +3721,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "114",
@@ -3530,7 +3756,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "115",
@@ -3563,7 +3791,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "116",
@@ -3596,7 +3826,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "117",
@@ -3629,7 +3861,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "118",
@@ -3661,7 +3895,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "119",
@@ -3693,7 +3929,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "120",
@@ -3725,7 +3963,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "121",
@@ -3757,7 +3997,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "122",
@@ -3789,7 +4031,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "123",
@@ -3821,7 +4065,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "124",
@@ -3853,7 +4099,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "125",
@@ -3885,7 +4133,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "126",
@@ -3917,7 +4167,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "127",
@@ -3950,7 +4202,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "128",
@@ -3982,7 +4236,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "129",
@@ -4014,7 +4270,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "130",
@@ -4046,7 +4304,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "131",
@@ -4078,7 +4338,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "132",
@@ -4110,7 +4372,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "133",
@@ -4142,7 +4406,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "134",
@@ -4174,7 +4440,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "135",
@@ -4206,7 +4474,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "136",
@@ -4238,7 +4508,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "137",
@@ -4268,7 +4540,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "138",
@@ -4298,7 +4572,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "139",
@@ -4330,7 +4606,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "140",
@@ -4360,7 +4638,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "141",
@@ -4390,7 +4670,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "142",
@@ -4420,7 +4702,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "143",
@@ -4450,7 +4734,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "144",
@@ -4483,7 +4769,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "145",
@@ -4513,7 +4801,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "146",
@@ -4543,7 +4833,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "147",
@@ -4573,7 +4865,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "148",
@@ -4603,7 +4897,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "149",
@@ -4633,7 +4929,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "150",
@@ -4663,7 +4961,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "151",
@@ -4693,7 +4993,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "152",
@@ -4723,7 +5025,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "153",
@@ -4753,7 +5057,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "154",
@@ -4785,7 +5091,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "155",
@@ -4817,7 +5125,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "156",
@@ -4849,7 +5159,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "157",
@@ -4881,7 +5193,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "158",
@@ -4913,7 +5227,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "159",
@@ -4946,7 +5262,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "160",
@@ -4979,7 +5297,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "161",
@@ -5012,7 +5332,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "162",
@@ -5045,7 +5367,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "163",
@@ -5078,7 +5402,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "164",
@@ -5111,7 +5437,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "165",
@@ -5144,7 +5472,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "166",
@@ -5177,7 +5507,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "167",
@@ -5212,7 +5544,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "168",
@@ -5247,7 +5581,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "169",
@@ -5282,7 +5618,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "170",
@@ -5317,7 +5655,9 @@
         "country": "CN",
         "verified": true,
         "years": 7
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "171",
@@ -5352,7 +5692,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "172",
@@ -5384,7 +5726,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "173",
@@ -5416,7 +5760,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "174",
@@ -5448,7 +5794,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "175",
@@ -5480,7 +5828,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": false
     },
     {
       "id": "176",
@@ -5512,7 +5862,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "177",
@@ -5545,7 +5897,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "178",
@@ -5578,7 +5932,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "179",
@@ -5611,7 +5967,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "180",
@@ -5644,7 +6002,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "181",
@@ -5677,7 +6037,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "182",
@@ -5709,7 +6071,9 @@
         "country": "CN",
         "verified": true,
         "years": 4
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "183",
@@ -5741,7 +6105,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "184",
@@ -5773,7 +6139,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "185",
@@ -5806,7 +6174,9 @@
         "country": "CN",
         "verified": true,
         "years": 5
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "186",
@@ -5839,7 +6209,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "187",
@@ -5872,7 +6244,9 @@
         "country": "CN",
         "verified": true,
         "years": 1
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "188",
@@ -5905,7 +6279,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "189",
@@ -5938,7 +6314,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "190",
@@ -5970,7 +6348,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "191",
@@ -6002,7 +6382,9 @@
         "country": "CN",
         "verified": true,
         "years": 2
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     },
     {
       "id": "192",
@@ -6034,7 +6416,9 @@
         "country": "CN",
         "verified": true,
         "years": 6
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": true
     },
     {
       "id": "193",
@@ -6066,7 +6450,9 @@
         "country": "CN",
         "verified": true,
         "years": 8
-      }
+      },
+      "tradeAssurance": true,
+      "hasSample": false
     },
     {
       "id": "194",
@@ -6098,7 +6484,9 @@
         "country": "CN",
         "verified": true,
         "years": 3
-      }
+      },
+      "tradeAssurance": false,
+      "hasSample": true
     }
   ]
 }
