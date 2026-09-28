@@ -32,41 +32,53 @@ export default function OtpVerifyStep({
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <h1 className="text-2xl font-bold text-gray-900 mb-3 text-start w-full">
-        {t("auth.verifyEmailTitle") || "Verify your email"}
+    <div className="w-full flex flex-col items-start text-start">
+      <h1 className="text-2xl font-bold text-foreground mb-3 w-full">
+        {t("auth.verifyEmailTitle", "Verify your email")}
       </h1>
 
-      <p className="text-xs text-gray-600 text-start w-full mb-8 leading-relaxed">
-        {t("auth.sentEmailTo") || "We've sent a verification link to"}{" "}
-        <strong className="text-gray-900 font-semibold" dir="ltr">
+      <p className="text-xs text-muted-foreground w-full mb-8 leading-relaxed">
+        {t("auth.sentEmailTo", "We've sent a verification link to")}{" "}
+        <strong className="text-foreground font-semibold" dir="ltr">
           {maskEmail(email)}
         </strong>
         <br />
-        Please click the link in that email to continue.
+        {t(
+          "auth.clickLinkToContinue",
+          "Please click the link in that email to continue.",
+        )}
       </p>
 
       <div className="flex flex-col gap-3 w-full">
-        <Button onClick={handleCheck} className="w-full" disabled={loading}>
-          {loading ? "Checking..." : "I have verified my email"}
+        <Button
+          variant="primary"
+          onClick={handleCheck}
+          className="w-full h-11"
+          disabled={loading}
+        >
+          {loading
+            ? "Checking..."
+            : t("auth.verifiedButton", "I have verified my email")}
         </Button>
 
         <Button
           type="button"
           variant="outline"
           onClick={onGoBack}
-          className="w-full border-gray-900 text-gray-900 hover:bg-gray-50 cursor-pointer"
+          className="w-full h-11"
         >
-          {t("auth.goBack") || "Go back"}
+          {t("auth.goBack", "Go back")}
         </Button>
       </div>
 
-      <p className="text-xs text-gray-600 text-center mt-6">
-        {t("auth.didntReceiveCode") || "Didn't receive the link?"}{" "}
+      <p className="text-xs text-muted-foreground text-center w-full mt-6">
+        {t("auth.didntReceiveCode", "Didn't receive the link?")}{" "}
         {timer > 0 ? (
-          <span className="text-gray-900 font-medium underline">
-            {t("auth.getNewOneIn", { seconds: timer }) ||
-              `Get a new one in ${timer}s`}
+          <span className="text-foreground font-medium underline">
+            {t("auth.getNewOneIn", {
+              seconds: timer,
+              defaultValue: `Get a new one in ${timer}s`,
+            })}
           </span>
         ) : (
           <button
@@ -77,7 +89,7 @@ export default function OtpVerifyStep({
             }}
             className="text-primary font-semibold underline cursor-pointer"
           >
-            {t("auth.resendCode") || "Resend link"}
+            {t("auth.resendCode", "Resend link")}
           </button>
         )}
       </p>

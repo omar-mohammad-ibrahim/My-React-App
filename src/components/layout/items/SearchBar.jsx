@@ -24,23 +24,23 @@ export default function SearchBar() {
 
   // الحالات
   const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
-  const [typedTerm, setTypedTerm] = useState(searchParams.get("q") || ""); // حفظ النص الفعلي المكتوب (للمعاينة)
+  const [typedTerm, setTypedTerm] = useState(searchParams.get("q") || "");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [recentSearches, setRecentSearches] = useState([]);
 
   const containerRef = useRef(null);
   const inputRef = useRef(null);
-  const fileInputRef = useRef(null); // مرجع لرفع الصور (الخاصية 5)
+  const fileInputRef = useRef(null);
 
-  // مزامنة حقل الإدخال مع الرابط عند التغيير الخارجي
+  // مزامنة حقل الإدخال مع الرابط
   useEffect(() => {
     const q = searchParams.get("q") || "";
     setSearchTerm(q);
     setTypedTerm(q);
   }, [searchParams]);
 
-  // تحميل سجل البحث السابق من المتصفح
+  // تحميل سجل البحث السابق
   useEffect(() => {
     try {
       const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
@@ -62,7 +62,11 @@ export default function SearchBar() {
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, []);
 
   // استخراج الاقتراحات الحية
@@ -102,7 +106,7 @@ export default function SearchBar() {
     });
   };
 
-  // 6. تنفيذ البحث مع مراعاة التبويب الحالي (Products أم Suppliers)
+  // تنفيذ البحث
   const executeSearch = (query) => {
     const targetQuery = query.trim();
     setIsOpen(false);
@@ -111,7 +115,6 @@ export default function SearchBar() {
 
     if (targetQuery) saveToRecent(targetQuery);
 
-    // الحفاظ على نطاق التبويب الحالي (Products أو Suppliers)
     const currentView = searchParams.get("view");
     const nextParams = new URLSearchParams(
       location.pathname.startsWith("/products") ? searchParams : "",
@@ -127,7 +130,7 @@ export default function SearchBar() {
       nextParams.set("view", currentView);
     }
 
-    nextParams.delete("page"); // تصفير الصفحة دائماً عند بدء بحث جديد
+    nextParams.delete("page");
     navigate(`/products?${nextParams.toString()}`);
   };
 
@@ -140,7 +143,7 @@ export default function SearchBar() {
     }
   };
 
-  // 3. التنقل بالأسهم مع المعاينة الحية في الـ Input
+  // التنقل بالأسهم
   const handleKeyDown = (e) => {
     if (!isOpen && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
       setIsOpen(true);
@@ -152,7 +155,6 @@ export default function SearchBar() {
       const nextIndex =
         selectedIndex + 1 < activeList.length ? selectedIndex + 1 : -1;
       setSelectedIndex(nextIndex);
-      // إذا رجع المؤشر للأعلى يعيد النص الأصلي الذي كتبه المستخدم، وإلا يضع نص الاقتراح المحدد
       setSearchTerm(nextIndex === -1 ? typedTerm : activeList[nextIndex]);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
@@ -167,12 +169,11 @@ export default function SearchBar() {
     }
   };
 
-  // 5. معالجة البحث بالصور
+  // معالجة البحث بالصور
   const handleImageSelect = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // محاكاة التعرف على الصورة باستخراج اسمها والبحث به
     const cleanFileName = file.name
       .split(".")[0]
       .replace(/[-_]/g, " ")
@@ -199,23 +200,24 @@ export default function SearchBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-2xl">
+    <div ref={containerRef} className="relative w-full">
       {/* حقل ملف مخفي لاختيار الصورة */}
       <input
         ref={fileInputRef}
         type="file"
         accept="image/*"
         onChange={handleImageSelect}
-        className="hidden "
+        className="hidden"
       />
 
       {/* إطار شريط البحث الخارجي */}
-      <div className="w-full rounded-full bg-brand-gradient p-[2px] shadow-xs focus-within:shadow-md transition-shadow">
+      <div className="w-full rounded-full bg-brand-gradient p-[1.5px] sm:p-[2px] shadow-xs focus-within:shadow-md transition-shadow">
         <form
           onSubmit={handleSubmit}
-          className="flex w-full items-center gap-1 rounded-full bg-card px-2 py-1 transition-colors"
+          className="flex w-full items-center gap-1 rounded-full bg-card px-1.5 sm:px-2 py-0.5 sm:py-1 transition-colors"
         >
-          <div className="relative flex-1 flex items-center">
+          {/* حقل الإدخال مع زر المسح */}
+          <div className="relative flex-1 min-w-0 flex items-center">
             <Input
               ref={inputRef}
               type="text"
@@ -230,17 +232,18 @@ export default function SearchBar() {
               onKeyDown={handleKeyDown}
               placeholder={
                 searchParams.get("view") === "suppliers"
-                  ? "Search suppliers by name or country..."
-                  : t("searchBar.placeholder") || "What are you looking for?"
+                  ? "Search suppliers..."
+                  : t("searchBar.placeholder") || "Search products..."
               }
-              className="w-full border-none bg-transparent shadow-none px-3 py-1 text-sm sm:text-base text-card-foreground placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:border-none h-9 pe-8"
+              /* 16px على الموبايل لمنع تكبير Safari التلقائي ثم 14px للشاشات الكبيرة */
+              className="w-full border-none bg-transparent shadow-none px-2.5 sm:px-3 py-1 text-base sm:text-sm text-card-foreground placeholder:text-muted-foreground placeholder:truncate focus-visible:ring-0 focus-visible:border-none h-8 sm:h-9 pe-7"
             />
 
             {searchTerm && (
               <button
                 type="button"
                 onClick={handleClearInput}
-                className="absolute end-2 p-1 text-muted-foreground hover:text-foreground cursor-pointer rounded-full transition-colors"
+                className="absolute end-1.5 p-1 text-muted-foreground hover:text-foreground cursor-pointer rounded-full transition-colors"
                 aria-label="Clear input"
               >
                 <X className="h-3.5 w-3.5" />
@@ -248,34 +251,37 @@ export default function SearchBar() {
             )}
           </div>
 
-          {/* 5. زر البحث بالصور عبر الكاميرا */}
+          {/* زر البحث بالصور عبر الكاميرا */}
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
             title="Search by image"
             aria-label="Search by image"
-            className="p-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer rounded-full hover:bg-muted/50"
+            className="p-1.5 sm:p-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer rounded-full hover:bg-muted/50 shrink-0"
           >
-            <Camera className="h-5 w-5" />
+            <Camera className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
 
+          {/* زر البحث الرئيسي: دائري متناسق على الموبايل وبيدج كامل على الشاشات الكبيرة */}
           <Button
             type="submit"
             variant="gradient"
-            className="h-9 px-4 sm:px-6 py-0 text-sm font-semibold rounded-full shrink-0 flex items-center gap-1.5"
+            className="h-8 w-8 sm:h-9 sm:w-auto p-0 sm:px-5 sm:py-0 text-sm font-semibold rounded-full shrink-0 flex items-center justify-center gap-1.5"
           >
-            <Search className="h-4 w-4" />
-            <span>{t("searchBar.button") || "Search"}</span>
+            <Search className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <span className="hidden sm:inline">
+              {t("searchBar.button") || "Search"}
+            </span>
           </Button>
         </form>
       </div>
 
-      {/* القائمة المنسدلة الذكية */}
+      {/* القائمة المنسدلة الذكية (محمية مع لوحة مفاتيح الموبايل بـ max-h والتمرير) */}
       {isOpen && (
-        <div className="absolute top-full start-0 end-0 mt-2 z-50 rounded-2xl border border-border bg-card py-3 shadow-xl backdrop-blur-md">
+        <div className="absolute top-full start-0 end-0 mt-2 z-50 max-h-[55vh] sm:max-h-[70vh] overflow-y-auto rounded-2xl border border-border bg-card py-2.5 shadow-xl backdrop-blur-md">
           {typedTerm.trim().length >= 2 ? (
             <div className="flex flex-col">
-              <div className="px-4 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <div className="px-4 pb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                 Suggestions
               </div>
 
@@ -290,7 +296,7 @@ export default function SearchBar() {
                         setTypedTerm(item);
                         executeSearch(item);
                       }}
-                      className={`flex items-center justify-between px-4 py-2 text-sm cursor-pointer transition-colors ${
+                      className={`flex items-center justify-between px-4 py-2.5 sm:py-2 text-sm cursor-pointer transition-colors active:bg-muted ${
                         isSelected
                           ? "bg-muted text-primary font-medium"
                           : "text-foreground hover:bg-muted/60"
@@ -298,7 +304,6 @@ export default function SearchBar() {
                     >
                       <div className="flex items-center gap-2.5 truncate">
                         <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
-                        {/* 1. إبراز الحروف المطابقة داخل الكلمة */}
                         <span className="truncate">
                           <HighlightMatch text={item} query={typedTerm} />
                         </span>
@@ -308,7 +313,7 @@ export default function SearchBar() {
                   );
                 })
               ) : (
-                <div className="px-4 py-3 text-sm text-muted-foreground text-center">
+                <div className="px-4 py-3 text-xs sm:text-sm text-muted-foreground text-center">
                   Press enter to search for &quot;
                   <span className="text-foreground font-medium">
                     {typedTerm}
@@ -321,7 +326,7 @@ export default function SearchBar() {
             <div className="flex flex-col">
               {recentSearches.length > 0 ? (
                 <>
-                  <div className="flex items-center justify-between px-4 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <div className="flex items-center justify-between px-4 pb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                     <span>Recent Searches</span>
                     <button
                       type="button"
@@ -349,7 +354,7 @@ export default function SearchBar() {
                           setTypedTerm(item);
                           executeSearch(item);
                         }}
-                        className={`flex items-center justify-between px-4 py-2 text-sm cursor-pointer transition-colors group ${
+                        className={`flex items-center justify-between px-4 py-2.5 sm:py-2 text-sm cursor-pointer transition-colors active:bg-muted ${
                           isSelected
                             ? "bg-muted text-primary font-medium"
                             : "text-foreground hover:bg-muted/60"
@@ -359,6 +364,7 @@ export default function SearchBar() {
                           <Clock className="h-4 w-4 shrink-0 text-muted-foreground" />
                           <span className="truncate">{item}</span>
                         </div>
+                        {/* زر حذف العنصر مريح للمس بإصبع اليد دون تفعيل البحث */}
                         <button
                           type="button"
                           onClick={(e) => {
@@ -374,7 +380,7 @@ export default function SearchBar() {
                               return updated;
                             });
                           }}
-                          className="p-1 text-muted-foreground hover:text-foreground opacity-60 group-hover:opacity-100 transition-opacity cursor-pointer rounded-xs"
+                          className="p-1.5 text-muted-foreground hover:text-destructive active:scale-95 transition-all cursor-pointer rounded-md"
                           aria-label={`Remove ${item}`}
                         >
                           <X className="h-3.5 w-3.5" />
@@ -384,7 +390,7 @@ export default function SearchBar() {
                   })}
                 </>
               ) : (
-                <div className="px-4 py-3 text-sm text-muted-foreground text-center">
+                <div className="px-4 py-3 text-xs sm:text-sm text-muted-foreground text-center">
                   Search by product name, supplier, or category
                 </div>
               )}
@@ -396,11 +402,10 @@ export default function SearchBar() {
   );
 }
 
-// 1. مكوّن إبراز الحروف المتطابقة (Highlight Match)
+// مكوّن إبراز الحروف المتطابقة
 function HighlightMatch({ text, query }) {
   if (!query || !query.trim()) return <span>{text}</span>;
 
-  // حماية الرموز الخاصة في الاستعلام لعدم كسر Regex
   const escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const regex = new RegExp(`(${escaped})`, "gi");
   const parts = text.split(regex);

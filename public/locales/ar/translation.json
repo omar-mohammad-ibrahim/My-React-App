@@ -9,7 +9,7 @@
     "signInWithCode": "تسجيل الدخول باستخدام رمز",
     "passwordPlaceholder": "كلمة المرور",
     "forgotPassword": "هل نسيت كلمة المرور؟",
-    "newToAlibaba": "جديد على Alibaba.com؟",
+    "newToNexusTrade": "جديد على NexusTrade.com؟",
     "createAccount": "إنشاء حساب",
     "whichAccount": "ما نوع الحساب الذي ترغب في إنشائه؟",
     "buyerTitle": "مشتري",
@@ -31,10 +31,10 @@
     "allCategories": "كل الفئات",
     "verified": "المصنعون المعتمدون",
     "dropshipping": "دروبشيبينغ",
-    "about": "عن Alibaba.com",
+    "about": "عن NexusTrade.com",
     "help": "مركز المساعدة",
     "accio": "Accio Work",
-    "sell": "البيع على Alibaba.com"
+    "sell": "البيع على NexusTrade.com"
   },
 
   "navbar": {
@@ -79,7 +79,7 @@
     "onTimeDelivery": "توصيل مضمون في الوقت المحدد",
     "viewOrders": "عرض جميع الطلبات",
     "orContinueWith": "أو المتابعة باستخدام:",
-    "myAlibaba": "حسابي (My NexusTrade)",
+    "myNexusTrade": "حسابي (My NexusTrade)",
     "favorites": "المفضلة"
   },
   "common": {
@@ -150,7 +150,7 @@
     "minOrder": "الحد الأدنى للطلب",
     "minOrderPlaceholder": "الحد الأدنى للطلب",
     "tradeAssurance": "ضمان التجارة",
-    "tradeAssuranceDesc": "يحمي طلباتك على Alibaba.com",
+    "tradeAssuranceDesc": "يحمي طلباتك على NexusTrade.com",
     "supplierFeatures": "ميزات المورّد",
     "verified": "موثّق",
     "supplier": "مورّد",
@@ -189,10 +189,10 @@
     "allCategories": "جميع الفئات",
     "verified": "المصنعون الموثقون",
     "dropshipping": "دروبشيبينغ",
-    "about": "عن Alibaba.com",
+    "about": "عن NexusTrade.com",
     "help": "مركز المساعدة",
     "accio": "Accio Work",
-    "sell": "البيع على Alibaba.com"
+    "sell": "البيع على NexusTrade.com"
   },
   "plp": {
     "errorTitle": "حدث خطأ أثناء تحميل المنتجات",

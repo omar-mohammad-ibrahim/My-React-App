@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "cn";
+import { cn } from "@/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
@@ -33,6 +33,7 @@ function Carousel({
   );
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
   const [canScrollNext, setCanScrollNext] = React.useState(false);
+  const [scrollSnaps, setScrollSnaps] = React.useState([]);
 
   const onSelect = React.useCallback((api) => {
     if (!api) return;
@@ -68,8 +69,13 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return;
+    setScrollSnaps(api.scrollSnapList());
     onSelect(api);
-    api.on("reInit", onSelect);
+
+    api.on("reInit", () => {
+      setScrollSnaps(api.scrollSnapList());
+      onSelect(api);
+    });
     api.on("select", onSelect);
 
     return () => {
@@ -89,6 +95,7 @@ function Carousel({
         scrollNext,
         canScrollPrev,
         canScrollNext,
+        scrollSnaps,
       }}
     >
       <div
@@ -111,7 +118,7 @@ function CarouselContent({ className, ...props }) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className="overflow-hidden rounded-lg"
       data-slot="carousel-content"
     >
       <div
@@ -145,57 +152,70 @@ function CarouselItem({ className, ...props }) {
 }
 
 function CarouselPrevious({ className, ...props }) {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+  const { orientation, scrollPrev, canScrollPrev, scrollSnaps } = useCarousel();
+
+  // إخفاء الزر تماماً إذا كانت هناك صورة واحدة فقط
+  if (scrollSnaps.length <= 1) return null;
 
   return (
     <button
       type="button"
       data-slot="carousel-previous"
       className={cn(
-        "absolute inline-flex items-center justify-center rounded-full border border-border bg-background/90 text-foreground shadow-xs transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-30 cursor-pointer",
+        "absolute z-10 inline-flex items-center justify-center rounded-full border border-border/70 bg-background/80 backdrop-blur-xs text-foreground shadow-xs transition-all hover:bg-background disabled:pointer-events-none disabled:opacity-0 cursor-pointer",
         orientation === "horizontal"
-          ? "inset-y-0 -left-12 my-auto h-8 w-8"
-          : "-top-12 left-1/2 -translate-x-1/2 h-8 w-8 rotate-90",
+          ? "start-2 inset-y-0 my-auto h-7 w-7"
+          : "top-2 left-1/2 -translate-x-1/2 h-7 w-7 rotate-90",
         className,
       )}
       disabled={!canScrollPrev}
-      onClick={scrollPrev}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        scrollPrev();
+      }}
       {...props}
     >
-      <ChevronLeftIcon className="h-4 w-4" />
+      <ChevronLeftIcon className="h-4 w-4 rtl:rotate-180" />
       <span className="sr-only">Previous slide</span>
     </button>
   );
 }
 
 function CarouselNext({ className, ...props }) {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+  const { orientation, scrollNext, canScrollNext, scrollSnaps } = useCarousel();
+
+  // إخفاء الزر تماماً إذا كانت هناك صورة واحدة فقط
+  if (scrollSnaps.length <= 1) return null;
 
   return (
     <button
       type="button"
       data-slot="carousel-next"
       className={cn(
-        "absolute inline-flex items-center justify-center rounded-full border border-border bg-background/90 text-foreground shadow-xs transition-colors hover:bg-accent disabled:pointer-events-none disabled:opacity-30 cursor-pointer",
+        "absolute z-10 inline-flex items-center justify-center rounded-full border border-border/70 bg-background/80 backdrop-blur-xs text-foreground shadow-xs transition-all hover:bg-background disabled:pointer-events-none disabled:opacity-0 cursor-pointer",
         orientation === "horizontal"
-          ? "inset-y-0 -right-12 my-auto h-8 w-8"
-          : "-bottom-12 left-1/2 -translate-x-1/2 h-8 w-8 rotate-90",
+          ? "end-2 inset-y-0 my-auto h-7 w-7"
+          : "bottom-2 left-1/2 -translate-x-1/2 h-7 w-7 rotate-90",
         className,
       )}
       disabled={!canScrollNext}
-      onClick={scrollNext}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        scrollNext();
+      }}
       {...props}
     >
-      <ChevronRightIcon className="h-4 w-4" />
+      <ChevronRightIcon className="h-4 w-4 rtl:rotate-180" />
       <span className="sr-only">Next slide</span>
     </button>
   );
 }
 
 function CarouselDots({ className, ...props }) {
-  const { api } = useCarousel();
+  const { api, scrollSnaps } = useCarousel();
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [scrollSnaps, setScrollSnaps] = React.useState([]);
 
   const onSelect = React.useCallback(() => {
     if (!api) return;
@@ -204,7 +224,6 @@ function CarouselDots({ className, ...props }) {
 
   React.useEffect(() => {
     if (!api) return;
-    setScrollSnaps(api.scrollSnapList());
     onSelect();
     api.on("select", onSelect);
     api.on("reInit", onSelect);
@@ -235,11 +254,10 @@ function CarouselDots({ className, ...props }) {
             api?.scrollTo(index);
           }}
           className={cn(
-            "h-1.5 rounded-full transition-all duration-500 cursor-pointer",
-            // النقطة النشطة تتسع وتصبح بيضاء مثل الصورة، وغير النشطة تظل نقطة داكنة
+            "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
             index === selectedIndex
-              ? "w-4 bg-foreground/80 shadow-md"
-              : "w-1.5 bg-black/40 hover:bg-black/60",
+              ? "w-4 bg-foreground/90 shadow-xs"
+              : "w-1.5 bg-foreground/30 hover:bg-foreground/50",
           )}
           aria-label={`Go to slide ${index + 1}`}
         />
@@ -247,6 +265,7 @@ function CarouselDots({ className, ...props }) {
     </div>
   );
 }
+
 export {
   Carousel,
   CarouselContent,

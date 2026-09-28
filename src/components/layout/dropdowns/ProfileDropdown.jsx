@@ -166,7 +166,10 @@ export default function ProfileDropdown() {
           {/* روابط التنقل السريع */}
           <ul className="py-2 flex flex-col text-start">
             {[
-              { to: "/profile", label: t("navbar.myAlibaba") || "My Alibaba" },
+              {
+                to: "/profile",
+                label: t("navbar.myNexusTrade") || "My NexusTrade",
+              },
               { to: "/orders", label: t("navbar.orders") || "Orders" },
               { to: "/messages", label: t("navbar.messages") || "Messages" },
               { to: "/rfqs", label: "RFQs" },

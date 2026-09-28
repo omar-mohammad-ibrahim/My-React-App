@@ -9,8 +9,9 @@ export default function Button({
   disabled = false,
   className = "",
 }) {
+  // 1. تم دمج whitespace-nowrap لمنع كسر السطر نهائياً، مع shrink-0 ومقاسات متجاوبة
   const baseStyles =
-    "px-6 py-3 rounded-full font-bold transition-all duration-200 flex justify-center items-center gap-2 text-center select-none";
+    "whitespace-nowrap shrink-0 px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm rounded-full font-bold transition-all duration-200 inline-flex justify-center items-center gap-2 text-center select-none leading-none";
 
   const variants = {
     primary:
@@ -28,7 +29,7 @@ export default function Button({
       "bg-brand-gradient text-primary-foreground hover:opacity-95 shadow-primary-glow",
 
     // نمط علي بابا: إطار أسود/داكن وخلفية شفافة، وعند الـ Hover يتحول لبرتقالي ممتلئ بكتابة بيضاء
-    alibaba:
+    NexusTrade:
       "border border-foreground/90 bg-transparent text-foreground hover:bg-primary hover:border-primary hover:text-white",
   };
 
@@ -59,40 +60,3 @@ export default function Button({
     </button>
   );
 }
-
-// export default function Input({
-//   placeholder = "",
-//   value,
-//   onChange,
-//   type = "text",
-//   error = "",
-//   disabled = false,
-//   className = "",
-//   ...props
-// }) {
-//   const borderStyles = error
-//     ? "border-danger focus:border-danger"
-//     : "border-gray-300 focus:border-gray-800";
-
-//   return (
-//     <div className={`w-full flex flex-col ${className}`}>
-//       <input
-//         type={type}
-//         value={value}
-//         onChange={onChange}
-//         disabled={disabled}
-//         placeholder={placeholder}
-//         className={`w-full px-3.5 py-3 text-sm text-gray-900 bg-white rounded-brand border outline-hidden transition-colors duration-200 placeholder:text-gray-400 ${borderStyles} ${
-//           disabled ? "bg-gray-100 cursor-not-allowed opacity-60" : ""
-//         }`}
-//         {...props}
-//       />
-
-//       {error && (
-//         <span className="text-danger text-xs mt-1.5 text-left font-normal">
-//           {error}
-//         </span>
-//       )}
-//     </div>
-//   );
-// }

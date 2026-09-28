@@ -121,7 +121,7 @@ export default function AuthContainer() {
   };
 
   return (
-    <div className="w-full max-w-md bg-white">
+    <div className="w-full max-w-md bg-card text-card-foreground p-6 sm:p-8 rounded-3xl border border-border shadow-xs">
       {step === "IDENTIFIER" && (
         <IdentifierStep
           onProceed={handleEmailSubmit}

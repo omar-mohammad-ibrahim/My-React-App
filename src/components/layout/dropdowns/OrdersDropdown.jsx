@@ -27,7 +27,7 @@ export default function OrdersDropdown() {
 
       {/* النافذة المنبثقة */}
       <PopoverContent
-        align="end"
+        align="center"
         sideOffset={10}
         className="w-72 rounded-2xl border border-border bg-popover p-5 text-popover-foreground shadow-2xl z-50 animate-in fade-in-0 zoom-in-95"
       >

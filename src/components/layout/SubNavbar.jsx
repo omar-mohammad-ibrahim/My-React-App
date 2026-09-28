@@ -14,13 +14,13 @@ export default function SubNavbar() {
   const isSuppliers = filters.view === "suppliers";
 
   return (
-    <div className="w-full border-b border-border bg-card transition-colors">
+    <div className="relative w-full border-b border-border bg-card transition-colors select-none">
       {isPlpPage ? (
-        <div className="container max-w-7xl mx-auto px-4 flex items-center gap-8 text-xl font-bold">
+        <div className="max-w-7xl mx-auto px-4 flex items-center gap-6 sm:gap-8 text-base sm:text-xl font-bold">
           <button
             type="button"
             onClick={() => switchView("products")}
-            className={`py-3 transition-colors cursor-pointer border-b-[3px] -mb-px ${
+            className={`py-2.5 sm:py-3 transition-colors cursor-pointer border-b-[3px] -mb-px ${
               isProducts
                 ? "text-foreground border-foreground"
                 : "text-muted-foreground border-transparent hover:text-foreground"
@@ -32,7 +32,7 @@ export default function SubNavbar() {
           <button
             type="button"
             onClick={() => switchView("suppliers")}
-            className={`py-3 transition-colors cursor-pointer border-b-[3px] -mb-px ${
+            className={`py-2.5 sm:py-3 transition-colors cursor-pointer border-b-[3px] -mb-px ${
               isSuppliers
                 ? "text-foreground border-foreground"
                 : "text-muted-foreground border-transparent hover:text-foreground"
@@ -42,65 +42,96 @@ export default function SubNavbar() {
           </button>
         </div>
       ) : (
-        <div className="container max-w-7xl mx-auto px-4 flex items-center justify-between py-2 text-sm font-medium">
-          <div className="flex items-center gap-6 text-foreground">
-            <div className="group relative flex cursor-pointer items-center gap-2 py-1.5 transition-colors hover:text-primary">
-              <Menu className="h-5 w-5" strokeWidth={1.5} />
-              <span>{t("subheader.allCategories", "All categories")}</span>
+        /* شريط أفقي قابل للسحب باللمس على الموبايل بدون انكسار للأسطر */
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-4 overflow-x-auto scrollbar-none text-xs sm:text-sm font-medium">
+          {/* المجموعة الرئيسية الأولى */}
+          <div className="flex items-center gap-4 sm:gap-6 shrink-0">
+            <MegaNavItem
+              label={t("subheader.allCategories", "All categories")}
+              icon={Menu}
+              minHeight="min-h-[400px]"
+            >
+              {/* محتوى الـ Categories للكمبيوتر */}
+            </MegaNavItem>
 
-              <div className="absolute top-full start-0 z-50 hidden w-[800px] pt-3 group-hover:block">
-                <div className="h-[400px] cursor-default rounded-xl border border-border bg-popover p-6 text-popover-foreground shadow-2xl">
-                  <h3 className="font-semibold text-foreground">
-                    {t("subheader.allCategories", "All categories")}
-                  </h3>
-                </div>
-              </div>
-            </div>
+            <MegaNavItem
+              label={t("subheader.verified", "Verified manufacturers")}
+              minHeight="min-h-[380px]"
+            >
+              {/* محتوى الـ Verified للكمبيوتر */}
+            </MegaNavItem>
 
-            <div className="group relative cursor-pointer py-1.5 transition-colors hover:text-primary">
-              <span>{t("subheader.verified", "Verified manufacturers")}</span>
-
-              <div className="absolute top-full start-0 z-50 hidden w-[600px] pt-3 group-hover:block">
-                <div className="h-[300px] cursor-default rounded-xl border border-border bg-popover p-6 text-popover-foreground shadow-2xl">
-                  <h3 className="font-semibold text-foreground">
-                    {t("subheader.verified", "Verified manufacturers")}
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            <div className="cursor-pointer py-1.5 transition-colors hover:text-primary">
-              <span>{t("subheader.dropshipping", "Dropshipping")}</span>
-            </div>
+            <MegaNavItem
+              label={t("subheader.dropshipping", "Dropshipping")}
+              minHeight="min-h-[300px]"
+            >
+              {/* محتوى Dropshipping */}
+            </MegaNavItem>
           </div>
 
-          <div className="flex items-center gap-6 text-muted-foreground">
-            <div className="cursor-pointer py-1.5 transition-colors hover:text-primary">
-              <span>{t("subheader.about", "About Alibaba.com")}</span>
-            </div>
+          {/* المجموعة الثانوية: تختفي تلقائياً في الشاشات الضيقة جداً أو تظهر عبر السحب */}
+          <div className="flex items-center gap-4 sm:gap-6 text-muted-foreground shrink-0">
+            <MegaNavItem
+              label={t("subheader.about", "About NexusTrade.com")}
+              minHeight="min-h-[300px]"
+            />
 
-            <div className="group relative cursor-pointer py-1.5 transition-colors hover:text-primary">
-              <span>{t("subheader.help", "Help Center")}</span>
+            <MegaNavItem
+              label={t("subheader.help", "Help Center")}
+              minHeight="min-h-[320px]"
+            />
 
-              <div className="absolute top-full end-0 z-50 hidden w-[400px] pt-3 group-hover:block">
-                <div className="cursor-default rounded-xl border border-border bg-popover p-6 text-popover-foreground shadow-2xl">
-                  <h3 className="font-semibold text-foreground">
-                    {t("subheader.help", "Help Center")}
-                  </h3>
-                </div>
-              </div>
-            </div>
+            <MegaNavItem
+              label={t("subheader.accio", "Accio Work")}
+              minHeight="min-h-[300px]"
+            />
 
-            <div className="cursor-pointer py-1.5 transition-colors hover:text-primary">
-              <span>{t("subheader.accio", "Accio Work")}</span>
-            </div>
-
-            <div className="cursor-pointer py-1.5 transition-colors hover:text-primary">
-              <span>{t("subheader.sell", "Sell on Alibaba.com")}</span>
-            </div>
+            <MegaNavItem
+              label={t("subheader.sell", "Sell on NexusTrade.com")}
+              minHeight="min-h-[300px]"
+            />
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+// ===========================================================================
+// المكون الموحد: الـ Mega Menu تنزل فقط على الشاشات الكبيرة (Desktop)
+// ===========================================================================
+function MegaNavItem({
+  label,
+  icon: Icon,
+  children,
+  minHeight = "min-h-[350px]",
+}) {
+  return (
+    <div className="group flex items-center py-2.5 sm:py-3 cursor-pointer shrink-0">
+      {/* نص الرابط والأيقونة */}
+      <span className="relative flex items-center gap-1.5 text-foreground transition-colors group-hover:text-primary whitespace-nowrap">
+        {Icon && <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />}
+        <span>{label}</span>
+
+        {/* الخط السفلي النشط */}
+        <span className="absolute -bottom-2.5 sm:-bottom-3 inset-x-0 h-[2px] bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform origin-start duration-200" />
+      </span>
+
+      {/* القائمة المنسدلة: مفعلة بحركة النزول فقط من شاشات lg فما فوق (hidden lg:block) لمنع تعليق الموبايل */}
+      <div className="hidden lg:block absolute top-full inset-x-0 w-full overflow-hidden pointer-events-none z-50">
+        <div
+          className="
+            w-full border-b border-border bg-popover text-popover-foreground
+            -translate-y-full group-hover:translate-y-0
+            transition-transform duration-500 ease-out
+            group-hover:pointer-events-auto
+          "
+        >
+          <div className={`max-w-7xl mx-auto px-6 sm:px-8 py-8 ${minHeight}`}>
+            {children}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

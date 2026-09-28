@@ -9,7 +9,7 @@
     "signInWithCode": "Sign in with a code",
     "passwordPlaceholder": "Password",
     "forgotPassword": "Forgot password?",
-    "newToAlibaba": "New to Alibaba.com?",
+    "newToNexusTrade": "New to NexusTrade.com?",
     "createAccount": "Create an account",
     "whichAccount": "Which account would you like to create?",
     "buyerTitle": "Buyer",
@@ -32,10 +32,10 @@
     "allCategories": "All categories",
     "verified": "Verified manufacturers",
     "dropshipping": "Dropshipping",
-    "about": "About Alibaba.com",
+    "about": "About NexusTrade.com",
     "help": "Help Center",
     "accio": "Accio Work",
-    "sell": "Sell on Alibaba.com"
+    "sell": "Sell on NexusTrade.com"
   },
 
   "navbar": {
@@ -80,7 +80,7 @@
     "onTimeDelivery": "Guaranteed on-time delivery",
     "viewOrders": "View Orders",
     "orContinueWith": "Or, continue with:",
-    "myAlibaba": "My NexusTrade",
+    "myNexusTrade": "My NexusTrade",
     "favorites": "Favorites"
   },
   "common": {
@@ -153,7 +153,7 @@
     "minOrder": "Min. order",
     "minOrderPlaceholder": "Min. order",
     "tradeAssurance": "Trade Assurance",
-    "tradeAssuranceDesc": "Protects your orders on Alibaba.com",
+    "tradeAssuranceDesc": "Protects your orders on NexusTrade.com",
     "supplierFeatures": "Supplier features",
     "verified": "Verified",
     "supplier": "Supplier",
@@ -192,10 +192,10 @@
     "allCategories": "All categories",
     "verified": "Verified manufacturers",
     "dropshipping": "Dropshipping",
-    "about": "About Alibaba.com",
+    "about": "About NexusTrade.com",
     "help": "Help Center",
     "accio": "Accio Work",
-    "sell": "Sell on Alibaba.com"
+    "sell": "Sell on NexusTrade.com"
   },
   "plp": {
     "errorTitle": "An error occurred while loading products",

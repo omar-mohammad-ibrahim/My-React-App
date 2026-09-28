@@ -12,6 +12,7 @@ import CartPage from "./pages/CartPage";
 import OrdersPage from "./pages/OrdersPage";
 import MessagesPage from "./pages/MessagesPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import Footer from "./components/layout/Footer";
 
 function AppContent() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function AppContent() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
+      {!isAuthPage && <Footer />}
     </div>
   );
 }

@@ -57,7 +57,7 @@ function PriceRangeFields({ minPrice, maxPrice, updateFilters }) {
 
         <Button
           type="submit"
-          variant="alibaba"
+          variant="NexusTrade"
           className="h-8 px-4 text-xs font-semibold"
         >
           {t("filters.ok", "OK")}

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Button from "../../ui/Button";
-import input from "../../ui/Input";
+import Input from "../../ui/Input";
 import SocialButton from "../../ui/SocialButton";
 
 const identifierSchema = z.object({
@@ -14,7 +14,11 @@ const identifierSchema = z.object({
     .email({ message: "Please enter a valid email address" }),
 });
 
-export default function IdentifierStep({ onProceed, onSocialLogin }) {
+export default function IdentifierStep({
+  onProceed,
+  onSocialLogin,
+  isLoading,
+}) {
   const { t } = useTranslation();
 
   const {
@@ -30,9 +34,9 @@ export default function IdentifierStep({ onProceed, onSocialLogin }) {
   };
 
   return (
-    <div className="w-full flex flex-col">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6 text-start">
-        {t("auth.signInOrCreate") || "Sign in or create account"}
+    <div className="w-full flex flex-col text-start">
+      <h1 className="text-2xl font-bold text-foreground mb-6">
+        {t("auth.signInOrCreate", "Sign in or create account")}
       </h1>
 
       <div className="flex flex-col gap-3 w-full">
@@ -55,34 +59,30 @@ export default function IdentifierStep({ onProceed, onSocialLogin }) {
 
       <div className="relative my-6 text-center">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-200"></div>
+          <div className="w-full border-t border-border" />
         </div>
-        <span className="relative bg-white px-3 text-xs text-gray-400">
-          {t("auth.or") || "OR"}
+        <span className="relative bg-card px-3 text-xs font-semibold text-muted-foreground uppercase">
+          {t("auth.or", "OR")}
         </span>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div>
-          <input
-            placeholder={
-              t("auth.emailPlaceholder") || "Enter your email address"
-            }
+          <Input
+            placeholder={t("auth.emailPlaceholder", "Enter your email address")}
             type="email"
+            error={errors.email?.message}
             {...register("email")}
-            className={
-              errors.email ? "border-red-500 focus:border-red-500" : ""
-            }
           />
-          {errors.email && (
-            <p className="text-red-500 text-xs mt-1 text-start font-medium">
-              {errors.email.message}
-            </p>
-          )}
         </div>
 
-        <Button type="submit" className="w-full mt-2">
-          {t("auth.continue") || "Continue"}
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={isLoading}
+          className="w-full h-11 text-base mt-2"
+        >
+          {t("auth.continue", "Continue")}
         </Button>
       </form>
     </div>

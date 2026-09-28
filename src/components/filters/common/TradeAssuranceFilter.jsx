@@ -35,7 +35,10 @@ export default function TradeAssuranceFilter() {
       </div>
 
       <p className="text-xs text-muted-foreground ps-6 leading-relaxed select-none">
-        {t("filters.tradeAssuranceDesc", "Protects your orders on Alibaba.com")}
+        {t(
+          "filters.tradeAssuranceDesc",
+          "Protects your orders on NexusTrade.com",
+        )}
       </p>
     </div>
   );
