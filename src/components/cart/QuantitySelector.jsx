@@ -20,19 +20,21 @@ export default function QuantitySelector({ itemId, quantity, moq = 1 }) {
         type="button"
         onClick={handleDecrease}
         disabled={quantity <= moq}
-        className="px-3 py-1 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+        aria-label="Decrease quantity"
+        className="px-3 py-1 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer select-none"
       >
         -
       </button>
 
-      <span className="w-12 text-center text-sm font-bold bg-transparent border-x border-border select-none">
+      <span className="w-12 text-center text-sm font-bold bg-transparent border-x border-border select-none text-foreground">
         {quantity}
       </span>
 
       <button
         type="button"
         onClick={handleIncrease}
-        className="px-3 py-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
+        aria-label="Increase quantity"
+        className="px-3 py-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer select-none"
       >
         +
       </button>

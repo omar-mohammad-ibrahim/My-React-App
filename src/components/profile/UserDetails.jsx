@@ -1,29 +1,35 @@
+import { useTranslation } from "react-i18next";
+
 export default function UserDetails({ formData, isEditing, onInputChange }) {
+  const { t } = useTranslation();
+
   if (isEditing) {
     return (
-      <div className="grid grid-cols-2 gap-4 max-w-md mb-4 pt-1">
+      <div className="grid grid-cols-2 gap-4 max-w-md mb-4 pt-1 text-start">
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
-            First name <span className="text-red-500">*</span>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">
+            {t("profile.firstName", "First name")}{" "}
+            <span className="text-destructive">*</span>
           </label>
           <input
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={onInputChange}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#eb5b00] focus:border-[#eb5b00] outline-hidden"
+            className="w-full border border-border bg-background text-foreground rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-ring focus:border-ring outline-none transition-colors"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700 mb-1">
-            Last name <span className="text-red-500">*</span>
+          <label className="block text-xs font-medium text-muted-foreground mb-1">
+            {t("profile.lastName", "Last name")}{" "}
+            <span className="text-destructive">*</span>
           </label>
           <input
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={onInputChange}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-[#eb5b00] focus:border-[#eb5b00] outline-hidden"
+            className="w-full border border-border bg-background text-foreground rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-ring focus:border-ring outline-none transition-colors"
           />
         </div>
       </div>
@@ -31,7 +37,7 @@ export default function UserDetails({ formData, isEditing, onInputChange }) {
   }
 
   return (
-    <h3 className="text-xl font-bold text-gray-900 mb-2 pt-1">
+    <h3 className="text-xl font-bold text-foreground mb-2 pt-1 text-start">
       {formData.firstName} {formData.lastName}
     </h3>
   );

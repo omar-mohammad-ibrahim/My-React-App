@@ -1,11 +1,20 @@
+import React, { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Button from "@/components/ui/Button";
 
 export default function CartDropdown() {
   const { t } = useTranslation();
-  const items = useSelector((state) => state.cart.items) || [];
+  const [isOpen, setIsOpen] = useState(false);
+
+  const items = useSelector((state) => state.cart?.items) || [];
+  const currentCurrency = localStorage.getItem("appCurrency") || "JOD";
 
   // 1. حساب إجمالي عدد القطع للأيقونة
   const totalQuantity = items.reduce(
@@ -21,36 +30,49 @@ export default function CartDropdown() {
   );
 
   return (
-    <div className="group relative flex cursor-pointer items-center text-foreground hover:text-[#eb5b00] transition-colors">
-      {/* أيقونة السلة مع العداد */}
-      <div className="relative">
-        <ShoppingCart className="h-[22px] w-[22px]" strokeWidth={1.5} />
-        {totalQuantity > 0 && (
-          <span className="absolute -top-2 -right-2.5 bg-[#eb5b00] text-white text-[10px] font-black rounded-full h-4 min-w-[16px] px-1 flex items-center justify-center shadow-xs">
-            {totalQuantity > 99 ? "99+" : totalQuantity}
-          </span>
-        )}
-      </div>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      {/* عنصر التفعيل (Trigger) */}
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          aria-label="Shopping Cart"
+          className="relative flex items-center justify-center p-1.5 text-foreground hover:text-primary transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+        >
+          <ShoppingCart className="h-[22px] w-[22px]" strokeWidth={1.5} />
+          {totalQuantity > 0 && (
+            <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[10px] font-black rounded-full h-4 min-w-[16px] px-1 flex items-center justify-center shadow-xs">
+              {totalQuantity > 99 ? "99+" : totalQuantity}
+            </span>
+          )}
+        </button>
+      </PopoverTrigger>
 
-      {/* نافذة القائمة المنسدلة عند التحويم */}
-      <div className="absolute right-0 top-full hidden pt-3 group-hover:block z-50 w-80 sm:w-[340px]">
-        <div className="rounded-2xl border border-border bg-card p-4 shadow-2xl cursor-default text-foreground">
-          <h3 className="font-bold text-base mb-3">
+      {/* محتوى القائمة المنبثقة */}
+      <PopoverContent
+        align="end"
+        sideOffset={10}
+        className="w-80 sm:w-[340px] rounded-2xl border border-border bg-popover p-5 text-popover-foreground shadow-2xl z-50 animate-in fade-in-0 zoom-in-95"
+      >
+        <div className="flex flex-col">
+          {/* عنوان القائمة */}
+          <h3 className="font-bold text-sm text-foreground mb-3">
             {t("navbar.cart") || "Shopping cart"}
           </h3>
 
           {items.length === 0 ? (
             /* حالة السلة الفارغة */
             <div className="py-6 text-center">
-              <p className="text-sm text-muted-foreground mb-4">
+              <p className="text-xs text-muted-foreground mb-4">
                 {t("navbar.emptyCart") || "Your cart is empty"}
               </p>
-              <Link
+              <Button
                 to="/cart"
-                className="inline-block w-full border border-border text-foreground hover:bg-muted py-2 rounded-full font-bold text-sm transition-colors text-center"
+                variant="outline"
+                onClick={() => setIsOpen(false)}
+                className="w-full h-9 rounded-full text-xs font-semibold"
               >
                 {t("navbar.goToCart") || "Go to cart"}
-              </Link>
+              </Button>
             </div>
           ) : (
             /* قائمة المنتجات المصغرة */
@@ -66,7 +88,7 @@ export default function CartDropdown() {
                   return (
                     <div
                       key={item.id}
-                      className="flex items-center gap-3 bg-muted/40 hover:bg-muted/70 p-2 rounded-xl transition-colors"
+                      className="flex items-center gap-3 bg-muted/50 hover:bg-muted/80 p-2 rounded-xl transition-colors"
                     >
                       <img
                         src={imageSrc}
@@ -75,16 +97,16 @@ export default function CartDropdown() {
                       />
 
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-muted-foreground truncate">
+                        <p className="text-xs font-medium text-foreground truncate">
                           {item.variation || item.title}
                         </p>
-                        <p className="font-bold text-sm text-foreground">
-                          JOD {price.toFixed(2)}
+                        <p className="font-bold text-xs text-foreground mt-0.5">
+                          {currentCurrency} {price.toFixed(2)}
                         </p>
                       </div>
 
                       <span className="text-xs font-semibold text-muted-foreground shrink-0">
-                        x {item.quantity}
+                        x{item.quantity}
                       </span>
                     </div>
                   );
@@ -94,24 +116,26 @@ export default function CartDropdown() {
               {/* المجموع الفرعي */}
               <div className="border-t border-border pt-3 mb-4 flex justify-between items-baseline">
                 <span className="text-xs text-muted-foreground font-medium">
-                  Subtotal excl. tax
+                  {t("navbar.subtotal") || "Subtotal excl. tax"}
                 </span>
                 <span className="text-base font-black text-foreground">
-                  JOD {subtotal.toFixed(2)}
+                  {currentCurrency} {subtotal.toFixed(2)}
                 </span>
               </div>
 
-              {/* زر الذهاب للسلة */}
-              <Link
+              {/* زر الذهاب للسلة الموحد */}
+              <Button
                 to="/cart"
-                className="block w-full bg-[#eb5b00] hover:bg-[#cc4f00] text-white py-2.5 rounded-full font-bold text-sm text-center transition-colors shadow-xs"
+                variant="primary"
+                onClick={() => setIsOpen(false)}
+                className="w-full h-10 rounded-full text-sm font-semibold shadow-sm"
               >
                 {t("navbar.goToCart") || "Go to cart"}
-              </Link>
+              </Button>
             </>
           )}
         </div>
-      </div>
-    </div>
+      </PopoverContent>
+    </Popover>
   );
 }

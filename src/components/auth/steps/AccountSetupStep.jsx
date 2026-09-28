@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { FiCheck, FiInfo } from "react-icons/fi";
 import Button from "../../ui/Button";
-import Input from "../../ui/Input";
+import input from "../../ui/Input";
 
 const setupSchema = z.object({
   country: z.string().min(1, "Country is required"),

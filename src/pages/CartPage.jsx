@@ -1,5 +1,6 @@
 ﻿import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 import CartItemList from "../components/cart/CartItemList";
 import OrderSummary from "../components/cart/OrderSummary";
 import BuyerProtection from "../components/cart/BuyerProtection";
@@ -7,6 +8,7 @@ import EmptyCart from "../components/cart/EmptyCart";
 import { fetchUserCart, syncCartToFirebase } from "../features/cart/cartSlice";
 
 export default function CartPage() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const { items, loading, error, isInitialized } = useSelector(
@@ -37,7 +39,7 @@ export default function CartPage() {
   if (loading && !isInitialized) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground font-medium">
-        Loading cart...
+        {t("cart.loading", "Loading cart...")}
       </div>
     );
   }
@@ -45,7 +47,9 @@ export default function CartPage() {
   if (error) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center text-destructive gap-2">
-        <p className="font-semibold text-lg">Failed to load cart</p>
+        <p className="font-semibold text-lg">
+          {t("cart.loadError", "Failed to load cart")}
+        </p>
         <p className="text-sm text-muted-foreground">{error}</p>
       </div>
     );
@@ -58,10 +62,10 @@ export default function CartPage() {
   const selectedCount = items.filter((item) => item.selected).length;
 
   return (
-    <main className="min-h-screen py-8">
+    <main className="min-h-screen py-8 text-start">
       <div className="w-full px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-6 sm:mb-8">
-          Shopping cart
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-6 sm:mb-8 text-foreground">
+          {t("cart.title", "Shopping cart")}
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

@@ -40,20 +40,52 @@
 
   "navbar": {
     "setLanguage": "Set language",
+    "setLanguageAndCurrency": "Set language and currency",
+    "selectPreferred": "Select your preferred language and currency. You can update the settings at any time.",
+    "language": "Language",
+    "currency": "Currency",
+    "selectLanguagePlaceholder": "Select Language",
+    "selectCurrencyPlaceholder": "Select Currency",
+    "save": "Save",
     "welcome": "Welcome,",
     "account": "Account:",
-    "signOut": "Sign out",
-    "signIn": "Sign in",
-    "signInToContinue": "Sign back in to continue",
+    "signOut": "Sign Out",
+    "signIn": "Sign In",
+    "signInToContinue": "Sign in to continue",
     "noAccount": "Don't have an account?",
     "register": "Register",
     "deliverTo": "Deliver to:",
     "specifyLocation": "Specify your location",
     "signInAddress": "Sign in to add address",
     "emptyCart": "Your cart is empty",
-    "goToCart": "Go to cart",
+    "goToCart": "Go to Cart",
     "messages": "Messages",
-    "orders": "Orders"
+    "orders": "Orders",
+    "shippingNotice": "Shipping options and fees vary based on your location",
+    "postalCodePlaceholder": "Enter ZIP or postal code",
+    "setLanguageAndCurrency": "Set language and currency",
+    "selectPreferred": "Select your preferred language and currency. You can update the settings at any time.",
+    "language": "Language",
+    "currency": "Currency",
+    "selectLanguagePlaceholder": "Select Language",
+    "selectCurrencyPlaceholder": "Select Currency",
+    "save": "Save",
+    "cart": "Shopping cart",
+    "subtotal": "Subtotal excl. tax",
+    "signInToViewMore": "Sign in to view your messages",
+    "viewConversations": "View and manage your conversations",
+    "openMessages": "Open Messages",
+    "securePayments": "Secure payments",
+    "moneyBack": "Money-back guarantee",
+    "onTimeDelivery": "Guaranteed on-time delivery",
+    "viewOrders": "View Orders",
+    "orContinueWith": "Or, continue with:",
+    "myAlibaba": "My NexusTrade",
+    "favorites": "Favorites"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel"
   },
 
   "searchBar": {
@@ -68,7 +100,8 @@
     "verified": "Verified",
     "error_msg": "Oops! Something went wrong.",
     "try_again": "Try Again",
-    "no_products": "No products found."
+    "no_products": "No products found.",
+    "min_order": "Min. order"
   },
 
   "welcome": {
@@ -80,5 +113,152 @@
   "pagination": {
     "previous": "Previous",
     "next": "Next"
+  },
+
+  "units": {
+    "piece_one": "piece",
+    "piece_other": "pieces",
+    "set_one": "set",
+    "set_other": "sets",
+    "box_one": "box",
+    "box_other": "boxes"
+  },
+
+  "profile": {
+    "headerTitle": "Profile",
+    "basicInfo": "Basic information",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "memberId": "Member ID",
+    "copied": "Copied!",
+    "copy": "Copy",
+    "countryOfRegistration": "Country of registration",
+    "yearJoined": "Year joined",
+    "email": "Email",
+    "verified": "Verified",
+    "phoneNumber": "Phone number",
+    "noPhoneNumber": "No phone number",
+    "edit": "Edit",
+    "add": "Add",
+    "cancel": "Cancel",
+    "saveChanges": "Save changes"
+  },
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear all filters",
+    "ok": "OK",
+    "min": "Min.",
+    "max": "Max.",
+    "price": "Price",
+    "minOrder": "Min. order",
+    "minOrderPlaceholder": "Min. order",
+    "tradeAssurance": "Trade Assurance",
+    "tradeAssuranceDesc": "Protects your orders on Alibaba.com",
+    "supplierFeatures": "Supplier features",
+    "verified": "Verified",
+    "supplier": "Supplier",
+    "verifiedSupplier": "Verified Supplier",
+    "verifiedTooltip": "Verified by independent third-party inspection services",
+    "productFeatures": "Product features",
+    "paidSamples": "Paid samples",
+    "storeReviews": "Store reviews",
+    "basedOn5Stars": "Based on a 5-star rating system",
+    "ratingAndUp": "{{rating}} & up",
+    "ratingFive": "5.0",
+    "supplierRegion": "Supplier country/region",
+    "yearsOnPlatform": "Years on NexusTrade.com",
+    "yearsPlus": "{{count}}+ years",
+    "countries": {
+      "IN": "India",
+      "CN": "China",
+      "HK": "Hong Kong SAR China",
+      "PK": "Pakistan"
+    },
+    "active": {
+      "search": "Search: \"{{query}}\"",
+      "priceRange": "Price: {{min}} - {{max}}",
+      "priceMin": "Price: ≥ {{min}}",
+      "priceMax": "Price: ≤ {{max}}",
+      "reviews": "Store reviews: {{rating}}",
+      "moq": "MOQ: ≤ {{moq}}",
+      "category": "Category: {{category}}",
+      "region": "Region: {{country}}",
+      "experience": "Experience: {{years}}+ yrs"
+    }
+  },
+  "subheader": {
+    "products": "Products",
+    "suppliers": "Suppliers",
+    "allCategories": "All categories",
+    "verified": "Verified manufacturers",
+    "dropshipping": "Dropshipping",
+    "about": "About Alibaba.com",
+    "help": "Help Center",
+    "accio": "Accio Work",
+    "sell": "Sell on Alibaba.com"
+  },
+  "plp": {
+    "errorTitle": "An error occurred while loading products",
+    "retry": "Retry",
+    "noProductsFound": "No matching products found",
+    "noProductsDesc": "Try removing some filters to broaden your search.",
+    "clearAllFilters": "Clear all filters"
+  },
+  "productCard": {
+    "startYourOrder": "Start your order",
+    "startOrder": "Start order",
+    "addToCart": "Add to cart",
+    "chatNow": "Chat now",
+    "minOrder": "Min. order: {{moq}} {{unit}}",
+    "minOrderLabel": "Min. order:",
+    "piece": "piece",
+    "pieces": "pieces",
+    "yearsCount": "{{count}} yrs",
+    "securePayments": "Secure payments",
+    "securePaymentsDesc": "Every payment on NexusTrade is secured with strict encryption protocols."
+  },
+  "cart": {
+    "title": "Shopping cart",
+    "loading": "Loading cart...",
+    "loadError": "Failed to load cart",
+    "emptyTitle": "Your shopping cart is empty",
+    "emptyDesc": "You haven't added any products yet. Browse catalog variations to fill your order.",
+    "startSourcing": "Start Sourcing",
+    "selectAll": "Select all variations ({{count}})",
+    "option": "Option: {{value}}",
+    "minOrder": "Min. order: {{moq}} {{unit}}",
+    "removeItem": "Remove item",
+    "orderSummary": "Order summary ({{count}} {{unit}})",
+    "item": "item",
+    "items": "items",
+    "itemSubtotal": "Item subtotal",
+    "shippingFee": "Shipping fee",
+    "shippingDiscount": "Shipping discount",
+    "subtotalExclTax": "Subtotal excl. tax",
+    "checkout": "Check out ({{count}})",
+    "buyerProtection": {
+      "title": "NexusTrade.com order protection",
+      "securePayments": "Secure payments",
+      "securePaymentsDesc": "Every payment you make on NexusTrade.com is secured with strict SSL encryption and PCI DSS data protection protocol.",
+      "guaranteedDelivery": "Guaranteed delivery",
+      "guaranteedDeliveryDesc": "For eligible products, expect your order to be delivered by the scheduled date or receive a 5% delay compensation.",
+      "moneyBack": "Money-back protection",
+      "moneyBackDesc": "Claim a refund if your order was not shipped, is missing, or arrives with product issues."
+    },
+    "modal": {
+      "selectQuantity": "Select quantity",
+      "moqNotice": "Minimum Order Quantity (MOQ): {{moq}} {{unit}}",
+      "quantity": "Quantity",
+      "minUnits": "Min. {{moq}} units",
+      "subtotal": "Subtotal:",
+      "saving": "Saving...",
+      "addToCart": "Add to cart"
+    },
+    "units": {
+      "piece": "piece",
+      "pieces": "pieces",
+      "box": "box",
+      "boxes": "boxes"
+    }
   }
 }

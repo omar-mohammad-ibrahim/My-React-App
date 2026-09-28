@@ -1,198 +1,208 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { User } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-// 1. استيراد الأيقونات من مكتبة react-icons
+// أيقونات تسجيل الدخول الاجتماعي
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
-// 2. استيراد خدمات المصادقة والـ Redux Actions
-import { loginUser, logout } from "../../../features/auth/authSlice";
-import { authService } from "../../../services/authService";
+// مكونات الواجهة المشتركة و shadcn
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Button from "@/components/ui/Button";
+
+// خدمات المصادقة وريدكس
+import { loginUser, logout } from "@/features/auth/authSlice";
+import { authService } from "@/services/authService";
 
 export default function ProfileDropdown() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const userName =
     user?.firstName || user?.displayName?.split(" ")[0] || "User";
 
-  // 3. دالة تسجيل الدخول الاجتماعي (نفس المنطق المستخدم في AuthContainer)
+  // دالة تسجيل الدخول الاجتماعي
   const handleSocialLogin = async (providerName) => {
     try {
-      const { user, role } = await authService.socialLogin(providerName);
+      const { user: socialUser, role } =
+        await authService.socialLogin(providerName);
 
-      // تجهيز البيانات وإرسالها إلى Redux
       dispatch(
         loginUser({
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName || "User",
-          photoURL: user.photoURL || "",
-          token: user.accessToken,
+          uid: socialUser.uid,
+          email: socialUser.email,
+          displayName: socialUser.displayName || "User",
+          photoURL: socialUser.photoURL || "",
+          token: socialUser.accessToken,
           role: role,
           country: "Jordan",
         }),
       );
+      setIsOpen(false);
     } catch (error) {
       console.error("Social login failed: ", error.message);
     }
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+    setIsOpen(false);
+  };
+
   return (
-    <div className="group relative flex cursor-pointer items-center gap-2 hover:text-[#eb5b00] h-full py-4">
-      <User className="h-6 w-6" strokeWidth={1.5} />
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      {/* زر التفعيل الظاهر في شريط التنقل */}
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          aria-label="User Account"
+          className="flex items-center gap-1.5 p-1 text-foreground hover:text-primary transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+        >
+          <User className="h-[22px] w-[22px]" strokeWidth={1.5} />
+          <div className="hidden sm:flex flex-col items-start leading-none">
+            <span className="text-xs font-semibold max-w-[85px] truncate">
+              {!isAuthenticated ? t("navbar.signIn") || "Sign in" : userName}
+            </span>
+          </div>
+        </button>
+      </PopoverTrigger>
 
-      <div className="flex flex-col justify-center">
-        {!isAuthenticated ? (
-          <span className="text-sm font-medium">
-            {t("navbar.signIn") || "Sign in"}
-          </span>
-        ) : (
-          <span className="text-sm font-medium truncate max-w-[80px]">
-            {userName}
-          </span>
-        )}
-      </div>
-
-      <div className="absolute inset-e-0 top-full hidden group-hover:block z-50 w-[300px] pt-1">
-        <div className="rounded-lg border border-gray-200 bg-white shadow-xl cursor-default text-gray-900 overflow-hidden">
+      {/* محتوى القائمة المنبثقة */}
+      <PopoverContent
+        align="end"
+        sideOffset={10}
+        className="w-[310px] rounded-2xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl z-50 animate-in fade-in-0 zoom-in-95 overflow-hidden"
+      >
+        <div className="flex flex-col">
+          {/* قسم تسجيل الدخول (في حال لم يكن مسجلاً) */}
           {!isAuthenticated && (
-            <>
-              <div className="p-5 pb-3">
-                <h4 className="text-[15px] font-bold mb-4 text-gray-900">
-                  {t("navbar.signInToContinue") || "Sign back in to continue"}
-                </h4>
-                <Link to="/auth">
-                  <button className="w-full bg-[#eb5b00] text-white py-2.5 rounded-full font-bold hover:bg-[#d45100] transition-colors cursor-pointer">
-                    {t("navbar.signIn") || "Sign in"}
-                  </button>
-                </Link>
+            <div className="p-5 pb-4 border-b border-border text-start">
+              <h4 className="text-sm font-bold text-foreground mb-3">
+                {t("navbar.signInToContinue") || "Sign back in to continue"}
+              </h4>
 
-                <div className="mt-4 text-center">
-                  <span className="text-[13px] text-gray-500">
-                    Or, continue with:
-                  </span>
-
-                  {/* أزرار الدخول الاجتماعي المربوطة بالدالة */}
-                  <div className="flex justify-center gap-4 mt-3 mb-4">
-                    <button
-                      onClick={() => handleSocialLogin("facebook")}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-xs hover:bg-gray-50 transition-colors cursor-pointer"
-                    >
-                      <FaFacebook className="text-xl text-[#1877F2]" />
-                    </button>
-
-                    <button
-                      onClick={() => handleSocialLogin("google")}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-xs hover:bg-gray-50 transition-colors cursor-pointer"
-                    >
-                      <FcGoogle className="text-xl" />
-                    </button>
-
-                    <button
-                      onClick={() => handleSocialLogin("linkedin")}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-xs hover:bg-gray-50 transition-colors cursor-pointer"
-                    >
-                      <FaLinkedin className="text-xl text-[#0A66C2]" />
-                    </button>
-                  </div>
-
-                  <p className="text-[11px] text-gray-500 leading-tight px-1">
-                    By signing in via social media, I agree to{" "}
-                    <Link to="#" className="underline hover:text-[#eb5b00]">
-                      the Alibaba.com Free Membership Agreement
-                    </Link>{" "}
-                    and{" "}
-                    <Link to="#" className="underline hover:text-[#eb5b00]">
-                      Privacy Policy
-                    </Link>
-                    .
-                  </p>
-                </div>
-              </div>
-              <hr className="border-gray-100" />
-            </>
-          )}
-
-          {isAuthenticated && (
-            <>
-              <div className="px-5 py-4 flex items-center gap-2">
-                <span className="font-bold text-gray-900 text-sm">
-                  Hi, {userName}
-                </span>
-                <span className="bg-[#14958f] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-xs">
-                  Seed
-                </span>
-              </div>
-              <hr className="border-gray-100" />
-            </>
-          )}
-
-          <ul className="py-2 flex flex-col">
-            <Link
-              to="/profile"
-              className="px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors"
-            >
-              My Alibaba
-            </Link>
-            <Link
-              to="/orders"
-              className="px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors"
-            >
-              Orders
-            </Link>
-            <Link
-              to="/messages"
-              className="px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors"
-            >
-              Messages
-            </Link>
-            <Link
-              to="/rfqs"
-              className="px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors"
-            >
-              RFQs
-            </Link>
-            {isAuthenticated && (
-              <Link
-                to="/dropshipping"
-                className="px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors"
+              <Button
+                to="/auth"
+                variant="primary"
+                onClick={() => setIsOpen(false)}
+                className="w-full h-10 rounded-full text-sm font-semibold shadow-sm"
               >
-                Dropshipping
-              </Link>
-            )}
-            <Link
-              to="/favorites"
-              className="px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors"
-            >
-              Favorites
-            </Link>
-            <Link
-              to="/profile"
-              className="px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors"
-            >
-              Account
-            </Link>
+                {t("navbar.signIn") || "Sign in"}
+              </Button>
+
+              <div className="mt-4 text-center">
+                <span className="text-xs text-muted-foreground">
+                  {t("navbar.orContinueWith") || "Or, continue with:"}
+                </span>
+
+                {/* أزرار التواصل الاجتماعي */}
+                <div className="flex justify-center gap-3 mt-3 mb-3">
+                  <button
+                    type="button"
+                    onClick={() => handleSocialLogin("facebook")}
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-background border border-border shadow-xs hover:bg-muted transition-colors cursor-pointer"
+                  >
+                    <FaFacebook className="text-lg text-[#1877F2]" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleSocialLogin("google")}
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-background border border-border shadow-xs hover:bg-muted transition-colors cursor-pointer"
+                  >
+                    <FcGoogle className="text-lg" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleSocialLogin("linkedin")}
+                    className="w-9 h-9 flex items-center justify-center rounded-full bg-background border border-border shadow-xs hover:bg-muted transition-colors cursor-pointer"
+                  >
+                    <FaLinkedin className="text-lg text-[#0A66C2]" />
+                  </button>
+                </div>
+
+                <p className="text-[11px] text-muted-foreground leading-tight">
+                  By signing in via social media, I agree to{" "}
+                  <Link
+                    to="#"
+                    className="underline hover:text-primary transition-colors"
+                  >
+                    Terms
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    to="#"
+                    className="underline hover:text-primary transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* قسم معلومات المستخدم (في حال كان مسجلاً) */}
+          {isAuthenticated && (
+            <div className="px-5 py-3.5 flex items-center justify-between border-b border-border bg-muted/30">
+              <span className="font-bold text-sm text-foreground truncate max-w-[190px]">
+                {t("navbar.welcome") || "Hi,"} {userName}
+              </span>
+              <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full border border-primary/20">
+                Seed
+              </span>
+            </div>
+          )}
+
+          {/* روابط التنقل السريع */}
+          <ul className="py-2 flex flex-col text-start">
+            {[
+              { to: "/profile", label: t("navbar.myAlibaba") || "My Alibaba" },
+              { to: "/orders", label: t("navbar.orders") || "Orders" },
+              { to: "/messages", label: t("navbar.messages") || "Messages" },
+              { to: "/rfqs", label: "RFQs" },
+              ...(isAuthenticated
+                ? [{ to: "/dropshipping", label: "Dropshipping" }]
+                : []),
+              { to: "/favorites", label: t("navbar.favorites") || "Favorites" },
+              { to: "/profile", label: t("navbar.account") || "Account" },
+            ].map((link, idx) => (
+              <li key={idx}>
+                <Link
+                  to={link.to}
+                  onClick={() => setIsOpen(false)}
+                  className="block px-5 py-2 text-xs font-medium text-foreground hover:bg-muted hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
 
+          {/* زر تسجيل الخروج في الأسفل للمستخدم المسجل */}
           {isAuthenticated && (
-            <>
-              <hr className="border-gray-100 mx-5 my-1" />
-              <div className="py-2 mb-1">
-                <button
-                  onClick={() => dispatch(logout())}
-                  className="w-full text-left px-5 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 hover:text-[#eb5b00] transition-colors cursor-pointer"
-                >
-                  Sign out
-                </button>
-              </div>
-            </>
+            <div className="p-2 border-t border-border bg-muted/20">
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="flex items-center gap-2 w-full px-3 py-2 text-xs font-semibold text-destructive hover:bg-destructive/10 rounded-lg transition-colors cursor-pointer text-start"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>{t("navbar.signOut") || "Sign out"}</span>
+              </button>
+            </div>
           )}
         </div>
-      </div>
-    </div>
+      </PopoverContent>
+    </Popover>
   );
 }

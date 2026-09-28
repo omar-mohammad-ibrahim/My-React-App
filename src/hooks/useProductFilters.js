@@ -126,10 +126,28 @@ export function useProductFilters() {
     [updateFilters],
   );
 
+  // دالة مخصصة ونظيفة للتبديل بين المنتجات والموردين
+  const switchView = useCallback(
+    (newView) => {
+      const next = new URLSearchParams();
+
+      // 1. تحديد القسم الجديد
+      next.set("view", newView);
+
+      // 2. الحفاظ فقط على نص البحث لو كان موجوداً
+      if (searchParams.has("q")) {
+        next.set("q", searchParams.get("q"));
+      }
+
+      setSearchParams(next, { replace: true });
+    },
+    [searchParams, setSearchParams],
+  );
   return {
     filters,
     updateFilters,
     clearAllFilters,
     setPage,
+    switchView,
   };
 }

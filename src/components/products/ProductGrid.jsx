@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { fetchProducts } from "../../features/products/productsSlice";
-import ProductCard from "./ProductCard";
+import ProductCard from "./cards/ProductCard";
 import ProductSkeleton from "./ProductSkeleton";
 
 import {

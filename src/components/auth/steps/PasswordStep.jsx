@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Button from "../../ui/Button";
-import Input from "../../ui/Input";
+import input from "../../ui/Input";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -65,7 +65,7 @@ export default function PasswordStep({
 
         <div>
           <div className="relative w-full">
-            <Input
+            <input
               placeholder={t("auth.passwordPlaceholder") || "Password"}
               type={showPassword ? "text" : "password"}
               {...register("password")}

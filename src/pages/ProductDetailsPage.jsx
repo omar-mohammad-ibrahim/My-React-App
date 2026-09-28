@@ -3,10 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { productService } from "../services/productService";
 
-import ProductGallery from "../components/products/ProductGallery";
-import ProductInfo from "../components/products/ProductInfo";
-import ActionCard from "../components/products/ActionCard";
-import SupplierCard from "../components/products/SupplierCard";
+import ProductGallery from "../components/products/cards/ProductGallery";
+import ProductInfo from "../components/products/cards/ProductInfo";
+import ActionCard from "../components/products/cards/ActionCard";
+import SupplierCardMini from "../components/suppliers/SupplierCardMini";
 
 import {
   Breadcrumb,
@@ -134,7 +134,7 @@ export default function ProductDetailsPage() {
           {/* العمود الأيسر: الصور ومعلومات المورد */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             <ProductGallery images={productImages} />
-            <SupplierCard supplier={product.supplier} />
+            <SupplierCardMini supplier={product.supplier} />
           </div>
 
           {/* العمود الأوسط: بطاقة تفاصيل المنتج */}

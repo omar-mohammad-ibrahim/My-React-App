@@ -1,6 +1,6 @@
 import { Store, MapPin } from "lucide-react";
 
-export default function SupplierCard({ supplier }) {
+export default function SupplierCardMini({ supplier }) {
   if (!supplier) return null;
 
   return (

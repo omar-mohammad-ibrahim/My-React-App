@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { addToCart, syncCartToFirebase } from "../../features/cart/cartSlice";
 import Button from "../ui/Button";
 
 export default function AddToCartModal({ product, isOpen, onClose }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth?.user);
   const currentCart = useSelector((state) => state.cart.items);
+  const currentCurrency = localStorage.getItem("appCurrency") || "JOD";
 
   const moq = Number(product?.moq) || 1;
   const unitPrice = Number(product?.price) || 0;
@@ -15,7 +18,6 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
   const [quantity, setQuantity] = useState(moq);
   const [isSaving, setIsSaving] = useState(false);
 
-  // إعادة ضبط الكمية للحد الأدنى (MOQ) تلقائياً عند فتح نافذة منتج جديد
   useEffect(() => {
     if (isOpen && product) {
       setQuantity(Number(product.moq) || 1);
@@ -25,6 +27,9 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
   if (!isOpen || !product) return null;
 
   const subtotal = (unitPrice * quantity).toFixed(2);
+  const unitLabel = product.unit
+    ? t(`cart.units.${product.unit}`, product.unit)
+    : t("cart.units.box", "box");
 
   const handleDecrease = () => {
     if (quantity > moq) setQuantity((prev) => prev - 1);
@@ -49,10 +54,8 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
       selected: true,
     };
 
-    // 1. التحديث الفوري في Redux
     dispatch(addToCart(cartPayload));
 
-    // 2. المزامنة السحابية مع Firebase إن كان المستخدم مسجلاً
     if (user?.uid) {
       const existingIndex = currentCart.findIndex(
         (item) => item.id === cartPayload.id,
@@ -87,15 +90,17 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
 
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative z-10 bg-card text-foreground w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6 overflow-y-auto border-l border-border"
+        className="relative z-10 bg-card text-foreground w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6 overflow-y-auto border-s border-border text-start"
       >
         <div>
           <div className="flex justify-between items-center border-b border-border pb-4 mb-6">
-            <h2 className="text-lg font-bold">Select quantity</h2>
+            <h2 className="text-lg font-bold">
+              {t("cart.modal.selectQuantity", "Select quantity")}
+            </h2>
             <button
               type="button"
               onClick={onClose}
-              className="text-muted-foreground hover:text-foreground text-xl font-bold cursor-pointer transition-colors"
+              className="text-muted-foreground hover:text-foreground text-xl font-bold cursor-pointer transition-colors p-1"
             >
               ✕
             </button>
@@ -103,21 +108,30 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
 
           <div className="mb-6">
             <div className="text-2xl font-black text-foreground">
-              JOD {unitPrice.toFixed(2)}
-              <span className="text-xs text-muted-foreground font-normal ml-1">
-                /{product.unit || "box"}
+              {currentCurrency} {unitPrice.toFixed(2)}
+              <span className="text-xs text-muted-foreground font-normal ms-1">
+                /{unitLabel}
               </span>
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              Minimum Order Quantity (MOQ): {moq} {product.unit || "boxes"}
+              {t("cart.modal.moqNotice", {
+                moq,
+                unit: unitLabel,
+                defaultValue: `Minimum Order Quantity (MOQ): ${moq} ${unitLabel}`,
+              })}
             </p>
           </div>
 
           <div className="flex items-center justify-between py-4 border-y border-border">
             <div>
-              <span className="text-sm font-semibold block">Quantity</span>
+              <span className="text-sm font-semibold block">
+                {t("cart.modal.quantity", "Quantity")}
+              </span>
               <span className="text-xs text-muted-foreground">
-                Min. {moq} units
+                {t("cart.modal.minUnits", {
+                  moq,
+                  defaultValue: `Min. ${moq} units`,
+                })}
               </span>
             </div>
 
@@ -147,10 +161,10 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
         <div className="pt-4 border-t border-border">
           <div className="flex justify-between items-center mb-5">
             <span className="text-sm text-muted-foreground font-medium">
-              Subtotal:
+              {t("cart.modal.subtotal", "Subtotal:")}
             </span>
             <span className="text-2xl font-black text-foreground">
-              JOD {subtotal}
+              {currentCurrency} {subtotal}
             </span>
           </div>
 
@@ -158,9 +172,11 @@ export default function AddToCartModal({ product, isOpen, onClose }) {
             variant="primary"
             onClick={handleConfirmAddToCart}
             disabled={isSaving}
-            className="w-full py-3.5 text-base"
+            className="w-full py-3.5 text-base shadow-sm"
           >
-            {isSaving ? "Saving..." : "Add to cart"}
+            {isSaving
+              ? t("cart.modal.saving", "Saving...")
+              : t("cart.modal.addToCart", "Add to cart")}
           </Button>
         </div>
       </div>

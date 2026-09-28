@@ -1,33 +1,71 @@
+import React, { useState } from "react";
 import { MessageSquareText } from "lucide-react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Button from "@/components/ui/Button";
 
 export default function MessagesDropdown() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="group relative flex cursor-pointer items-center hover:text-[#eb5b00]">
-      <Link to="/messages">
-        <MessageSquareText className="h-[22px] w-[22px]" strokeWidth={1.5} />
-      </Link>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      {/* أيقونة فتح القائمة */}
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          aria-label="Messages"
+          className="flex items-center justify-center p-1.5 text-foreground hover:text-primary transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+        >
+          <MessageSquareText className="h-[22px] w-[22px]" strokeWidth={1.5} />
+        </button>
+      </PopoverTrigger>
 
-      <div className="absolute left-1/2 -translate-x-1/2 top-full hidden pt-4 group-hover:block z-50 w-64">
-        <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-2xl cursor-default text-center text-gray-900">
-          <h4 className="font-bold mb-1">
+      {/* النافذة المنبثقة */}
+      <PopoverContent
+        align="end"
+        sideOffset={10}
+        className="w-72 rounded-2xl border border-border bg-popover p-5 text-popover-foreground shadow-2xl z-50 animate-in fade-in-0 zoom-in-95"
+      >
+        <div className="flex flex-col text-center">
+          <h4 className="font-bold text-sm text-foreground mb-1">
             {t("navbar.messages") || "Messages"}
           </h4>
-          <p className="text-xs text-gray-500 mb-4">Sign in to view more</p>
-          {!isAuthenticated && (
-            <Link to="/auth">
-              <button className="w-full bg-[#eb5b00] text-white py-2 rounded-full font-bold hover:bg-[#d45100] cursor-pointer">
-                {t("navbar.signIn") || "Sign in"}
-              </button>
-            </Link>
+          <p className="text-xs text-muted-foreground mb-4">
+            {isAuthenticated
+              ? t("navbar.viewConversations") ||
+                "View and manage your conversations"
+              : t("navbar.signInToViewMore") || "Sign in to view your messages"}
+          </p>
+
+          {/* التوجيه بناءً على حالة تسجيل الدخول */}
+          {isAuthenticated ? (
+            <Button
+              to="/messages"
+              variant="primary"
+              onClick={() => setIsOpen(false)}
+              className="w-full h-10 rounded-full text-sm font-semibold shadow-sm"
+            >
+              {t("navbar.openMessages") || "Open Messages"}
+            </Button>
+          ) : (
+            <Button
+              to="/auth"
+              variant="primary"
+              onClick={() => setIsOpen(false)}
+              className="w-full h-10 rounded-full text-sm font-semibold shadow-sm"
+            >
+              {t("navbar.signIn") || "Sign in"}
+            </Button>
           )}
         </div>
-      </div>
-    </div>
+      </PopoverContent>
+    </Popover>
   );
 }

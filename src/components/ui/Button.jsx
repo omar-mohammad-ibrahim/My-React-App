@@ -9,34 +9,29 @@ export default function Button({
   disabled = false,
   className = "",
 }) {
-  // استخدام الرموز الهندسية المعرفة في ملف CSS:
-  // rounded-brand مشتقة من var(--radius-brand)
   const baseStyles =
-    "px-6 py-3 rounded-full font-bold transition-all duration-300 flex justify-center items-center gap-2 text-center select-none";
+    "px-6 py-3 rounded-full font-bold transition-all duration-200 flex justify-center items-center gap-2 text-center select-none";
 
-  // ربط الأنماط مباشرة مع الرموز المستخرجة من oklch في @theme inline
   const variants = {
-    // 1. الأساسي مع الظل المتوهج وحالة الـ hover المعرفة لديك
     primary:
       "bg-primary text-primary-foreground hover:bg-primary-hover shadow-primary-glow",
 
-    // 2. الثانوي المرتبط بأسطح النظام الداعمة
     secondary:
       "bg-secondary text-secondary-foreground hover:bg-secondary-hover",
 
-    // 3. حالات التحذير والخطر
     danger: "bg-danger text-destructive-foreground hover:bg-danger-hover",
 
-    // 4. الإطار الخارجي المتصل بحدود الـ primary وحالة التركيز
     outline:
       "border-2 border-primary text-primary hover:bg-accent hover:text-accent-foreground",
 
-    // 5. التدرج اللوني للعلامة التجارية المعرف في CSS مع الظل المتوهج
     gradient:
       "bg-brand-gradient text-primary-foreground hover:opacity-95 shadow-primary-glow",
+
+    // نمط علي بابا: إطار أسود/داكن وخلفية شفافة، وعند الـ Hover يتحول لبرتقالي ممتلئ بكتابة بيضاء
+    alibaba:
+      "border border-foreground/90 bg-transparent text-foreground hover:bg-primary hover:border-primary hover:text-white",
   };
 
-  // معالجة حالة التعطيل والتفاعل الحركي
   const disabledStyles = disabled
     ? "opacity-60 cursor-not-allowed pointer-events-none"
     : "cursor-pointer hover:-translate-y-0.5 active:scale-95";
@@ -45,7 +40,6 @@ export default function Button({
     variants[variant] || variants.primary
   } ${disabledStyles} ${className}`;
 
-  // إذا تم تمرير مسار، يتحول المكون إلى رابط React Router
   if (to) {
     return (
       <Link to={to} className={combinedClasses}>
@@ -65,3 +59,40 @@ export default function Button({
     </button>
   );
 }
+
+// export default function Input({
+//   placeholder = "",
+//   value,
+//   onChange,
+//   type = "text",
+//   error = "",
+//   disabled = false,
+//   className = "",
+//   ...props
+// }) {
+//   const borderStyles = error
+//     ? "border-danger focus:border-danger"
+//     : "border-gray-300 focus:border-gray-800";
+
+//   return (
+//     <div className={`w-full flex flex-col ${className}`}>
+//       <input
+//         type={type}
+//         value={value}
+//         onChange={onChange}
+//         disabled={disabled}
+//         placeholder={placeholder}
+//         className={`w-full px-3.5 py-3 text-sm text-gray-900 bg-white rounded-brand border outline-hidden transition-colors duration-200 placeholder:text-gray-400 ${borderStyles} ${
+//           disabled ? "bg-gray-100 cursor-not-allowed opacity-60" : ""
+//         }`}
+//         {...props}
+//       />
+
+//       {error && (
+//         <span className="text-danger text-xs mt-1.5 text-left font-normal">
+//           {error}
+//         </span>
+//       )}
+//     </div>
+//   );
+// }

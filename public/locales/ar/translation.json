@@ -39,6 +39,13 @@
 
   "navbar": {
     "setLanguage": "تحديد اللغة",
+    "setLanguageAndCurrency": "تحديد اللغة والعملة",
+    "selectPreferred": "اختر لغتك وعملتك المفضلة. يمكنك تحديث هذه الإعدادات في أي وقت.",
+    "language": "اللغة",
+    "currency": "العملة",
+    "selectLanguagePlaceholder": "اختر اللغة",
+    "selectCurrencyPlaceholder": "اختر العملة",
+    "save": "حفظ",
     "welcome": "مرحباً،",
     "account": "الحساب:",
     "signOut": "تسجيل الخروج",
@@ -52,7 +59,32 @@
     "emptyCart": "عربة التسوق فارغة",
     "goToCart": "الذهاب إلى العربة",
     "messages": "الرسائل",
-    "orders": "الطلبات"
+    "orders": "الطلبات",
+    "shippingNotice": "تختلف خيارات الشحن والرسوم بناءً على موقعك",
+    "postalCodePlaceholder": "أدخل الرمز البريدي",
+    "setLanguageAndCurrency": "تحديد اللغة والعملة",
+    "selectPreferred": "اختر لغتك وعملتك المفضلة. يمكنك تحديث هذه الإعدادات في أي وقت.",
+    "language": "اللغة",
+    "currency": "العملة",
+    "selectLanguagePlaceholder": "اختر اللغة",
+    "selectCurrencyPlaceholder": "اختر العملة",
+    "save": "حفظ",
+    "cart": "عربة التسوق",
+    "subtotal": "المجموع الفرعي غير شامل الضريبة",
+    "signInToViewMore": "سجل الدخول لعرض رسائلك",
+    "viewConversations": "عرض وإدارة محادثاتك",
+    "openMessages": "فتح الرسائل",
+    "securePayments": "دفع آمن ومحمي",
+    "moneyBack": "ضمان استعادة الأموال",
+    "onTimeDelivery": "توصيل مضمون في الوقت المحدد",
+    "viewOrders": "عرض جميع الطلبات",
+    "orContinueWith": "أو المتابعة باستخدام:",
+    "myAlibaba": "حسابي (My NexusTrade)",
+    "favorites": "المفضلة"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء"
   },
 
   "searchBar": {
@@ -67,7 +99,8 @@
     "verified": "موثوق",
     "error_msg": "عذراً! حدث خطأ ما.",
     "try_again": "حاول مرة أخرى",
-    "no_products": "لم يتم العثور على منتجات."
+    "no_products": "لم يتم العثور على منتجات.",
+    "min_order": "أقل كمية للطلب"
   },
 
   "welcome": {
@@ -79,5 +112,150 @@
   "pagination": {
     "previous": "السابق",
     "next": "التالي"
+  },
+  "units": {
+    "piece_one": "قطعة",
+    "piece_other": "قطع",
+    "set_one": "طقم",
+    "set_other": "أطقم",
+    "box_one": "صندوق",
+    "box_other": "صناديق"
+  },
+  "profile": {
+    "headerTitle": "الملف الشخصي",
+    "basicInfo": "المعلومات الأساسية",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "memberId": "رقم العضوية",
+    "copied": "تم النسخ!",
+    "copy": "نسخ",
+    "countryOfRegistration": "بلد التسجيل",
+    "yearJoined": "سنة الانضمام",
+    "email": "البريد الإلكتروني",
+    "verified": "موثّق",
+    "phoneNumber": "رقم الهاتف",
+    "noPhoneNumber": "لا يوجد رقم هاتف",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "cancel": "إلغاء",
+    "saveChanges": "حفظ التغييرات"
+  },
+  "filters": {
+    "title": "الفلاتر",
+    "clearAll": "مسح جميع الفلاتر",
+    "ok": "موافق",
+    "min": "الحد الأدنى",
+    "max": "الحد الأقصى",
+    "price": "السعر",
+    "minOrder": "الحد الأدنى للطلب",
+    "minOrderPlaceholder": "الحد الأدنى للطلب",
+    "tradeAssurance": "ضمان التجارة",
+    "tradeAssuranceDesc": "يحمي طلباتك على Alibaba.com",
+    "supplierFeatures": "ميزات المورّد",
+    "verified": "موثّق",
+    "supplier": "مورّد",
+    "verifiedSupplier": "مورّد موثّق",
+    "verifiedTooltip": "تم التحقق بواسطة خدمات فحص وتفتيش مستقلة",
+    "productFeatures": "ميزات المنتج",
+    "paidSamples": "عينات مدفوعة",
+    "storeReviews": "تقييمات المتجر",
+    "basedOn5Stars": "بناءً على نظام تقييم من 5 نجوم",
+    "ratingAndUp": "{{rating}} فما فوق",
+    "ratingFive": "5.0",
+    "supplierRegion": "بلد / منطقة المورّد",
+    "yearsOnPlatform": "سنوات التواجد على المنصة",
+    "yearsPlus": "{{count}}+ سنوات",
+    "countries": {
+      "IN": "الهند",
+      "CN": "الصين",
+      "HK": "هونغ كونغ (الصين)",
+      "PK": "باكستان"
+    },
+    "active": {
+      "search": "بحث: \"{{query}}\"",
+      "priceRange": "السعر: {{min}} - {{max}}",
+      "priceMin": "السعر: ≥ {{min}}",
+      "priceMax": "السعر: ≤ {{max}}",
+      "reviews": "تقييم المتجر: {{rating}}",
+      "moq": "الحد الأدنى: ≤ {{moq}}",
+      "category": "التصنيف: {{category}}",
+      "region": "المنطقة: {{country}}",
+      "experience": "الخبرة: {{years}}+ سنوات"
+    }
+  },
+  "subheader": {
+    "products": "المنتجات",
+    "suppliers": "المورّدون",
+    "allCategories": "جميع الفئات",
+    "verified": "المصنعون الموثقون",
+    "dropshipping": "دروبشيبينغ",
+    "about": "عن Alibaba.com",
+    "help": "مركز المساعدة",
+    "accio": "Accio Work",
+    "sell": "البيع على Alibaba.com"
+  },
+  "plp": {
+    "errorTitle": "حدث خطأ أثناء تحميل المنتجات",
+    "retry": "إعادة المحاولة",
+    "noProductsFound": "لم يتم العثور على أي منتجات مطابقة",
+    "noProductsDesc": "جرب إزالة بعض الفلاتر لتوسيع نطاق البحث.",
+    "clearAllFilters": "تفريغ جميع الفلاتر"
+  },
+  "productCard": {
+    "startYourOrder": "ابدأ طلبك",
+    "startOrder": "بدء الطلب",
+    "addToCart": "إضافة إلى السلة",
+    "chatNow": "محادثة الآن",
+    "minOrder": "الحد الأدنى للطلب: {{moq}} {{unit}}",
+    "minOrderLabel": "الحد الأدنى للطلب:",
+    "piece": "قطعة",
+    "pieces": "قطع",
+    "yearsCount": "{{count}} سنوات",
+    "securePayments": "دفع آمن ومحمي",
+    "securePaymentsDesc": "جميع المدفوعات على NexusTrade محمية ببروتوكولات تشفير صارمة."
+  },
+  "cart": {
+    "title": "عربة التسوق",
+    "loading": "جاري تحميل السلة...",
+    "loadError": "فشل تحميل عربة التسوق",
+    "emptyTitle": "عربة التسوق فارغة",
+    "emptyDesc": "لم تقم بإضافة أي منتجات بعد. تصفح المنتجات المتوفرة لملء طلبك.",
+    "startSourcing": "ابدأ التسوق الآن",
+    "selectAll": "تحديد جميع الخيارات ({{count}})",
+    "option": "الخيار: {{value}}",
+    "minOrder": "الحد الأدنى للطلب: {{moq}} {{unit}}",
+    "removeItem": "حذف العنصر",
+    "orderSummary": "ملخص الطلب ({{count}} {{unit}})",
+    "item": "منتج",
+    "items": "منتجات",
+    "itemSubtotal": "المجموع الفرعي للمنتجات",
+    "shippingFee": "رسوم الشحن",
+    "shippingDiscount": "خصم الشحن",
+    "subtotalExclTax": "المجموع الفرعي غير شامل الضريبة",
+    "checkout": "إتمام الشراء ({{count}})",
+    "buyerProtection": {
+      "title": "حماية الطلبات على NexusTrade.com",
+      "securePayments": "دفع آمن ومحمي",
+      "securePaymentsDesc": "جميع المعاملات المالية مشفرة ببروتوكولات SSL الصارمة ومعايير PCI DSS لأمان البيانات.",
+      "guaranteedDelivery": "توصيل مضمون",
+      "guaranteedDeliveryDesc": "للمنتجات المؤهلة، استلم طلبك في الموعد المحدد أو احصل على تعويض تأخير بنسبة 5%.",
+      "moneyBack": "ضمان استرداد الأموال",
+      "moneyBackDesc": "يمكنك طلب استرداد المبلغ إذا لم يتم شحن الطلب، أو فُقد أثناء الشحن، أو وصل وفيه عيوب تصنيع."
+    },
+    "modal": {
+      "selectQuantity": "تحديد الكمية",
+      "moqNotice": "الحد الأدنى للطلب (MOQ): {{moq}} {{unit}}",
+      "quantity": "الكمية",
+      "minUnits": "الحد الأدنى {{moq}} وحدات",
+      "subtotal": "المجموع الفرعي:",
+      "saving": "جاري الحفظ...",
+      "addToCart": "إضافة إلى السلة"
+    },
+    "units": {
+      "piece": "قطعة",
+      "pieces": "قطع",
+      "box": "صندوق",
+      "boxes": "صناديق"
+    }
   }
 }

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Button from "../../ui/Button";
-import Input from "../../ui/Input";
+import input from "../../ui/Input";
 import SocialButton from "../../ui/SocialButton";
 
 const identifierSchema = z.object({
@@ -64,7 +64,7 @@ export default function IdentifierStep({ onProceed, onSocialLogin }) {
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div>
-          <Input
+          <input
             placeholder={
               t("auth.emailPlaceholder") || "Enter your email address"
             }
